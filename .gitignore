@@ -1,3 +1,11 @@
+user.info
+cookies
+
+
+
+
+
+
 # Created by .ignore support plugin (hsz.mobi)
 *.DS_Store
 .AppleDouble
@@ -75,6 +83,8 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.lnk
+.idea/
+.idea/*
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/dictionaries
