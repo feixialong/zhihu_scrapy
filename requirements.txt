@@ -1,0 +1,4 @@
+lxml
+re
+requests
+scrapy
