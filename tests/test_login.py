@@ -11,16 +11,17 @@ class TestLogIn(unittest.TestCase):
     def tearDown(self):
         pass
 
-    @unittest.skip("")
-    def test_read_userinfo(self):
+    # @unittest.skip("")
+    def test_read_user_info(self):
         files = {
             "user.info.example": ("username", "password"),
             "user": (None, None)
         }
         for file in files:
-            self.assertEqual(login.read_userinfo(file), files[file], "用户信息读取错误")
+            print(file, files[file])
+            self.assertEqual(login.read_user_info(file), files[file], "{file}用户信息读取错误".format(file=file))
 
-    @unittest.skip("")
+    # @unittest.skip("")
     def test_is_tel_num(self):
         tels = {
             "12456989": False,
@@ -30,7 +31,49 @@ class TestLogIn(unittest.TestCase):
             "18542689546": True
         }
         for tel in tels:
-            self.failUnlessEqual(login.is_tel_num(tel), tels[tel], "{tel}判断错误".format(tel=tel))
+            print(tel, tels[tel])
+            self.assertEqual(login.is_tel_num(tel), tels[tel], "{tel}判断错误".format(tel=tel))
+
+    def test_url_select(self):
+        usernames = {
+            "12456989": ("https://www.zhihu.com/login/email", "email"),
+            "jkljgkljk": ("https://www.zhihu.com/login/email", "email"),
+            "1854268kg46": ("https://www.zhihu.com/login/email", "email"),
+            "18542689546125": ("https://www.zhihu.com/login/email", "email"),
+            "18542689546": ("https://www.zhihu.com/login/phone_num", "phone_num"),
+            "wumignshun@123.com": ("https://www.zhihu.com/login/email", "email")
+        }
+        for username in usernames:
+            print(username, usernames[username])
+            self.assertEqual(login._url_select(username), usernames[username],
+                             "{username}判断错误".format(username=username))
+
+    # @unittest.skip("")
+    def test_get_xsrf(self):
+        _xsrf = login.get_xsrf()
+        self.assertEqual(len(_xsrf), 32, "_xsrf获取失败")
+
+    def test_is_login_succeed(self):
+        texts = {
+            '{"msg": "登陆成功"}': True,
+            '{"msg": "登录过于频繁，请稍后重试"}': False,
+            '{"msg": ""}': False,
+            '': False,
+        }
+        for text in texts:
+            print(text, texts[text])
+            self.assertEqual(login.is_login_succeed(text), texts[text], "{text}登录状态判断错误".format(text=text))
+
+    def test_get_url_and_postdata(self):
+        username, password = login.read_user_info(login.USER_INFO_FILE)
+        url, data = login.get_url_and_postdata(username, password)
+        self.assertEqual(type(url), type(""), "数据类型错误")
+        self.assertEqual(type(data), type(data), " 数据类型错误")
+
+    def test_get_captcha_file(self):
+        import os
+        login.get_captcha_file()
+        self.assertEqual(os.path.exists(login.CAPTCHA_FILE), True, "获取验证码失败")
 
 
 if __name__ == "__main__":
