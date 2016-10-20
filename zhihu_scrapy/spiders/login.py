@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
-import requests
+import os
 
-USER_INFO_FILE = "user.info"
-COOKIES_FILE = "cookies"
-CAPTCHA_FILE = "captcha.bmp"
+DIR = os.path.split(os.path.abspath(__file__))[0]
+USER_INFO_FILE = os.path.join(DIR, "user.info")
+COOKIES_FILE = os.path.join(DIR, "cookies")
+CAPTCHA_FILE = os.path.join(DIR, "captcha.bmp")
 IS_VERIFY = True
 
 
 def read_user_info(file):
     import json
     import os
-    os.chdir(os.path.split(__file__)[0])
     if os.path.exists(file):
         with open(file, 'r') as f:
             data = json.loads(f.read())
@@ -136,12 +136,32 @@ class Login():
 
     def login(self, username, password):
         if self.read_cookie(COOKIES_FILE):
+            print("读取cookies成功，已登录")
             return self.session
         else:
             print("cookies加载失败，请手动登录！")
             return self.__login(username, password)
 
 
+def unfold_cookies(lwp_cookie_jar):
+    _cookies = lwp_cookie_jar._cookies
+    cookies = []
+    for domain in _cookies:
+        for path in _cookies[domain]:
+            for cookie in _cookies[domain][path]:
+                cookie = _cookies[domain][path][cookie].__dict__
+                cookies.append(cookie)
+    return cookies
+
+
 if __name__ == '__main__':
+    import os
+    import re
+    import http.cookiejar
     username, password = read_user_info(USER_INFO_FILE)
     session = Login().login(username, password)
+    # print(session.cookies)
+    cookies = unfold_cookies(session.cookies)
+    for cookie in cookies:
+        print(cookie)
+    print("")

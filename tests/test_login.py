@@ -77,3 +77,16 @@ class TestLogIn(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+    def read_cookie(filename):
+        import http.cookiejar
+        import os
+        import requests
+        session = requests.session()
+        session.cookies = http.cookiejar.LWPCookieJar(filename=filename)
+        if os.path.exists(filename):
+            session.cookies.load()
+            return True
+        else:
+            return False
