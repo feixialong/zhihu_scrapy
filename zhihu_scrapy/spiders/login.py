@@ -12,6 +12,7 @@ IS_VERIFY = True
 def read_user_info(file):
     import json
     import os
+    os.chdir(os.path.split(__file__)[0])  # 避免单元测试不通过
     if os.path.exists(file):
         with open(file, 'r') as f:
             data = json.loads(f.read())
@@ -160,8 +161,4 @@ if __name__ == '__main__':
     import http.cookiejar
     username, password = read_user_info(USER_INFO_FILE)
     session = Login().login(username, password)
-    # print(session.cookies)
-    cookies = unfold_cookies(session.cookies)
-    for cookie in cookies:
-        print(cookie)
     print("")
