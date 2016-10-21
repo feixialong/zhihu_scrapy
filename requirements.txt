@@ -1,4 +1,3 @@
 lxml
-re
 requests
 scrapy
