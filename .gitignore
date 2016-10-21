@@ -1,6 +1,7 @@
 zhihu_scrapy/spiders/user.info
 cookies
 *.jpg
+*.bmp
 
 
 
