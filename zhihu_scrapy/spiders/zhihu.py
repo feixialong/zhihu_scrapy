@@ -9,6 +9,7 @@ class ZhihuSpider(Spider):
     name = "zhihu"
     allowed_domains = ["zhihu.com"]
     start_urls = (
+        'https://www.zhihu.com/people/stevenjohnson',
         'https://www.zhihu.com/people/jixin',
     )
 
@@ -16,7 +17,8 @@ class ZhihuSpider(Spider):
         from zhihu_scrapy.spiders import login
         username, password = login.read_user_info(login.USER_INFO_FILE)
         session = login.Login().login(username, password)
-        yield Request(url=self.start_urls[0], headers=session.headers, cookies=login.unfold_cookies(session.cookies))
+        for url in self.start_urls:
+            yield Request(url=url, headers=session.headers, cookies=login.unfold_cookies(session.cookies))
 
     @staticmethod
     def url_type_select(url):

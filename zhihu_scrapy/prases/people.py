@@ -42,31 +42,52 @@ class People(object):
 
     def company(self):
         xpath_rule = '//span[@class="employment item"]/a/text()'
-        self.item["company"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        try:
+            self.item["company"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        except:
+            self.item["company"] = ""
 
     def job(self):
         xpath_rule = '//span[@class="position item"]/a/text()'
-        self.item["job"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        try:
+            self.item["job"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        except:
+            self.item["job"] = ""
 
     def location(self):
         xpath_rule = '//span[@class="location item"]/a/text()'
-        self.item["location"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        try:
+            self.item["location"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        except:
+            self.item["location"] = ""
 
     def school(self):
         xpath_rule = '//span[@class="education item"]/a/text()'
-        self.item["school"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        try:
+            self.item["school"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        except:
+            self.item["school"] = ""
 
     def major(self):
         xpath_rule = '//span[@class="education-extra item"]/a/text()'
-        self.item["major"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        try:
+            self.item["major"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        except:
+            self.item["major"] = ""
 
     def business(self):
         xpath_rule = '//span[@class="business item"]/a/text()'
-        self.item["business"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        try:
+            self.item["business"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        except:
+            self.item["business"] = ""
 
     def desc(self):
         xpath_rule = '//div[@class="bio ellipsis"]/text()'
-        self.item["desc"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        try:
+            self.item["desc"] = self.response.selector.xpath(xpath_rule).extract()[0]
+        except:
+            self.item["desc"] = ""
 
     def agrees_num(self):
         xpath_rule = '//span[@class="zm-profile-header-user-agree"]/strong/text()'
@@ -94,25 +115,45 @@ class People(object):
     def lives_num(self):
         import re
         xpath_rule = '//div[@class="zm-profile-side-section-title lives"]/a/strong/text()'
-        a = self.response.selector.xpath(xpath_rule).extract()[0]
-        pattern = re.compile(r'\d+')
-        num = re.findall(pattern, a)
-        self.item["lives_num"] = int(num[0])
+        try:
+            a = self.response.selector.xpath(xpath_rule).extract()[0]
+            pattern = re.compile(r'\d+')
+            num = re.findall(pattern, a)
+            self.item["lives_num"] = int(num[0])
+        except:
+            self.item["lives_num"] = 0
 
     def columns_topics_num(self):
         import re
         xpath_rule = '//div[@class="zm-profile-side-section-title"]/a/strong/text()'
-        cn, tn = self.response.selector.xpath(xpath_rule).extract()
-        pattern = re.compile(r'\d+')
-        _columns_num = re.findall(pattern, cn)
-        _topics_num = re.findall(pattern, tn)
-        self.item["topics_num"] = int(_topics_num[0])
-        self.item["columns_num"] = int(_columns_num[0])
+        a = self.response.selector.xpath(xpath_rule).extract()
+        if len(a) == 2:
+            cn, tn = a[0], a[1]
+            pattern = re.compile(r'\d+')
+            _columns_num = re.findall(pattern, cn)
+            _topics_num = re.findall(pattern, tn)
+            self.item["topics_num"] = int(_topics_num[0])
+            self.item["columns_num"] = int(_columns_num[0])
+        elif len(a) == 1:
+            pattern = re.compile(r'\d+')
+            num = re.findall(pattern, a[0])
+            if a[0][-2:] in ["话题"]:
+                self.item["topics_num"] = int(num[0])
+                self.item["columns_num"] = 0
+            else:
+                self.item["topics_num"] = 0
+                self.item["columns_num"] = int(num[0])
+        else:
+            self.item["topics_num"] = 0
+            self.item["columns_num"] = 0
 
     def visited_num(self):
         xpath_rule = '//div[@class="zm-side-section-inner"]//span[@class="zg-gray-normal"]/strong/text()'
-        visited_num = self.response.selector.xpath(xpath_rule).extract()[0]
-        self.item["visited_num"] = int(visited_num)
+        try:
+            visited_num = self.response.selector.xpath(xpath_rule).extract()[0]
+            self.item["visited_num"] = int(visited_num)
+        except:
+            self.item["visited_num"] = 0
 
 
 
