@@ -1,6 +1,15 @@
 # -*- coding: utf-8 -*-
 
+
+import http.cookiejar
+import json
+from lxml import etree
 import os
+import re
+import requests
+import time
+
+from zhihu_scrapy import tools
 
 DIR = os.path.split(os.path.abspath(__file__))[0]
 USER_INFO_FILE = os.path.join(DIR, "user.info")
@@ -10,8 +19,6 @@ IS_VERIFY = True
 
 
 def read_user_info(file):
-    import json
-    import os
     os.chdir(os.path.split(__file__)[0])  # 避免单元测试不通过
     if os.path.exists(file):
         with open(file, 'r') as f:
@@ -20,18 +27,7 @@ def read_user_info(file):
     return None, None
 
 
-def set_headers():
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:46.0) Gecko/20100101 Firefox/46.0",
-        "host": "www.zhihu.com",
-        'Referer': 'http://www.zhihu.com/',
-        'Accept-Encoding': 'gzip'
-    }
-    return headers
-
-
 def is_tel_num(num):
-    import re
     pattern = r"\d{11}"
     if len(num) == 11:
         if re.match(pattern, num) is not None:
@@ -51,16 +47,14 @@ def _url_select(username):
 
 class Login():
     def __init__(self):
-        import requests
-        import http.cookiejar
+
         self.session = requests.session()
-        self.session.headers = set_headers()
+        self.session.headers = tools.set_headers()
         self.session.verify = IS_VERIFY
         self.session.cookies = http.cookiejar.LWPCookieJar(filename=COOKIES_FILE)
 
     def read_cookie(self, filename=COOKIES_FILE):
-        import os
-        import http.cookiejar
+
         self.session.cookies = http.cookiejar.LWPCookieJar(filename=filename)
         if os.path.exists(filename):
             self.session.cookies.load()
@@ -69,7 +63,7 @@ class Login():
             return False
 
     def get_xsrf(self):
-        from lxml import etree
+
         url = "https://www.zhihu.com/"
         doc = etree.HTML(self.session.get(url).text)
         return doc.xpath('/html/body/input')[0].get("value")
@@ -86,8 +80,7 @@ class Login():
         return url, data
 
     def get_captcha_file(self):
-        import os
-        import time
+
         if os.path.exists(CAPTCHA_FILE):
             os.remove(CAPTCHA_FILE)
         else:
@@ -103,7 +96,7 @@ class Login():
             return False
 
     def update_postdata(self, data):
-        import os
+
         if self.get_captcha_file():
             data["captcha"] = input("请打开{captcha_file}，输入验证码：".format(
                 captcha_file=os.path.abspath(CAPTCHA_FILE)
@@ -114,7 +107,7 @@ class Login():
 
     @staticmethod
     def is_login_succeed(responst_text):
-        import json
+
         try:
             status = json.loads(responst_text).get("msg")
             if status in ["登陆成功", "\u767b\u5f55\u6210\u529f"]:
@@ -156,9 +149,6 @@ def unfold_cookies(lwp_cookie_jar):
 
 
 if __name__ == '__main__':
-    import os
-    import re
-    import http.cookiejar
     username, password = read_user_info(USER_INFO_FILE)
     session = Login().login(username, password)
     print("")

@@ -11,9 +11,14 @@ import scrapy
 class ZhihuScrapyItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    pass
+
+
+class PeopleItem(scrapy.Item):
     user_url = scrapy.Field()
     avatar_url = scrapy.Field()
     user_name = scrapy.Field()
+    gender = scrapy.Field()
     company = scrapy.Field()
     job = scrapy.Field()
     location = scrapy.Field()
