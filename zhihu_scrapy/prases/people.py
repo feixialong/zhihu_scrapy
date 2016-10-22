@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from zhihu_scrapy.items import PeopleItem
+
 
 class People(object):
     def __init__(self, response):
         self.response = response
-        self.item = self.init_item()
+        self.item = PeopleItem()
         self.user_url()
         self.avatar_url()
         self.user_name()
@@ -19,15 +21,10 @@ class People(object):
         self.agrees_num()
         self.thanks_num()
         self.ext()
-        self.followe_info()
+        self.follow_info()
         self.lives_num()
         self.columns_topics_num()
         self.visited_num()
-
-    @staticmethod
-    def init_item():
-        from zhihu_scrapy.items import PeopleItem
-        return PeopleItem()
 
     def user_url(self):
         self.item["user_url"] = self.response.url
@@ -120,11 +117,11 @@ class People(object):
         self.item["collections_num"] = int(a[3])
         self.item["edit_num"] = int(a[4])
 
-    def followe_info(self):
+    def follow_info(self):
         xpath_rule = '//div[@class="zm-profile-side-following zg-clear"]/a[@class="item"]/strong/text()'
         a = self.response.selector.xpath(xpath_rule).extract()
-        self.item["followed_others_num"] = int(a[0])
-        self.item["be_followed_num"] = int(a[1])
+        self.item["followees_num"] = int(a[0])
+        self.item["followers_num"] = int(a[1])
 
     def lives_num(self):
         import re

@@ -7,17 +7,19 @@ from scrapy.spiders import Spider
 from zhihu_scrapy import settings
 from zhihu_scrapy import tools
 from zhihu_scrapy.spiders import login
+from zhihu_scrapy.prases import followees
 from zhihu_scrapy.prases import people
+
 
 
 class ZhihuSpider(Spider):
     name = "zhihu"
     allowed_domains = ["zhihu.com"]
     start_urls = (
-        'https://www.zhihu.com/people/stevenjohnson',
+        # 'https://www.zhihu.com/people/stevenjohnson',
         'https://www.zhihu.com/people/jixin',
-        'https://www.zhihu.com/people/chen-li-jie-75',
-        "https://www.zhihu.com/people/hydfox"
+        # 'https://www.zhihu.com/people/chen-li-jie-75',
+        # "https://www.zhihu.com/people/hydfox"
     )
 
     def start_requests(self):
@@ -27,11 +29,11 @@ class ZhihuSpider(Spider):
             yield Request(url=url,
                           headers=session.headers,
                           cookies=login.unfold_cookies(session.cookies),
-                          callback=self.parse_people
+                          # callback=self.parse_people
                           )
 
-    @staticmethod
-    def url_type_select(url):
+    @classmethod
+    def url_type_select(cls, url):
         if url.find("zhihu") == -1:
             return ""
         else:
@@ -46,21 +48,27 @@ class ZhihuSpider(Spider):
                     pass
             return ""
 
-    def parse_people(self, response):
-        if self.url_type_select(response.url) not in ["people"]:
-            return
-        else:
-            people_info = people.People(response).item
-            yield people_info
-            followed_others_url = "".join([people_info["user_url"], settings.FOLLOWED_OTHERS_URL_SUF])
-            yield Request(
-                url=followed_others_url,
-                headers=tools.set_headers(followed_others_url),
-                callback=self.parse_followed_others
-            )
+    def parse(self, response):  # 通过parse()分发解析去向
+        _type = self.url_type_select(response.url)
+        if _type in ["people"]:
+            return self.parse_people(response)
+        elif _type in ["followees"]:
+            return self.parse_followees(response)
 
-    def parse_followed_others(self, response):
-        pass
+    @classmethod
+    def parse_people(cls, response):
+        people_info = people.People(response).item
+        yield people_info
+
+        followee_url = "".join([people_info["user_url"], settings.FOLLOWEE_URL_SUF])
+        yield Request(
+            url=followee_url,
+            headers=tools.set_headers(followee_url)
+        )
+
+    @classmethod
+    def parse_followees(cls, response):
+        followees_info = followees.Followees(response).item
 
 
 if __name__ == "__main__":

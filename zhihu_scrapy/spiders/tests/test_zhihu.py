@@ -2,16 +2,18 @@
 
 import unittest
 from zhihu_scrapy.spiders import zhihu
+from scrapy import cmdline
 
 
 class TestZhihu(unittest.TestCase):
     def setUp(self):
-        self.test_zhihu = zhihu.ZhihuSpider()
+        pass
 
     def tearDown(self):
         pass
 
     def test_url_type_select(self):
+        self.test_zhihu = zhihu.ZhihuSpider()
         urls = {
             "https://www.zhihu.com/people/jixin/followees": "followees",
             "https://www.zhihu.com/people/jixin/followers": "followers",
@@ -29,6 +31,23 @@ class TestZhihu(unittest.TestCase):
         for url in urls:
             self.assertEqual(self.test_zhihu.url_type_select(url), urls[url],
                              "{url}判断错误".format(url=url))
+
+    def test_people(self):
+        try:
+            cmdline.execute("scrapy crawl test_people".split())
+        except SystemExit:
+            print("Succeed!")
+
+
+class TestPeople(zhihu.ZhihuSpider):
+    name = "test_people"
+    start_urls = (
+        'https://www.zhihu.com/people/stevenjohnson',
+        'https://www.zhihu.com/people/jixin',
+        'https://www.zhihu.com/people/jasinyip',
+        'https://www.zhihu.com/people/tnttnt',
+        'https://www.zhihu.com/people/hydfox'
+    )
 
 
 if __name__ == "__main__":

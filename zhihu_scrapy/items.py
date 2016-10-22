@@ -33,10 +33,14 @@ class PeopleItem(scrapy.Item):
     articles_num = scrapy.Field()
     collections_num = scrapy.Field()
     edit_num = scrapy.Field()
-    followed_others_num = scrapy.Field()
-    be_followed_num = scrapy.Field()
+    followees_num = scrapy.Field()
+    followers_num = scrapy.Field()
     lives_num = scrapy.Field()
     topics_num = scrapy.Field()
     columns_num = scrapy.Field()
     visited_num = scrapy.Field()
+
+
+class FolloweesItem(scrapy.Item):
+    pass
 
