@@ -42,5 +42,9 @@ class PeopleItem(scrapy.Item):
 
 
 class FolloweesItem(scrapy.Item):
-    pass
+    user_url = scrapy.Field()
+    total_num = scrapy.Field()
+    followees = scrapy.Field()
+    followees_2 = scrapy.Field()
+
 

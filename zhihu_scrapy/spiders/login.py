@@ -38,6 +38,14 @@ def is_tel_num(num):
         return False
 
 
+def read_cookie(filename=COOKIES_FILE):
+    os.chdir(os.path.split(os.path.abspath(__file__))[0])
+    cookies = http.cookiejar.LWPCookieJar(filename=filename)
+    if os.path.exists(filename):
+        cookies.load()
+        return cookies
+
+
 def _url_select(username):
     if is_tel_num(username):
         return "https://www.zhihu.com/login/phone_num", "phone_num"
@@ -54,7 +62,6 @@ class Login():
         self.session.cookies = http.cookiejar.LWPCookieJar(filename=COOKIES_FILE)
 
     def read_cookie(self, filename=COOKIES_FILE):
-
         self.session.cookies = http.cookiejar.LWPCookieJar(filename=filename)
         if os.path.exists(filename):
             self.session.cookies.load()

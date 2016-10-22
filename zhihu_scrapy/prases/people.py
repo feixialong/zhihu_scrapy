@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from zhihu_scrapy import settings
 from zhihu_scrapy.items import PeopleItem
 
 
@@ -27,7 +28,12 @@ class People(object):
         self.visited_num()
 
     def user_url(self):
-        self.item["user_url"] = self.response.url
+        xpath_rule = '//a[@class="item home first active"]/@href'
+        cur_user_url = self.response.selector.xpath(xpath_rule).extract_first()
+        if cur_user_url is None:
+            self.item["user_url"] = self.response.url
+        else:
+            self.item["user_url"] = "".join([settings.PRE_URL, cur_user_url])
 
     def avatar_url(self):
         xpath_rule = '//*[@class="body clearfix"]//*[@class="Avatar Avatar--l"]/@src'

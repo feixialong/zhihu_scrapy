@@ -38,16 +38,30 @@ class TestZhihu(unittest.TestCase):
         except SystemExit:
             print("Succeed!")
 
+    def test_followees(self):
+        try:
+            cmdline.execute("scrapy crawl test_followees".split())
+        except SystemExit:
+            print("Succeed!")
+
 
 class TestPeople(zhihu.ZhihuSpider):
     name = "test_people"
-    start_urls = (
+    start_urls = [
         'https://www.zhihu.com/people/stevenjohnson',
         'https://www.zhihu.com/people/jixin',
         'https://www.zhihu.com/people/jasinyip',
         'https://www.zhihu.com/people/tnttnt',
         'https://www.zhihu.com/people/hydfox'
-    )
+    ]
+
+
+class TestFollowees(zhihu.ZhihuSpider):
+    name = "test_followees"
+    start_urls = [
+        # "https://www.zhihu.com/people/jixin/followees",
+        "https://www.zhihu.com/people/mei-ying-0829/followees"
+    ]
 
 
 if __name__ == "__main__":
