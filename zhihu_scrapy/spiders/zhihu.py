@@ -7,6 +7,7 @@ from scrapy.spiders import Spider
 from zhihu_scrapy import settings
 from zhihu_scrapy import tools
 from zhihu_scrapy.prases import followees
+from zhihu_scrapy.prases import followers
 from zhihu_scrapy.prases import people
 from zhihu_scrapy.spiders import login
 
@@ -31,13 +32,14 @@ class ZhihuSpider(Spider):
     name = "zhihu"
     allowed_domains = ["zhihu.com"]
     start_urls = [
-        'https://www.zhihu.com/people/stevenjohnson',
+        # 'https://www.zhihu.com/people/stevenjohnson',
         # 'https://www.zhihu.com/people/jixin',
         # 'https://www.zhihu.com/people/chen-li-jie-75',
         # "https://www.zhihu.com/people/hydfox",
         # "https://www.zhihu.com/people/jixin/followees"
         # "https://www.zhihu.com/people/mei-ying-0829/followees",
-        # "https://www.zhihu.com/people/shuaizhu/followees"
+        # "https://www.zhihu.com/people/shuaizhu/followees",
+        "https://www.zhihu.com/people/chen-fan-85/followers"
     ]
 
     def start_requests(self):
@@ -45,7 +47,7 @@ class ZhihuSpider(Spider):
         for url in self.start_urls:
             yield Request(
                 url=url,
-                headers=settings.DEDAULT_HEADERS,
+                headers=tools.set_headers(url),
                 cookies=tools.unfold_cookies(session.cookies)
             )
 
@@ -55,7 +57,8 @@ class ZhihuSpider(Spider):
             return people.People(response).item
         elif _type in ["followees"]:
             return followees.Followees(response).item
-
+        elif _type in ["followers"]:
+            return followers.Followers(response).item
 
 if __name__ == "__main__":
     from scrapy.cmdline import execute
