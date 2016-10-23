@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+from zhihu_scrapy import tools
 
 # Scrapy settings for zhihu_scrapy project
 #
@@ -94,6 +95,15 @@ BASE_URL = "https://www.zhihu.com"
 # 登录相关
 DIR = os.path.split(os.path.abspath(__file__))[0]
 USER_INFO_FILE = os.path.join(DIR, "spiders/", "user.info")
+USER_NAME, PASSWORD = tools.read_user_info(USER_INFO_FILE)
 COOKIES_FILE = os.path.join(DIR, "spiders/", "cookies")
 CAPTCHA_FILE = os.path.join(DIR, "spiders/", "captcha.bmp")
 IS_VERIFY = True
+
+
+DEDAULT_HEADERS = tools.set_headers()
+
+
+
+
+

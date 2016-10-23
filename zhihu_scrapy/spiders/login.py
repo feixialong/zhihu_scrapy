@@ -9,69 +9,24 @@ import re
 import requests
 import time
 
-from zhihu_scrapy import tools
 from zhihu_scrapy import settings
-
-
-def read_user_info(file):
-    os.chdir(os.path.split(__file__)[0])  # 避免单元测试不通过
-    if os.path.exists(file):
-        with open(file, 'r') as f:
-            data = json.loads(f.read())
-        return data.get("username"), data.get("password")
-    return None, None
-
-
-def is_tel_num(num):
-    pattern = r"\d{11}"
-    if len(num) == 11:
-        if re.match(pattern, num) is not None:
-            return True
-        else:
-            return False
-    else:
-        return False
-
-
-def read_cookie(filename=settings.COOKIES_FILE):
-    os.chdir(os.path.split(os.path.abspath(__file__))[0])
-    cookies = http.cookiejar.LWPCookieJar(filename=filename)
-    if os.path.exists(filename):
-        cookies.load()
-        return cookies
-
-
-def _url_select(username):
-    if is_tel_num(username):
-        return "https://www.zhihu.com/login/phone_num", "phone_num"
-    else:
-        return "https://www.zhihu.com/login/email", "email"
+from zhihu_scrapy import tools
 
 
 class Login():
     def __init__(self):
-
         self.session = requests.session()
-        self.session.headers = tools.set_headers()
+        self.session.headers = settings.DEDAULT_HEADERS
         self.session.verify = settings.IS_VERIFY
         self.session.cookies = http.cookiejar.LWPCookieJar(filename=settings.COOKIES_FILE)
 
-    def read_cookie(self, filename=settings.COOKIES_FILE):
-        self.session.cookies = http.cookiejar.LWPCookieJar(filename=filename)
-        if os.path.exists(filename):
-            self.session.cookies.load()
-            return True
-        else:
-            return False
-
     def get_xsrf(self):
-
         url = "https://www.zhihu.com/"
         doc = etree.HTML(self.session.get(url).text)
         return doc.xpath('/html/body/input')[0].get("value")
 
     def get_url_and_postdata(self, username, password):
-        url, key = _url_select(username)
+        url, key = tools.url_select(username)
         data = {
             "email": username,
             "password": password,
@@ -108,7 +63,6 @@ class Login():
 
     @staticmethod
     def is_login_succeed(responst_text):
-
         try:
             status = json.loads(responst_text).get("msg")
             if status in ["登陆成功", "\u767b\u5f55\u6210\u529f"]:
@@ -130,26 +84,18 @@ class Login():
         return self.session
 
     def login(self, username, password):
-        if self.read_cookie(settings.COOKIES_FILE):
-            print("读取cookies成功，已登录")
-            return self.session
-        else:
+        cookies = tools.read_cookie(settings.COOKIES_FILE)
+        if cookies is None:
             print("cookies加载失败，请手动登录！")
             return self.__login(username, password)
-
-
-def unfold_cookies(lwp_cookie_jar):
-    _cookies = lwp_cookie_jar._cookies
-    cookies = []
-    for domain in _cookies:
-        for path in _cookies[domain]:
-            for cookie in _cookies[domain][path]:
-                cookie = _cookies[domain][path][cookie].__dict__
-                cookies.append(cookie)
-    return cookies
+        else:
+            session = requests.session()
+            session.cookies = cookies
+            print("读取cookies成功，已登录")
+            return session
 
 
 if __name__ == '__main__':
-    username, password = read_user_info(settings.USER_INFO_FILE)
+    username, password = settings.USER_NAME, settings.PASSWORD
     session = Login().login(username, password)
     print("")

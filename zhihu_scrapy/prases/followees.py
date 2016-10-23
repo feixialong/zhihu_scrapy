@@ -11,7 +11,6 @@ from zhihu_scrapy import settings
 from zhihu_scrapy.items import FolloweesItem
 
 
-
 class Followees(object):
     def __init__(self, response):
         self.offset = 0
@@ -37,3 +36,12 @@ class Followees(object):
         xpath_rule = '//a[@class="zg-link author-link"]/@href'
         followee_urls = self.response.selector.xpath(xpath_rule).extract()
         self.item["followees"] = set(followee_urls)
+
+
+if __name__ == "__main__":
+    info = {"name": "wumingshun", "age": 18}
+    print(info)
+    info.update({"name": "MingShun_Wu"})
+    print(info)
+    info.update({"school": "WHUT"})
+    print(info)

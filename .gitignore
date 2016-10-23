@@ -1,8 +1,10 @@
-/zhihu_scrapy/spiders/cookies
-/zhihu_scrapy/spiders/user.info
+zhihu_scrapy/spiders/cookies
+zhihu_scrapy/spiders/user.info
 *.jpg
 *.bmp
 
+cookies
+user.info
 
 
 
@@ -129,3 +131,4 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 
+tests/
