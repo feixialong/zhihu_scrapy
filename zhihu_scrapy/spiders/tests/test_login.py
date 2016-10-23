@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+from zhihu_scrapy import settings
 from zhihu_scrapy.spiders import login
+
 
 
 class TestLogIn(unittest.TestCase):
@@ -66,7 +68,7 @@ class TestLogIn(unittest.TestCase):
             self.assertEqual(self.test_login.is_login_succeed(text), texts[text], "{text}登录状态判断错误".format(text=text))
 
     def test_get_url_and_postdata(self):
-        username, password = login.read_user_info(login.USER_INFO_FILE)
+        username, password = login.read_user_info(settings.USER_INFO_FILE)
         url, data = self.test_login.get_url_and_postdata(username, password)
         self.assertEqual(type(url), type(""), "数据类型错误")
         self.assertEqual(type(data), type(data), " 数据类型错误")
@@ -78,15 +80,3 @@ class TestLogIn(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
-
-    def read_cookie(filename):
-        import http.cookiejar
-        import os
-        import requests
-        session = requests.session()
-        session.cookies = http.cookiejar.LWPCookieJar(filename=filename)
-        if os.path.exists(filename):
-            session.cookies.load()
-            return True
-        else:
-            return False

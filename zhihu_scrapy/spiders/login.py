@@ -10,12 +10,7 @@ import requests
 import time
 
 from zhihu_scrapy import tools
-
-DIR = os.path.split(os.path.abspath(__file__))[0]
-USER_INFO_FILE = os.path.join(DIR, "user.info")
-COOKIES_FILE = os.path.join(DIR, "cookies")
-CAPTCHA_FILE = os.path.join(DIR, "captcha.bmp")
-IS_VERIFY = True
+from zhihu_scrapy import settings
 
 
 def read_user_info(file):
@@ -38,7 +33,7 @@ def is_tel_num(num):
         return False
 
 
-def read_cookie(filename=COOKIES_FILE):
+def read_cookie(filename=settings.COOKIES_FILE):
     os.chdir(os.path.split(os.path.abspath(__file__))[0])
     cookies = http.cookiejar.LWPCookieJar(filename=filename)
     if os.path.exists(filename):
@@ -58,10 +53,10 @@ class Login():
 
         self.session = requests.session()
         self.session.headers = tools.set_headers()
-        self.session.verify = IS_VERIFY
-        self.session.cookies = http.cookiejar.LWPCookieJar(filename=COOKIES_FILE)
+        self.session.verify = settings.IS_VERIFY
+        self.session.cookies = http.cookiejar.LWPCookieJar(filename=settings.COOKIES_FILE)
 
-    def read_cookie(self, filename=COOKIES_FILE):
+    def read_cookie(self, filename=settings.COOKIES_FILE):
         self.session.cookies = http.cookiejar.LWPCookieJar(filename=filename)
         if os.path.exists(filename):
             self.session.cookies.load()
@@ -87,7 +82,7 @@ class Login():
         return url, data
 
     def get_captcha_file(self):
-
+        CAPTCHA_FILE = settings.CAPTCHA_FILE
         if os.path.exists(CAPTCHA_FILE):
             os.remove(CAPTCHA_FILE)
         else:
@@ -103,10 +98,9 @@ class Login():
             return False
 
     def update_postdata(self, data):
-
         if self.get_captcha_file():
             data["captcha"] = input("请打开{captcha_file}，输入验证码：".format(
-                captcha_file=os.path.abspath(CAPTCHA_FILE)
+                captcha_file=os.path.abspath(settings.CAPTCHA_FILE)
             ))
             return data
         else:
@@ -136,7 +130,7 @@ class Login():
         return self.session
 
     def login(self, username, password):
-        if self.read_cookie(COOKIES_FILE):
+        if self.read_cookie(settings.COOKIES_FILE):
             print("读取cookies成功，已登录")
             return self.session
         else:
@@ -156,6 +150,6 @@ def unfold_cookies(lwp_cookie_jar):
 
 
 if __name__ == '__main__':
-    username, password = read_user_info(USER_INFO_FILE)
+    username, password = read_user_info(settings.USER_INFO_FILE)
     session = Login().login(username, password)
     print("")

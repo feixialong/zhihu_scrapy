@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os
+
 # Scrapy settings for zhihu_scrapy project
 #
 # For simplicity, this file contains only settings considered important or
@@ -87,4 +89,11 @@ NEWSPIDER_MODULE = 'zhihu_scrapy.spiders'
 
 # 以下为各网址后缀
 FOLLOWEE_URL_SUF = "/followees"
-PRE_URL = "https://www.zhihu.com"
+BASE_URL = "https://www.zhihu.com"
+
+# 登录相关
+DIR = os.path.split(os.path.abspath(__file__))[0]
+USER_INFO_FILE = os.path.join(DIR, "spiders/", "user.info")
+COOKIES_FILE = os.path.join(DIR, "spiders/", "cookies")
+CAPTCHA_FILE = os.path.join(DIR, "spiders/", "captcha.bmp")
+IS_VERIFY = True

@@ -33,7 +33,7 @@ class People(object):
         if cur_user_url is None:
             self.item["user_url"] = self.response.url
         else:
-            self.item["user_url"] = "".join([settings.PRE_URL, cur_user_url])
+            self.item["user_url"] = "".join([settings.BASE_URL, cur_user_url])
 
     def avatar_url(self):
         xpath_rule = '//*[@class="body clearfix"]//*[@class="Avatar Avatar--l"]/@src'

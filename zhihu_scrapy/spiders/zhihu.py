@@ -26,7 +26,7 @@ class ZhihuSpider(Spider):
     ]
 
     def start_requests(self):
-        username, password = login.read_user_info(login.USER_INFO_FILE)
+        username, password = login.read_user_info(settings.USER_INFO_FILE)
         session = login.Login().login(username, password)
         for url in self.start_urls:
             yield Request(url=url,
