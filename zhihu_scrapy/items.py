@@ -53,3 +53,16 @@ class FollowersItem(scrapy.Item):
     total_num = scrapy.Field()
     followers = scrapy.Field()
     followers_2 = scrapy.Field()
+
+
+class AsksItem(scrapy.Item):
+    user_url = scrapy.Field()
+    total_num = scrapy.Field()
+    followers = scrapy.Field()
+    followers_2 = scrapy.Field()
+
+
+class ColumnsItem(scrapy.Item):
+    user_url = scrapy.Field()
+    column_url = scrapy.Field()
+    articles = scrapy.Field()

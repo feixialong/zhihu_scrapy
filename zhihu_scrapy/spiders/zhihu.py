@@ -6,6 +6,8 @@ from scrapy.spiders import Spider
 
 from zhihu_scrapy import settings
 from zhihu_scrapy import tools
+from zhihu_scrapy.prases import asks
+from zhihu_scrapy.prases import columns
 from zhihu_scrapy.prases import followees
 from zhihu_scrapy.prases import followers
 from zhihu_scrapy.prases import people
@@ -39,7 +41,8 @@ class ZhihuSpider(Spider):
         # "https://www.zhihu.com/people/jixin/followees"
         # "https://www.zhihu.com/people/mei-ying-0829/followees",
         # "https://www.zhihu.com/people/shuaizhu/followees",
-        "https://www.zhihu.com/people/chen-fan-85/followers"
+        # "https://www.zhihu.com/people/chen-fan-85/followers",
+        "https://www.zhihu.com/people/chen-fan-85/columns/followed"
     ]
 
     def start_requests(self):
@@ -59,6 +62,12 @@ class ZhihuSpider(Spider):
             return followees.Followees(response).item
         elif _type in ["followers"]:
             return followers.Followers(response).item
+        elif _type in ["asks"]:
+            # todo asks的解析未完成
+            return asks.Asks(response).item
+        elif _type in ["columns"]:
+            # todo columns要抓取的网址与内容均待进一步讨论
+            return columns.Columns(response).item
 
 if __name__ == "__main__":
     from scrapy.cmdline import execute
