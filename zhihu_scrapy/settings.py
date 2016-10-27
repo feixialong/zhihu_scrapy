@@ -91,6 +91,7 @@ NEWSPIDER_MODULE = 'zhihu_scrapy.spiders'
 # 以下为各网址后缀
 FOLLOWEE_URL_SUF = "/followees"
 BASE_URL = "https://www.zhihu.com"
+COLUMNS_BASE_URL = "https://zhuanlan.zhihu.com"
 
 # 登录相关
 DIR = os.path.split(os.path.abspath(__file__))[0]

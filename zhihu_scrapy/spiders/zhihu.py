@@ -29,7 +29,9 @@ class ZhihuSpider(Spider):
         # "https://www.zhihu.com/people/mei-ying-0829/followees",
         # "https://www.zhihu.com/people/shuaizhu/followees",
         # "https://www.zhihu.com/people/chen-fan-85/followers",
-        "https://zhuanlan.zhihu.com/pythoner"
+        # "https://zhuanlan.zhihu.com/pythoner"
+        "https://zhuanlan.zhihu.com/api/columns/pythoner"
+        # "https://zhuanlan.zhihu.com/api/columns/LaTeX"
     ]
 
     def start_requests(self):

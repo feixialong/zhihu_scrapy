@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f09e920-7968-45c1-8e7d-255cb13be913" name="Default" comment="动态加载的未完成">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="4f09e920-7968-45c1-8e7d-255cb13be913" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/zhihu_scrapy.iml" afterPath="$PROJECT_DIR$/.idea/zhihu_scrapy.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/items.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/items.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/columns.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/columns.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/settings.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/tools.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/tools.py" />
     </list>
-    <list id="a9488cb4-e3dd-4b84-9aab-a3350c54147a" name="个人信息，不同步" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/cookies" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/user.info" />
-    </list>
+    <list id="a9488cb4-e3dd-4b84-9aab-a3350c54147a" name="个人信息，不同步" comment="" />
     <ignored path="zhihu_scrapy.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,13 +28,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="zhihu.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="zhihu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+            <state relative-caret-position="286">
+              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
               <folding>
                 <element signature="e#26#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/login.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="99" column="47" selection-start-line="99" selection-start-column="47" selection-end-line="99" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="columns.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/columns.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-762">
+              <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+              <folding>
+                <element signature="e#25#36#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/items.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="421">
+              <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1196">
+              <caret line="93" column="16" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tools.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/tools.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+              <folding>
+                <element signature="e#25#34#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,28 +116,28 @@
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/for_unittest.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_people.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/test_zhihu.py" />
-        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_zhihu.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/prases/people.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/prases/followees.py" />
         <option value="$PROJECT_DIR$/tools.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_login.py" />
-        <option value="$PROJECT_DIR$/zhihu_scrapy/tools.py" />
-        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py" />
-        <option value="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/login.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/prases/followers.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/prases/asks.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_zhihu.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/tools.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/items.py" />
-        <option value="$PROJECT_DIR$/zhihu_scrapy/prases/columns.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/prases/columns.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="130" />
+    <option name="x" value="207" />
     <option name="y" value="23" />
-    <option name="width" value="1150" />
+    <option name="width" value="918" />
     <option name="height" value="777" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -131,6 +184,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -202,7 +256,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -229,28 +282,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.zhihu">
-    <configuration default="false" name="Unittests in test_login" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="zhihu_scrapy" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_login.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="zhihu" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -268,7 +299,7 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest TestLogIn.test_read_user_info" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest TestZhihu.test_url_type_select" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -278,9 +309,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="zhihu_scrapy" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py" />
-      <option name="CLASS_NAME" value="TestLogIn" />
-      <option name="METHOD_NAME" value="test_read_user_info" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_zhihu.py" />
+      <option name="CLASS_NAME" value="TestZhihu" />
+      <option name="METHOD_NAME" value="test_url_type_select" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -290,7 +321,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest TestTools.test_unflod_cookies" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest TestTools.test_get_num_from_str" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -302,7 +333,7 @@
       <module name="zhihu_scrapy" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py" />
       <option name="CLASS_NAME" value="TestTools" />
-      <option name="METHOD_NAME" value="test_unflod_cookies" />
+      <option name="METHOD_NAME" value="test_get_num_from_str" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -312,19 +343,41 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="login" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="Unittest TestTools.test_url_select" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="zhihu_scrapy" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py" />
+      <option name="CLASS_NAME" value="TestTools" />
+      <option name="METHOD_NAME" value="test_url_select" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="columns" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/zhihu_scrapy/spiders" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/zhihu_scrapy/prases" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="zhihu_scrapy" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu_scrapy/spiders/login.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu_scrapy/prases/columns.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -464,19 +517,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_login" />
-      <item index="1" class="java.lang.String" itemvalue="Python.zhihu" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest TestLogIn.test_read_user_info" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestTools.test_unflod_cookies" />
-      <item index="4" class="java.lang.String" itemvalue="Python.login" />
+      <item index="0" class="java.lang.String" itemvalue="Python.zhihu" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest TestZhihu.test_url_type_select" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest TestTools.test_get_num_from_str" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestTools.test_url_select" />
+      <item index="4" class="java.lang.String" itemvalue="Python.columns" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.zhihu" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest TestTools.test_unflod_cookies" />
-        <item index="2" class="java.lang.String" itemvalue="Python.login" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_login" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestLogIn.test_read_user_info" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest TestTools.test_get_num_from_str" />
+        <item index="2" class="java.lang.String" itemvalue="Python.columns" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestTools.test_url_select" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestZhihu.test_url_type_select" />
       </list>
     </recent_temporary>
   </component>
@@ -579,46 +632,53 @@
       <option name="project" value="LOCAL" />
       <updated>1477267391771</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="columns">
+      <created>1477527725164</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1477527725164</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_TestLogIn_test_read_user_info - 2016.10.23 at 16h 40m 49s.xml">
-      <configuration name="Unittest TestLogIn.test_read_user_info" configurationId="tests" />
+    <history-entry file="Unittest_TestTools_test_get_num_from_str - 2016.10.27 at 08h 02m 22s.xml">
+      <configuration name="Unittest TestTools.test_get_num_from_str" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestTools_test_unflod_cookies - 2016.10.23 at 16h 51m 05s.xml">
-      <configuration name="Unittest TestTools.test_unflod_cookies" configurationId="tests" />
+    <history-entry file="Unittest_TestTools_test_get_num_from_str - 2016.10.27 at 08h 02m 46s.xml">
+      <configuration name="Unittest TestTools.test_get_num_from_str" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestTools_test_unflod_cookies - 2016.10.23 at 16h 51m 39s.xml">
-      <configuration name="Unittest TestTools.test_unflod_cookies" configurationId="tests" />
+    <history-entry file="Unittest_TestTools_test_get_num_from_str - 2016.10.27 at 08h 03m 09s.xml">
+      <configuration name="Unittest TestTools.test_get_num_from_str" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestTools_test_unflod_cookies - 2016.10.23 at 16h 51m 53s.xml">
-      <configuration name="Unittest TestTools.test_unflod_cookies" configurationId="tests" />
+    <history-entry file="Unittest_TestTools_test_get_num_from_str - 2016.10.27 at 08h 03m 47s.xml">
+      <configuration name="Unittest TestTools.test_get_num_from_str" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestTools_test_unflod_cookies - 2016.10.23 at 17h 01m 57s.xml">
-      <configuration name="Unittest TestTools.test_unflod_cookies" configurationId="tests" />
+    <history-entry file="Unittest_TestTools_test_get_num_from_str - 2016.10.27 at 21h 31m 29s.xml">
+      <configuration name="Unittest TestTools.test_get_num_from_str" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_login - 2016.10.23 at 16h 39m 36s.xml">
-      <configuration name="Unittests in test_login" configurationId="tests" />
+    <history-entry file="Unittest_TestTools_test_url_select - 2016.10.27 at 08h 12m 03s.xml">
+      <configuration name="Unittest TestTools.test_url_select" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_login - 2016.10.23 at 16h 41m 05s.xml">
-      <configuration name="Unittests in test_login" configurationId="tests" />
+    <history-entry file="Unittest_TestZhihu_test_url_type_select - 2016.10.27 at 07h 44m 14s.xml">
+      <configuration name="Unittest TestZhihu.test_url_type_select" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_login - 2016.10.23 at 16h 46m 50s.xml">
-      <configuration name="Unittests in test_login" configurationId="tests" />
+    <history-entry file="Unittest_TestZhihu_test_url_type_select - 2016.10.27 at 07h 45m 57s.xml">
+      <configuration name="Unittest TestZhihu.test_url_type_select" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_login - 2016.10.23 at 16h 47m 11s.xml">
-      <configuration name="Unittests in test_login" configurationId="tests" />
+    <history-entry file="Unittest_TestZhihu_test_url_type_select - 2016.10.27 at 07h 46m 16s.xml">
+      <configuration name="Unittest TestZhihu.test_url_type_select" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_login - 2016.10.23 at 16h 47m 40s.xml">
-      <configuration name="Unittests in test_login" configurationId="tests" />
+    <history-entry file="Unittest_TestZhihu_test_url_type_select - 2016.10.27 at 07h 47m 30s.xml">
+      <configuration name="Unittest TestZhihu.test_url_type_select" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="130" y="23" width="1150" height="777" extended-state="0" />
-    <editor active="true" />
+    <frame x="207" y="23" width="918" height="777" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23472099" sideWeight="0.6702356" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23299888" sideWeight="0.6702356" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29051095" sideWeight="0.50823826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -627,7 +687,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329927" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30708662" sideWeight="0.32976446" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4890511" sideWeight="0.5576679" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48321167" sideWeight="0.5576679" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -680,7 +740,8 @@
     <MESSAGE value="将公共的移到tools.py" />
     <MESSAGE value="添加关注者数据抓取" />
     <MESSAGE value="asks与columns数据抓取（待进一步研究）" />
-    <option name="LAST_COMMIT_MESSAGE" value="asks与columns数据抓取（待进一步研究）" />
+    <MESSAGE value="columns" />
+    <option name="LAST_COMMIT_MESSAGE" value="columns" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -691,9 +752,9 @@
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu.py</url>
-          <line>49</line>
-          <option name="timeStamp" value="64" />
+          <url>file://$PROJECT_DIR$/zhihu_scrapy/prases/columns.py</url>
+          <line>117</line>
+          <option name="timeStamp" value="91" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -703,21 +764,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="65" />
+      <option name="time" value="92" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/people.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#25#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -732,9 +783,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#26#47#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -906,13 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_zhihu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/user.info.example">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
@@ -974,23 +1016,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/people.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#25#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="53" column="62" selection-start-line="53" selection-start-column="62" selection-end-line="53" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/core/engine.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -998,38 +1023,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
-          <folding>
-            <element signature="e#26#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/pipelines.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding>
-            <element signature="e#25#34#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1063,30 +1060,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/items.py">
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_zhihu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="67" column="29" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
+        <state relative-caret-position="247">
+          <caret line="27" column="66" selection-start-line="27" selection-start-column="66" selection-end-line="27" selection-end-column="66" />
+          <folding>
+            <element signature="e#25#40#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/people.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="79" column="68" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="68" />
+          <folding>
+            <element signature="e#25#58#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="57" column="16" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/columns.py">
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/item.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        <state relative-caret-position="92">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="99" column="47" selection-start-line="99" selection-start-column="47" selection-end-line="99" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1196">
+          <caret line="93" column="16" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
           <folding>
-            <element signature="e#25#36#0" expanded="true" />
+            <element signature="e#25#34#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        <state relative-caret-position="286">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding>
             <element signature="e#26#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/columns.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-762">
+          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding>
+            <element signature="e#25#36#0" expanded="true" />
           </folding>
         </state>
       </provider>

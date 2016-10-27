@@ -65,7 +65,11 @@ class AsksItem(scrapy.Item):
 class ColumnsItem(scrapy.Item):
     user_url = scrapy.Field()
     column_url = scrapy.Field()
+    api_url = scrapy.Field()
+    column_name = scrapy.Field()
     followers_num = scrapy.Field()
     articles = scrapy.Field()
     followers = scrapy.Field()
     topics = scrapy.Field()
+    column_desc = scrapy.Field()
+    followers = scrapy.Field()

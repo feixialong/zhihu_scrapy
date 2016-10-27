@@ -40,7 +40,8 @@ def set_headers(url=None):
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:46.0) Gecko/20100101 Firefox/46.0",
         "Host": "www.zhihu.com",
-        'Accept-Encoding': 'gzip'
+        'Accept-Encoding': 'gzip',
+        "Connection": "keep-alive"
     }
     if url is None:
         headers['Referer'] = 'http://www.zhihu.com/'
@@ -105,4 +106,13 @@ def get_num_from_str(str_):
     pattern = re.compile(r'\d+')
     num_strs = re.findall(pattern, str_)
     return [int(s) for s in num_strs]
+
+
+def dict_response_body(body):
+    if type(body) == type(b''):
+        return json.loads(body.encode("utf-8"))
+    elif type(body)  == type(''):
+        return json.loads(body)
+    else:
+        return json.loads(body)
 
