@@ -21,15 +21,17 @@ class TestZhihu(unittest.TestCase):
             "https://www.zhihu.com/people/jixin/answers": "answers",
             "https://www.zhihu.com/people/jixin/posts": "posts",
             "https://www.zhihu.com/people/jixin/collections": "collections",
-            "https://www.zhihu.com/people/jixin/columns/followed": "columns",
-            "https://www.zhihu.com/people/jixin/topics": "topics",
+            # "https://www.zhihu.com/people/jixin/columns/followed": "columns",
+            # "https://www.zhihu.com/people/jixin/topics": "topics",
             "https://www.zhihu.com/people/jixin": "people",
             "https://www.zhihu.com/question/36546814/answer/84509117": "answer",
             "https://www.zhihu.com/question/36546814": "question",
-            "https://www.baidu.com": ""
+            "https://www.baidu.com": "",
+            "https://zhuanlan.zhihu.com/pythoner": "columns",
+            "https://www.zhihu.com/topic/19559424/hot": "topic"
         }
         for url in urls:
-            self.assertEqual(self.test_zhihu.url_type_select(url), urls[url],
+            self.assertEqual(zhihu.url_type_select(url), urls[url],
                              "{url}判断错误".format(url=url))
 
     def test_people(self):

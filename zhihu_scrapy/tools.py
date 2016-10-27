@@ -9,6 +9,33 @@ import http.cookiejar
 from scrapy import settings
 
 
+def url_type_select(url):
+    if url is not None:
+        if url.find("zhihu") == -1:
+            return ""
+        else:
+            url_splited = url.split("/")
+            url_splited.reverse()
+            types = [
+                "people",
+                "followees",
+                "followers",
+                "asks",
+                "answers",
+                "posts",
+                "collections",
+                "columns",
+                "topic",
+                "answer",
+                "question"
+            ]
+            for i in url_splited:
+                if i in types:
+                    return i
+                else:
+                    pass
+            return "columns"
+
 def set_headers(url=None):
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:46.0) Gecko/20100101 Firefox/46.0",
@@ -19,6 +46,10 @@ def set_headers(url=None):
         headers['Referer'] = 'http://www.zhihu.com/'
     else:
         headers['Referer'] = url
+    if url_type_select(url) in ["columns"]:
+        headers.update({
+            "Host": "zhuanlan.zhihu.com"
+        })
     return headers
 
 
@@ -68,3 +99,10 @@ def unfold_cookies(lwp_cookie_jar):
                 cookie = _cookies[domain][path][cookie].__dict__
                 cookies.append(cookie)
     return cookies
+
+
+def get_num_from_str(str_):
+    pattern = re.compile(r'\d+')
+    num_strs = re.findall(pattern, str_)
+    return [int(s) for s in num_strs]
+

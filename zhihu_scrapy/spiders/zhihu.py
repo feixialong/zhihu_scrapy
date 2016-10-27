@@ -14,20 +14,7 @@ from zhihu_scrapy.prases import people
 from zhihu_scrapy.spiders import login
 
 
-def url_type_select(url):
-    if url.find("zhihu") == -1:
-        return ""
-    else:
-        url_splited = url.split("/")
-        url_splited.reverse()
-        types = ["people", "followees", "followers", "asks", "answers", "posts", "collections", "columns", "topics",
-                 "answer", "question"]
-        for i in url_splited:
-            if i in types:
-                return i
-            else:
-                pass
-        return ""
+
 
 
 class ZhihuSpider(Spider):
@@ -42,7 +29,7 @@ class ZhihuSpider(Spider):
         # "https://www.zhihu.com/people/mei-ying-0829/followees",
         # "https://www.zhihu.com/people/shuaizhu/followees",
         # "https://www.zhihu.com/people/chen-fan-85/followers",
-        "https://www.zhihu.com/people/chen-fan-85/columns/followed"
+        "https://zhuanlan.zhihu.com/pythoner"
     ]
 
     def start_requests(self):
@@ -51,11 +38,12 @@ class ZhihuSpider(Spider):
             yield Request(
                 url=url,
                 headers=tools.set_headers(url),
-                cookies=tools.unfold_cookies(session.cookies)
+                cookies=tools.unfold_cookies(session.cookies),
+                # meta={}zhuanlan.zhihu.com
             )
 
     def parse(self, response):  # 通过parse()分发解析去向
-        _type = url_type_select(response.url)
+        _type = tools.url_type_select(response.url)
         if _type in ["people"]:
             return people.People(response).item
         elif _type in ["followees"]:
@@ -68,6 +56,7 @@ class ZhihuSpider(Spider):
         elif _type in ["columns"]:
             # todo columns要抓取的网址与内容均待进一步讨论
             return columns.Columns(response).item
+
 
 if __name__ == "__main__":
     from scrapy.cmdline import execute
