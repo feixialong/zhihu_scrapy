@@ -27,7 +27,7 @@ class Columns(object):
         self.followers_num()
         self.topics()
         self.articles()
-        self.followers()
+        # self.followers()
 
     def get_xsrf(self):
         return self.response.selector.xpath("")
@@ -60,23 +60,13 @@ class Columns(object):
         LIMIT = 20
         offset = 0
         articles = []
+        continue_ = True
         url = "".join([self.item["api_url"], "/posts"])
         session = requests.session()
         session.headers = {
             "Connection": "keep-alive"
         }
-        params = {
-            "limit": LIMIT,
-            "offset": offset
-        }
-        response = json.loads(session.get(url,
-                                          params=params
-                                          ).text)
-
-        while len(response) >= LIMIT:
-            for i in response:
-                articles.append("".join([settings.COLUMNS_BASE_URL, i.get("url")]))
-            offset += LIMIT
+        while continue_:
             params = {
                 "limit": LIMIT,
                 "offset": offset
@@ -84,29 +74,27 @@ class Columns(object):
             response = json.loads(session.get(url,
                                               params=params
                                               ).text)
+            for i in response:
+                articles.append("".join([settings.COLUMNS_BASE_URL, i.get("url")]))
+
+            if len(response) < LIMIT:
+                continue_ = False
+            else:
+                offset += LIMIT
         self.item["articles"] = set(articles)
 
     def followers(self):
         LIMIT = 20
         offset = 0
         followers = []
+        continue_ = True
+
         url = "".join([self.item["api_url"], "/followers"])
         session = requests.session()
         session.headers = {
             "Connection": "keep-alive"
         }
-        params = {
-            "limit": LIMIT,
-            "offset": offset
-        }
-        response = json.loads(session.get(url,
-                                          params=params
-                                          ).text)
-        print("")
-        while len(response) >= LIMIT:
-            for i in response:
-                followers.append(i.get("profileUrl"))
-            offset += LIMIT
+        while continue_:
             params = {
                 "limit": LIMIT,
                 "offset": offset
@@ -114,6 +102,10 @@ class Columns(object):
             response = json.loads(session.get(url,
                                               params=params
                                               ).text)
+            for i in response:
+                followers.append(i.get("profileUrl"))
+            if len(response) < LIMIT:
+                continue_ = False
+            else:
+                offset += LIMIT
         self.item["followers"] = set(followers)
-
-
