@@ -26,7 +26,6 @@ class People(object):
         self.lives_num()
         self.columns_topics_num()
         self.visited_num()
-        # print(self.item)
 
     def user_url(self):
         xpath_rule = '//a[@class="item home first active"]/@href'
