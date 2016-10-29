@@ -11,10 +11,8 @@ from zhihu_scrapy.prases import columns
 from zhihu_scrapy.prases import followees
 from zhihu_scrapy.prases import followers
 from zhihu_scrapy.prases import people
+from zhihu_scrapy.prases import topics
 from zhihu_scrapy.spiders import login
-
-
-
 
 
 class ZhihuSpider(Spider):
@@ -30,9 +28,38 @@ class ZhihuSpider(Spider):
         # "https://www.zhihu.com/people/shuaizhu/followees",
         # "https://www.zhihu.com/people/chen-fan-85/followers",
         # "https://zhuanlan.zhihu.com/pythoner"
-        "https://zhuanlan.zhihu.com/api/columns/pythoner"
+        # "https://zhuanlan.zhihu.com/api/columns/pythoner"
         # "https://zhuanlan.zhihu.com/api/columns/LaTeX"
+        "https://www.zhihu.com/topic/19559424/top-answers"
     ]
+
+    @classmethod
+    def url_type_select(cls, url):
+        if url is not None:
+            if url.find("zhihu") == -1:
+                return ""
+            else:
+                url_splited = url.split("/")
+                url_splited.reverse()
+                types = [
+                    "people",
+                    "followees",
+                    "followers",
+                    "asks",
+                    "answers",
+                    "posts",
+                    "collections",
+                    "columns",
+                    "topic",
+                    "answer",
+                    "question"
+                ]
+                for i in url_splited:
+                    if i in types:
+                        return i
+                    else:
+                        pass
+                return "columns"
 
     def start_requests(self):
         session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
@@ -45,19 +72,23 @@ class ZhihuSpider(Spider):
             )
 
     def parse(self, response):  # 通过parse()分发解析去向
-        _type = tools.url_type_select(response.url)
-        if _type in ["people"]:
+        type_ = self.url_type_select(response.url)
+        if type_ in ["people"]:
             return people.People(response).item
-        elif _type in ["followees"]:
+        elif type_ in ["followees"]:
             return followees.Followees(response).item
-        elif _type in ["followers"]:
+        elif type_ in ["followers"]:
             return followers.Followers(response).item
-        elif _type in ["asks"]:
+        elif type_ in ["asks"]:
             # todo asks的解析未完成
             return asks.Asks(response).item
-        elif _type in ["columns"]:
+        elif type_ in ["columns"]:
             # todo columns要抓取的网址与内容均待进一步讨论
             return columns.Columns(response).item
+        elif type_ in ["topic"]:
+            return topics.Topics(response).item
+            # elif type_ in ["topic_next"]:
+            #     return topics.TopicsNext(response).item
 
 
 if __name__ == "__main__":

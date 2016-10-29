@@ -9,34 +9,6 @@ import http.cookiejar
 from scrapy import settings
 
 
-def url_type_select(url):
-    if url is not None:
-        if url.find("zhihu") == -1:
-            return ""
-        else:
-            url_splited = url.split("/")
-            url_splited.reverse()
-            types = [
-                "people",
-                "followees",
-                "followers",
-                "asks",
-                "answers",
-                "posts",
-                "collections",
-                "columns",
-                "topic",
-                "answer",
-                "question"
-            ]
-            for i in url_splited:
-                if i in types:
-                    return i
-                else:
-                    pass
-            return "columns"
-
-
 def set_headers(url=None):
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:46.0) Gecko/20100101 Firefox/46.0",
@@ -94,12 +66,13 @@ def read_cookie(filename):
 
 
 def unfold_cookies(lwp_cookie_jar):
-    _cookies = lwp_cookie_jar._cookies
+    # todo 在保存的cookies形式更改后，此方法可能会有问题（虽然现在看似乎还可用）
+    cookies_ = lwp_cookie_jar._cookies
     cookies = []
-    for domain in _cookies:
-        for path in _cookies[domain]:
-            for cookie in _cookies[domain][path]:
-                cookie = _cookies[domain][path][cookie].__dict__
+    for domain in cookies_:
+        for path in cookies_[domain]:
+            for cookie in cookies_[domain][path]:
+                cookie = cookies_[domain][path][cookie].__dict__
                 cookies.append(cookie)
     return cookies
 
