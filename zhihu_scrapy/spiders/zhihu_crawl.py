@@ -21,6 +21,8 @@ from zhihu_scrapy import settings
 class ZhihuSpider(CrawlSpider):
     name = "zhihu_crawl"
     allowed_domains = ["zhihu.com"]
+    session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
+
     start_urls = [
         'https://www.zhihu.com/people/stevenjohnson',
         # 'https://www.zhihu.com/people/jixin',
@@ -39,35 +41,29 @@ class ZhihuSpider(CrawlSpider):
     rules = [
         Rule(
             LinkExtractor(
-                # allow=[
-                #     "https://www.zhihu.com/people/stevenjohnson",
-                # ],
+                allow=[
+                    "https://www.zhihu.com/people/stevenjohnson",
+                ],
                 deny=[
                     " https://www.zhihu.com/logout",
                 ]
             ),
             # todo 使用Rule时，请求应带cookies的问题未解决
-            process_links="process_links_",  # 传入links列表
-            process_request="process_request_",  # 传入request，每次一个
-            callback="callback_",  # 传入response
-
+            process_links="process_links_",  # 传入links列表，返回links列表
+            process_request="process_request_",  # 传入Request，每次一个，返回Request，每次一个
+            callback="parse_start_url",  # 传入response，返回经过parse的item
         ),
 
     ]
 
-    session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
-
     def start_requests(self):
         for url in self.start_urls:
-            yield self.get_response_from_url(url)
-
-    def get_response_from_url(self, url):
-        print("请求{url}中...".format(url=url))
-        return Request(
-            url=url,
-            headers=tools.set_headers(url),
-            cookies=tools.unfold_cookies(self.session.cookies)
-        )
+            yield Request(
+                url=url,
+                headers=tools.set_headers(url),
+                cookies=tools.unfold_cookies(self.session.cookies),
+                meta={'cookiejar': 1}
+            )
 
     def process_links_(self, links):
         """
@@ -75,35 +71,36 @@ class ZhihuSpider(CrawlSpider):
         :param links: Rule()获取到的links列表
         :return: 经过中间处理后的links列表
         """
-        print("运行到了process_links_")
+        print("运行到了process_links_......")
         print(links)
-        print("")
+        print("\n")
         return links
 
     def process_request_(self, request):
         """
         在Rule()获取到的request，用此方法对其进行处理，
-        :param requests: Rule()获取到的request，每次只传入一个
+        :param request: Rule()获取到的request，每次只传入一个
         :return: 经过中间处理后的request，每次只返回一个
         """
-        request.headers = tools.set_headers(request.url)
-        request.cookies = self.session.cookies
-        print("运行到了process_request")
-        a = request
-        print(a)
-        print("")
-        return a
+        # 似乎已成功
+        print("运行到了process_request_......")
+        print(type(request))
+        request = request.replace(**{"cookies": tools.unfold_cookies(self.session.cookies)})
+        request = request.replace(**{"headers": tools.set_headers(request.url)})
+        print(request)
+        print(type(request))
+        print("\n")
+        return request
 
     def callback_(self, response):
-        print("运行到了callback_")
+        # 此处似乎也已成功
+        print("运行到了callback_......")
         a = response
         print(response)
-        print("")
+        print("\n")
         return response
 
     def parse_start_url(self, response):
-        with open("1.html", 'wb') as f:
-            f.write(response.body)
         type_ = tools.url_type_select(response.url)
         if type_ in ["not_zhihu"]:
             pass

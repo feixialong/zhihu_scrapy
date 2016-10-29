@@ -44,8 +44,6 @@ class ZhihuSpider(Spider):
             )
 
     def parse(self, response):  # 通过parse()分发解析去向
-        with open("1.html", 'wb') as f:
-            f.write(response.body)
         type_ = tools.url_type_select(response.url)
         if type_ in ["people"]:
             return people.People(response).item
