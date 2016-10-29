@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+from zhihu_scrapy import tools
 from zhihu_scrapy.spiders import zhihu
 from scrapy import cmdline
 
@@ -31,7 +32,7 @@ class TestZhihu(unittest.TestCase):
             "https://www.zhihu.com/topic/19559424/hot": "topic"
         }
         for url in urls:
-            self.assertEqual(zhihu.url_type_select(url), urls[url],
+            self.assertEqual(tools.url_type_select(url), urls[url],
                              "{url}判断错误".format(url=url))
 
     def test_people(self):

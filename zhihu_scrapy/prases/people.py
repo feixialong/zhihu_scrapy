@@ -26,6 +26,7 @@ class People(object):
         self.lives_num()
         self.columns_topics_num()
         self.visited_num()
+        # print(self.item)
 
     def user_url(self):
         xpath_rule = '//a[@class="item home first active"]/@href'
@@ -36,7 +37,7 @@ class People(object):
             self.item["user_url"] = "".join([settings.BASE_URL, cur_user_url])
 
     def avatar_url(self):
-        xpath_rule = '//*[@class="body clearfix"]//*[@class="Avatar Avatar--l"]/@src'
+        xpath_rule = '//*[@class="Avatar Avatar--l"]/@src'
         _avatar_url = self.response.selector.xpath(xpath_rule).extract_first()
         self.item["avatar_url"] = "".join([_avatar_url[:-6], _avatar_url[-4:]])
 

@@ -19,7 +19,7 @@ class ZhihuSpider(Spider):
     name = "zhihu"
     allowed_domains = ["zhihu.com"]
     start_urls = [
-        # 'https://www.zhihu.com/people/stevenjohnson',
+        'https://www.zhihu.com/people/stevenjohnson',
         # 'https://www.zhihu.com/people/jixin',
         # 'https://www.zhihu.com/people/chen-li-jie-75',
         # "https://www.zhihu.com/people/hydfox",
@@ -30,36 +30,8 @@ class ZhihuSpider(Spider):
         # "https://zhuanlan.zhihu.com/pythoner"
         # "https://zhuanlan.zhihu.com/api/columns/pythoner"
         # "https://zhuanlan.zhihu.com/api/columns/LaTeX"
-        "https://www.zhihu.com/topic/19559424/top-answers"
+        # "https://www.zhihu.com/topic/19559424/top-answers"
     ]
-
-    @classmethod
-    def url_type_select(cls, url):
-        if url is not None:
-            if url.find("zhihu") == -1:
-                return ""
-            else:
-                url_splited = url.split("/")
-                url_splited.reverse()
-                types = [
-                    "people",
-                    "followees",
-                    "followers",
-                    "asks",
-                    "answers",
-                    "posts",
-                    "collections",
-                    "columns",
-                    "topic",
-                    "answer",
-                    "question"
-                ]
-                for i in url_splited:
-                    if i in types:
-                        return i
-                    else:
-                        pass
-                return "columns"
 
     def start_requests(self):
         session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
@@ -72,7 +44,9 @@ class ZhihuSpider(Spider):
             )
 
     def parse(self, response):  # 通过parse()分发解析去向
-        type_ = self.url_type_select(response.url)
+        with open("1.html", 'wb') as f:
+            f.write(response.body)
+        type_ = tools.url_type_select(response.url)
         if type_ in ["people"]:
             return people.People(response).item
         elif type_ in ["followees"]:

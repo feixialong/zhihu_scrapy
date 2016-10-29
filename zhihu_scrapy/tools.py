@@ -9,6 +9,34 @@ import http.cookiejar
 from scrapy import settings
 
 
+def url_type_select(url):
+    if url is not None:
+        if url.find("zhihu") == -1:
+            return ""
+        else:
+            url_splited = url.split("/")
+            url_splited.reverse()
+            types = [
+                "people",
+                "followees",
+                "followers",
+                "asks",
+                "answers",
+                "posts",
+                "collections",
+                "columns",
+                "topic",
+                "answer",
+                "question"
+            ]
+            for i in url_splited:
+                if i in types:
+                    return i
+                else:
+                    pass
+            return "columns"
+
+
 def set_headers(url=None):
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:46.0) Gecko/20100101 Firefox/46.0",
@@ -17,7 +45,7 @@ def set_headers(url=None):
         "Connection": "keep-alive"
     }
     if url is None:
-        headers['Referer'] = 'http://www.zhihu.com/'
+        headers['Referer'] = 'http://www.zhihu.com'
     else:
         headers['Referer'] = url
     if url_type_select(url) in ["columns"]:

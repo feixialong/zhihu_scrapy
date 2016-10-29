@@ -23,14 +23,11 @@ class Columns(object):
         self.api_url()
         self.column_name()
         self.column_desc()
-        self.author()
+        self.user_url()
         self.followers_num()
         self.topics()
         self.articles()
         # self.followers()
-
-    def get_xsrf(self):
-        return self.response.selector.xpath("")
 
     def column_url(self):
         self.item["column_url"] = settings.COLUMNS_BASE_URL + self.body.get("url")
@@ -44,7 +41,7 @@ class Columns(object):
     def column_desc(self):
         self.item["column_desc"] = self.body.get("intro")
 
-    def author(self):
+    def user_url(self):
         self.item["user_url"] = self.body.get("creator").get("profileUrl")
 
     def followers_num(self):
@@ -88,7 +85,6 @@ class Columns(object):
         offset = 0
         followers = []
         continue_ = True
-
         url = "".join([self.item["api_url"], "/followers"])
         session = requests.session()
         session.headers = {

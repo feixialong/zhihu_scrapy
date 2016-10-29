@@ -17,7 +17,6 @@ BOT_NAME = 'zhihu_scrapy'
 SPIDER_MODULES = ['zhihu_scrapy.spiders']
 NEWSPIDER_MODULE = 'zhihu_scrapy.spiders'
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'zhihu_scrapy (+http://www.yourdomain.com)'
 
@@ -33,15 +32,19 @@ NEWSPIDER_MODULE = 'zhihu_scrapy.spiders'
 # CONCURRENT_REQUESTS_PER_IP=16
 
 # Disable cookies (enabled by default)
-# COOKIES_ENABLED=False
+COOKIES_ENABLED = True
+COOKIE_DEBUG = True
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED=False
 
 # Override the default request headers:
 # DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
+#     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:46.0) Gecko/20100101 Firefox/46.0",
+#     "Host": "www.zhihu.com",
+#     'Accept-Encoding': 'gzip',
+#     "Connection": "keep-alive",
+#     "Referer": "http://www.zhihu.com"
 # }
 
 # Enable or disable spider middlewares
@@ -101,10 +104,4 @@ COOKIES_FILE = os.path.join(DIR, "spiders/", "cookies")
 CAPTCHA_FILE = os.path.join(DIR, "spiders/", "captcha.bmp")
 IS_VERIFY = True
 
-
 DEDAULT_HEADERS = tools.set_headers()
-
-
-
-
-
