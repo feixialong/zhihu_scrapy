@@ -36,6 +36,7 @@ def url_type_select(url):
                     pass
             return "columns"
 
+
 def set_headers(url=None):
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:46.0) Gecko/20100101 Firefox/46.0",
@@ -83,7 +84,8 @@ def url_select(username):
 
 def read_cookie(filename):
     os.chdir(os.path.split(os.path.abspath(__file__))[0])
-    cookies = http.cookiejar.LWPCookieJar(filename=filename)
+    # cookies = http.cookiejar.LWPCookieJar(filename=filename)
+    cookies = http.cookiejar.MozillaCookieJar(filename=filename)
     if os.path.exists(filename):
         cookies.load()
         return cookies
@@ -111,8 +113,7 @@ def get_num_from_str(str_):
 def dict_response_body(body):
     if type(body) == type(b''):
         return json.loads(body.encode("utf-8"))
-    elif type(body)  == type(''):
+    elif type(body) == type(''):
         return json.loads(body)
     else:
         return json.loads(body)
-

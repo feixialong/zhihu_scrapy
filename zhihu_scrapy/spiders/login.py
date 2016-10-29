@@ -18,7 +18,8 @@ class Login():
         self.session = requests.session()
         self.session.headers = settings.DEDAULT_HEADERS
         self.session.verify = settings.IS_VERIFY
-        self.session.cookies = http.cookiejar.LWPCookieJar(filename=settings.COOKIES_FILE)
+        # self.session.cookies = http.cookiejar.LWPCookieJar(filename=settings.COOKIES_FILE)
+        self.session.cookies = http.cookiejar.MozillaCookieJar(filename=settings.COOKIES_FILE)
 
     def get_xsrf(self):
         url = "https://www.zhihu.com/"
