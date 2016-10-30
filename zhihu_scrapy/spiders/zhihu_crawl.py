@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import scrapy
-from scrapy import Request, FormRequest
+from scrapy import Request
 
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
@@ -24,8 +24,8 @@ class ZhihuSpider(CrawlSpider):
     session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
 
     start_urls = [
-        'https://www.zhihu.com/people/stevenjohnson',
-        # 'https://www.zhihu.com/people/jixin',
+        # 'https://www.zhihu.com/people/stevenjohnson',
+        'https://www.zhihu.com/people/jixin',
         # 'https://www.zhihu.com/people/chen-li-jie-75',
         # "https://www.zhihu.com/people/hydfox",
         # "https://www.zhihu.com/people/jixin/followees",
@@ -42,13 +42,15 @@ class ZhihuSpider(CrawlSpider):
         Rule(
             LinkExtractor(
                 allow=[
-                    "https://www.zhihu.com/people/stevenjohnson",
+                    "https://www.zhihu.com/people/.+",
+                    "https://zhuanlan.zhihu.com/api/columns/.+",
+                    "https://www.zhihu.com/topic/.+"
                 ],
                 deny=[
-                    " https://www.zhihu.com/logout",
+                    "https://www.zhihu.com/logout",
+                    "https://www.zhihu.com/*",  # 不允许追踪任何链接，用于调试
                 ]
             ),
-            # todo 使用Rule时，请求应带cookies的问题未解决
             process_links="process_links_",  # 传入links列表，返回links列表
             process_request="process_request_",  # 传入Request，每次一个，返回Request，每次一个
             callback="parse_start_url",  # 传入response，返回经过parse的item
@@ -71,9 +73,6 @@ class ZhihuSpider(CrawlSpider):
         :param links: Rule()获取到的links列表
         :return: 经过中间处理后的links列表
         """
-        print("运行到了process_links_......")
-        print(links)
-        print("\n")
         return links
 
     def process_request_(self, request):
@@ -82,23 +81,9 @@ class ZhihuSpider(CrawlSpider):
         :param request: Rule()获取到的request，每次只传入一个
         :return: 经过中间处理后的request，每次只返回一个
         """
-        # 似乎已成功
-        print("运行到了process_request_......")
-        print(type(request))
         request = request.replace(**{"cookies": tools.unfold_cookies(self.session.cookies)})
         request = request.replace(**{"headers": tools.set_headers(request.url)})
-        print(request)
-        print(type(request))
-        print("\n")
         return request
-
-    def callback_(self, response):
-        # 此处似乎也已成功
-        print("运行到了callback_......")
-        a = response
-        print(response)
-        print("\n")
-        return response
 
     def parse_start_url(self, response):
         type_ = tools.url_type_select(response.url)
