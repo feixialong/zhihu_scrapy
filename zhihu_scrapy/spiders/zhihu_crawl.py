@@ -2,11 +2,12 @@
 
 import scrapy
 from scrapy import Request
+from scrapy.http import HtmlResponse
 
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
-from zhihu_scrapy.prases import asks
+from zhihu_scrapy.prases import articles
 from zhihu_scrapy.prases import columns
 from zhihu_scrapy.prases import followees
 from zhihu_scrapy.prases import followers
@@ -25,17 +26,18 @@ class ZhihuSpider(CrawlSpider):
 
     start_urls = [
         # 'https://www.zhihu.com/people/stevenjohnson',
-        'https://www.zhihu.com/people/jixin',
+        # 'https://www.zhihu.com/people/jixin',
         # 'https://www.zhihu.com/people/chen-li-jie-75',
         # "https://www.zhihu.com/people/hydfox",
         # "https://www.zhihu.com/people/jixin/followees",
         # "https://www.zhihu.com/people/mei-ying-0829/followees",
         # "https://www.zhihu.com/people/shuaizhu/followees",
         # "https://www.zhihu.com/people/chen-fan-85/followers",
-        # "https://zhuanlan.zhihu.com/pythoner",
+        # "https://zhuanlan.zhihu.com/pythoner",  # 此种网址为进行解析
         # "https://zhuanlan.zhihu.com/api/columns/pythoner",
         # "https://zhuanlan.zhihu.com/api/columns/LaTeX",
         # "https://www.zhihu.com/topic/19559424/top-answers",
+        # "https://zhuanlan.zhihu.com/p/22947665",
     ]
 
     rules = [
@@ -60,12 +62,25 @@ class ZhihuSpider(CrawlSpider):
 
     def start_requests(self):
         for url in self.start_urls:
-            yield Request(
-                url=url,
-                headers=tools.set_headers(url),
-                cookies=tools.unfold_cookies(self.session.cookies),
-                meta={'cookiejar': 1}
-            )
+            yield self.make_requests_from_url(url)
+
+    def make_requests_from_url(self, url):
+        return Request(
+            url=url,
+            headers=tools.set_headers(url),
+            cookies=tools.unfold_cookies(self.session.cookies),
+            meta={'cookiejar': 1}
+        )
+
+    def make_requests_from_url_with_callback(self, url, callback):
+        return Request(
+            url=url,
+            headers=tools.set_headers(url),
+            cookies=tools.unfold_cookies(self.session.cookies),
+            meta={'cookiejar': 1},
+            callback=callback,
+
+        )
 
     def process_links_(self, links):
         """
@@ -73,6 +88,7 @@ class ZhihuSpider(CrawlSpider):
         :param links: Rule()获取到的links列表
         :return: 经过中间处理后的links列表
         """
+        # todo 对links还未处理，会出现错误，待将每个信息的parse完成后再对此部分进行更新
         return links
 
     def process_request_(self, request):
@@ -95,14 +111,18 @@ class ZhihuSpider(CrawlSpider):
             return followees.Followees(response).item
         elif type_ in ["followers"]:
             return followers.Followers(response).item
-        elif type_ in ["asks"]:
-            # todo asks的解析未完成
-            return asks.Asks(response).item
         elif type_ in ["columns"]:
             # todo columns要抓取的网址与内容均待进一步讨论
             return columns.Columns(response).item
         elif type_ in ["topic"]:
             return topics.Topics(response).item
+        # 用于调试
+        elif type_ in ["articles"]:
+            return articles.Articles(response).item
+        elif type_ in ["for_test"]:
+            pass
+        else:
+            return "ERROR"
 
 
 if __name__ == "__main__":
