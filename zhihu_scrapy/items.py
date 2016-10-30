@@ -80,3 +80,27 @@ class TopicsItem(scrapy.Item):
     followers_num = scrapy.Field()
     top_answers = scrapy.Field()
     # followers = scrapy.Field()
+    next_page_url = scrapy.Field()
+
+
+class TopicsNextItem(scrapy.Item):
+    topic_url = scrapy.Field()
+    followers_num = scrapy.Field()
+    top_answers = scrapy.Field()
+    # followers = scrapy.Field()
+    next_page_url = scrapy.Field()
+
+
+class ArticlesItem(scrapy.Item):
+    article_url = scrapy.Field()
+    article_title = scrapy.Field()
+    user_url = scrapy.Field()
+    content = scrapy.Field()
+    agrees_num = scrapy.Field()
+    columns = scrapy.Field()
+    topics = scrapy.Field()
+    comments = scrapy.Field()
+
+
+
+
