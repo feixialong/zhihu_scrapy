@@ -10,31 +10,32 @@ from scrapy import settings
 
 
 def url_type_select(url):
-    if url is not None:
+    if url is None:
+        raise TypeError
+    else:
         if url.find("zhihu") == -1:
-            return ""
+            return "not_zhihu"
         else:
-            url_splited = url.split("/")
-            url_splited.reverse()
-            types = [
-                "people",
-                "followees",
-                "followers",
-                "asks",
-                "answers",
-                "posts",
-                "collections",
-                "columns",
-                "topic",
-                "answer",
-                "question"
-            ]
-            for i in url_splited:
-                if i in types:
-                    return i
-                else:
-                    pass
-            return "columns"
+            pass
+    url_splited = url.split("/")
+    length_of_url_splited = len(url_splited)
+    if (length_of_url_splited == 5) and (url_splited[-2] == "people"):
+        return "people"
+    elif (length_of_url_splited == 6) and (url_splited[-1] == "followees") and (url_splited[-3] == "people"):
+        return "followees"
+    elif (length_of_url_splited == 6) and (url_splited[-1] == "followers") and (url_splited[-3] == "people"):
+        return "followers"
+    elif (length_of_url_splited == 6) and (url_splited[-1] == "top-answers") and (url_splited[-3] == "topic"):
+        return "topic"
+    elif (length_of_url_splited == 6) and (url_splited[-2] == "columns") and (url_splited[-3] == "api"):
+        return "columns"
+    elif (length_of_url_splited == 4) and (url_splited[-2] == "zhuanlan.zhihu.com"):
+        return "columns"
+    elif (length_of_url_splited == 5) and (url_splited[-2] == "p") and (url_splited[-3] == "zhuanlan.zhihu.com"):
+        return "articles"
+    else:
+        raise TypeError("未定义网址类型，请将添加对 {url} 的识别".format(url=url))
+
 
 
 def set_headers(url=None):
@@ -47,11 +48,12 @@ def set_headers(url=None):
     if url is None:
         headers['Referer'] = 'http://www.zhihu.com'
     else:
-        headers['Referer'] = url
-    if url_type_select(url) in ["columns"]:
-        headers.update({
-            "Host": "zhuanlan.zhihu.com"
-        })
+        if url_type_select(url) in ["columns"]:
+            headers.update({
+                "Host": "zhuanlan.zhihu.com"
+            })
+        else:
+            headers['Referer'] = url
     return headers
 
 
