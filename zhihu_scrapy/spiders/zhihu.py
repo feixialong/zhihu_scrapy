@@ -6,7 +6,7 @@ from scrapy.spiders import Spider
 
 from zhihu_scrapy import settings
 from zhihu_scrapy import tools
-from zhihu_scrapy.prases import asks
+
 from zhihu_scrapy.prases import columns
 from zhihu_scrapy.prases import followees
 from zhihu_scrapy.prases import followers
