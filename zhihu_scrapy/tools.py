@@ -46,6 +46,9 @@ def url_type_select(url):
     elif (length_of_url_splited == 7) and (url_splited[2] == "zhuanlan.zhihu.com") and (url_splited[3] == "api") and (url_splited[4] == "posts") and (url_splited[-1] == "comments"):
         # https://zhuanlan.zhihu.com/api/posts/23190728/comments
         return "article_comments"
+    elif (length_of_url_splited == 5) and (url_splited[-2] == "question"):
+        # https://www.zhihu.com/question/52220142
+        return "questions"
     else:
         raise TypeError("未定义网址类型，请将添加对 {url} 的识别".format(url=url))
 

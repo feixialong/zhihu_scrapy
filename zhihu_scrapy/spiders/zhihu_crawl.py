@@ -12,6 +12,7 @@ from zhihu_scrapy.prases import columns
 from zhihu_scrapy.prases import followees
 from zhihu_scrapy.prases import followers
 from zhihu_scrapy.prases import people
+from zhihu_scrapy.prases import questions
 from zhihu_scrapy.prases import topics
 
 from zhihu_scrapy.spiders import login
@@ -39,7 +40,8 @@ class ZhihuSpider(CrawlSpider):
         # "https://www.zhihu.com/topic/19559424/top-answers",
         # "https://zhuanlan.zhihu.com/p/22947665",
         # "https://zhuanlan.zhihu.com/p/23250032",
-        "https://zhuanlan.zhihu.com/api/posts/23190728"
+        # "https://zhuanlan.zhihu.com/api/posts/23190728",
+        "https://www.zhihu.com/question/52220142"
     ]
 
     rules = [
@@ -121,6 +123,8 @@ class ZhihuSpider(CrawlSpider):
             return topics.Topics(response).item
         elif type_ in ["articles"]:
             return articles.Articles(response).item
+        elif type_ in ["questions"]:
+            return questions.Questions(response).item
         elif type_ in ["for_test"]:  # 用于调试
             pass
         else:

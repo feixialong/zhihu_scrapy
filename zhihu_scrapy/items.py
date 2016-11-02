@@ -102,5 +102,10 @@ class ArticlesItem(scrapy.Item):
     comments_url = scrapy.Field()
 
 
-
-
+class QuestionsItem(scrapy.Item):
+    question_url = scrapy.Field()
+    question_name = scrapy.Field()
+    # user_url = scrapy.Field()
+    # edit_time = scrapy.Field()
+    topics = scrapy.Field()
+    answers = scrapy.Field()

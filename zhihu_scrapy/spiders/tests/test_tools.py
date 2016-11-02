@@ -22,7 +22,8 @@ class TestLogin(unittest.TestCase):
             # "https://zhuanlan.zhihu.com/pythoner": "columns",
             "https://zhuanlan.zhihu.com/api/columns/pythoner": "columns",
             "https://zhuanlan.zhihu.com/p/22947665": "articles",
-            "https://zhuanlan.zhihu.com/api/posts/23190728/comments": "article_comments"
+            "https://zhuanlan.zhihu.com/api/posts/23190728/comments": "article_comments",
+            "https://www.zhihu.com/question/52220142": "questions"
 
         }
         for url in urls:
