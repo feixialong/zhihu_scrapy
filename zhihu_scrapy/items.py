@@ -99,7 +99,7 @@ class ArticlesItem(scrapy.Item):
     agrees_num = scrapy.Field()
     columns = scrapy.Field()
     topics = scrapy.Field()
-    comments = scrapy.Field()
+    comments_url = scrapy.Field()
 
 
 

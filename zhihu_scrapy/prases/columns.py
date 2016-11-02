@@ -30,10 +30,10 @@ class Columns(object):
         # self.followers()
 
     def column_url(self):
-        self.item["column_url"] = settings.COLUMNS_BASE_URL + self.body.get("url")
+        self.item["column_url"] = settings.ZHUANLAN_BASE_URL + self.body.get("url")
 
     def api_url(self):
-        self.item["api_url"] = settings.COLUMNS_BASE_URL + self.body.get('href')
+        self.item["api_url"] = settings.ZHUANLAN_BASE_URL + self.body.get('href')
 
     def column_name(self):
         self.item["column_name"] = self.body.get("name")
@@ -72,7 +72,7 @@ class Columns(object):
                                               params=params
                                               ).text)
             for i in response:
-                articles.append("".join([settings.COLUMNS_BASE_URL, i.get("url")]))
+                articles.append("".join([settings.ZHUANLAN_BASE_URL, i.get("url")]))
 
             if len(response) < LIMIT:
                 continue_ = False

@@ -20,22 +20,34 @@ def url_type_select(url):
     url_splited = url.split("/")
     length_of_url_splited = len(url_splited)
     if (length_of_url_splited == 5) and (url_splited[-2] == "people"):
+        # "https://www.zhihu.com/people/hydfox"
         return "people"
     elif (length_of_url_splited == 6) and (url_splited[-1] == "followees") and (url_splited[-3] == "people"):
+        # "https://www.zhihu.com/people/jixin/followees"
         return "followees"
     elif (length_of_url_splited == 6) and (url_splited[-1] == "followers") and (url_splited[-3] == "people"):
+        # "https://www.zhihu.com/people/chen-fan-85/followers"
         return "followers"
     elif (length_of_url_splited == 6) and (url_splited[-1] == "top-answers") and (url_splited[-3] == "topic"):
+        # "https://www.zhihu.com/topic/19559424/top-answers"
         return "topic"
     elif (length_of_url_splited == 6) and (url_splited[-2] == "columns") and (url_splited[-3] == "api"):
+        # "https://zhuanlan.zhihu.com/api/columns/LaTeX"
         return "columns"
-    elif (length_of_url_splited == 4) and (url_splited[-2] == "zhuanlan.zhihu.com"):
+    elif (length_of_url_splited == 4) and (url_splited[2] == "zhuanlan.zhihu.com"):
+        # "https://zhuanlan.zhihu.com/pythoner"  # 此类型网页未解析
         return "columns"
     elif (length_of_url_splited == 5) and (url_splited[-2] == "p") and (url_splited[-3] == "zhuanlan.zhihu.com"):
+        # "https://zhuanlan.zhihu.com/p/23250032"  # 此类型网页未解析
         return "articles"
+    elif (length_of_url_splited == 6) and (url_splited[2] == "zhuanlan.zhihu.com") and (url_splited[-3] == "api") and (url_splited[-2] == "posts"):
+        # "https://zhuanlan.zhihu.com/api/posts/23190728"
+        return "articles"
+    elif (length_of_url_splited == 7) and (url_splited[2] == "zhuanlan.zhihu.com") and (url_splited[3] == "api") and (url_splited[4] == "posts") and (url_splited[-1] == "comments"):
+        # https://zhuanlan.zhihu.com/api/posts/23190728/comments
+        return "article_comments"
     else:
         raise TypeError("未定义网址类型，请将添加对 {url} 的识别".format(url=url))
-
 
 
 def set_headers(url=None):
@@ -48,7 +60,7 @@ def set_headers(url=None):
     if url is None:
         headers['Referer'] = 'http://www.zhihu.com'
     else:
-        if url_type_select(url) in ["columns"]:
+        if url_type_select(url) in ["columns", "articles"]:
             headers.update({
                 "Host": "zhuanlan.zhihu.com"
             })

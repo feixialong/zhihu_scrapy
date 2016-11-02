@@ -21,7 +21,8 @@ class TestLogin(unittest.TestCase):
             "https://www.zhihu.com/people/chen-fan-85/followers": "followers",
             # "https://zhuanlan.zhihu.com/pythoner": "columns",
             "https://zhuanlan.zhihu.com/api/columns/pythoner": "columns",
-            "https://zhuanlan.zhihu.com/py/22947665": "articles"
+            "https://zhuanlan.zhihu.com/p/22947665": "articles",
+            "https://zhuanlan.zhihu.com/api/posts/23190728/comments": "article_comments"
 
         }
         for url in urls:

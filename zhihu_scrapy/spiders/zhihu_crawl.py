@@ -33,11 +33,13 @@ class ZhihuSpider(CrawlSpider):
         # "https://www.zhihu.com/people/mei-ying-0829/followees",
         # "https://www.zhihu.com/people/shuaizhu/followees",
         # "https://www.zhihu.com/people/chen-fan-85/followers",
-        # "https://zhuanlan.zhihu.com/pythoner",  # 此种网址为进行解析
+        # "https://zhuanlan.zhihu.com/pythoner",  # 此种网址未进行解析
         # "https://zhuanlan.zhihu.com/api/columns/pythoner",
         # "https://zhuanlan.zhihu.com/api/columns/LaTeX",
         # "https://www.zhihu.com/topic/19559424/top-answers",
         # "https://zhuanlan.zhihu.com/p/22947665",
+        # "https://zhuanlan.zhihu.com/p/23250032",
+        "https://zhuanlan.zhihu.com/api/posts/23190728"
     ]
 
     rules = [
@@ -47,6 +49,7 @@ class ZhihuSpider(CrawlSpider):
                     "https://www.zhihu.com/people/.+",
                     "https://zhuanlan.zhihu.com/api/columns/.+",
                     "https://www.zhihu.com/topic/.+"
+                    "https://zhuanlan.zhihu.com/p/*"
                 ],
                 deny=[
                     "https://www.zhihu.com/logout",
@@ -116,10 +119,9 @@ class ZhihuSpider(CrawlSpider):
             return columns.Columns(response).item
         elif type_ in ["topic"]:
             return topics.Topics(response).item
-        # 用于调试
         elif type_ in ["articles"]:
             return articles.Articles(response).item
-        elif type_ in ["for_test"]:
+        elif type_ in ["for_test"]:  # 用于调试
             pass
         else:
             return "ERROR"
