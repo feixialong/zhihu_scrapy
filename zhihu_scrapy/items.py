@@ -109,3 +109,13 @@ class QuestionsItem(scrapy.Item):
     # edit_time = scrapy.Field()
     topics = scrapy.Field()
     answers = scrapy.Field()
+
+
+class AnswersItem(scrapy.Item):
+    question_url = scrapy.Field()
+    answer_url = scrapy.Field()
+    content = scrapy.Field()
+    user_url = scrapy.Field()
+    agrees_num = scrapy.Field()
+    edit_time = scrapy.Field()
+    comments = scrapy.Field()

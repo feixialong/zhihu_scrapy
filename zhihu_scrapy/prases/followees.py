@@ -38,6 +38,9 @@ class Followees(object):
         self.item["followees"] = set(followee_urls)
 
 
+# todo 通过加载更多获得的关注人员
+
+
 if __name__ == "__main__":
     info = {"name": "wumingshun", "age": 18}
     print(info)

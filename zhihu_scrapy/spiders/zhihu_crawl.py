@@ -7,6 +7,7 @@ from scrapy.http import HtmlResponse
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
+from zhihu_scrapy.prases import answers
 from zhihu_scrapy.prases import articles
 from zhihu_scrapy.prases import columns
 from zhihu_scrapy.prases import followees
@@ -41,7 +42,8 @@ class ZhihuSpider(CrawlSpider):
         # "https://zhuanlan.zhihu.com/p/22947665",
         # "https://zhuanlan.zhihu.com/p/23250032",
         # "https://zhuanlan.zhihu.com/api/posts/23190728",
-        "https://www.zhihu.com/question/52220142"
+        # "https://www.zhihu.com/question/52220142"
+        "https://www.zhihu.com/node/QuestionAnswerListV2"
     ]
 
     rules = [
@@ -125,6 +127,8 @@ class ZhihuSpider(CrawlSpider):
             return articles.Articles(response).item
         elif type_ in ["questions"]:
             return questions.Questions(response).item
+        elif type_ in ["answers"]:
+            return answers.Answers(response).item
         elif type_ in ["for_test"]:  # 用于调试
             pass
         else:

@@ -12,7 +12,7 @@ class Questions(object):
         self.question_url()
         self.question_name()
         self.topics()
-        self.answers_1()
+        # self.answers_1()
 
     def question_url(self):
         self.item["question_url"] = self.response.url
@@ -26,7 +26,7 @@ class Questions(object):
         self.item["topics"] = set([topic[1:-1] for topic in self.response.selector.xpath(xpath_rule).extract()])
 
     def answers_1(self):
-        # todo 对答案中的内容做进一步解析，当前有点赞数，用户url，评论的整体内容
+        # todo 对答案中的内容做进一步解析，当前有点赞数，用户url，评论的整体内容（此项可在抓取后再处理，也不不改，暂不处理）
         self.item["answers"] = set()
         xpath_rule = '//div[@class="zm-item-answer  zm-item-expanded"]'
         tabs = self.response.selector.xpath(xpath_rule).extract()
@@ -55,6 +55,6 @@ class Questions(object):
             self.item["answers"].update(answer)
             print("")
 
-    def answers_2(self):
+    def answers_more(self):
         # todo 通过加载更多获取的数据未完成
         pass

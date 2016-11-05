@@ -49,6 +49,9 @@ def url_type_select(url):
     elif (length_of_url_splited == 5) and (url_splited[-2] == "question"):
         # https://www.zhihu.com/question/52220142
         return "questions"
+    elif (length_of_url_splited == 5) and (url_splited[3] == "node") and (url_splited[-1] == "QuestionAnswerListV2"):
+        # https://www.zhihu.com/node/QuestionAnswerListV2
+        return "answers"
     else:
         raise TypeError("未定义网址类型，请将添加对 {url} 的识别".format(url=url))
 
@@ -58,7 +61,8 @@ def set_headers(url=None):
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:46.0) Gecko/20100101 Firefox/46.0",
         "Host": "www.zhihu.com",
         'Accept-Encoding': 'gzip',
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
+        "Content-type": "application/x-www-form-urlencoded"
     }
     if url is None:
         headers['Referer'] = 'http://www.zhihu.com'

@@ -36,3 +36,5 @@ class Topics(object):
             self.item["topic_url"],
             self.response.selector.xpath(next_page_url_xpath_rule).extract()[-1]  # 去最后一个，不能用.extract_first()
         ])
+
+# todo 下一页中的内容没有解决，不过也可以通过此方法解析每一页的内容

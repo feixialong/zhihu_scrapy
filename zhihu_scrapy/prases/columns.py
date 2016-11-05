@@ -54,6 +54,7 @@ class Columns(object):
         self.item["topics"] = set(topics_)
 
     def articles(self):
+        # todo 用的是requests，没用scrapy，无法进行异步及时间间隔等设置，待更改
         LIMIT = 20
         offset = 0
         articles = []
@@ -81,6 +82,7 @@ class Columns(object):
         self.item["articles"] = set(articles)
 
     def followers(self):
+        # todo 用的是requests，没用scrapy，无法进行异步及时间间隔等设置，待更改
         LIMIT = 20
         offset = 0
         followers = []

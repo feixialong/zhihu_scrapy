@@ -20,6 +20,8 @@ class Login():
         self.session.verify = settings.IS_VERIFY
         # self.session.cookies = http.cookiejar.LWPCookieJar(filename=settings.COOKIES_FILE)
         self.session.cookies = http.cookiejar.MozillaCookieJar(filename=settings.COOKIES_FILE)
+        self._xsrf = self.get_xsrf()
+        self.more_answers()
 
     def get_xsrf(self):
         url = "https://www.zhihu.com/"
@@ -33,7 +35,7 @@ class Login():
             "password": password,
             "remember_me": True,
             # "captcha_type": "cn",
-            "_xsrf": self.get_xsrf()
+            "_xsrf": self._xsrf
         }
         return url, data
 
@@ -95,8 +97,21 @@ class Login():
             print("读取cookies成功，已登录")
             return session
 
+    def more_answers(self):
+        url = "https://www.zhihu.com/node/QuestionAnswerListV2"
+        body = {
+            "method": "next",
+            "params": {"url_token": 47871877, "pagesize": 10, "offset": 10},
+            "_xsrf": self._xsrf
+        }
+        response = self.session.post(url, data=body)
+        print(response.text)
+        print("")
+
 
 if __name__ == '__main__':
-    username, password = settings.USER_NAME, settings.PASSWORD
-    session = Login().login(username, password)
-    print("")
+    pass
+    # username, password = settings.USER_NAME, settings.PASSWORD
+    # session = Login().login(username, password)
+    # print(os.system("curl 'https://www.zhihu.com/node/QuestionAnswerListV2' --data 'method=next&params=%7B%22url_token%22%3A47871877%2C%22pagesize%22%3A10%2C%22offset%22%3A10%7D'"))
+    # print("")

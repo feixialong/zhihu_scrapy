@@ -36,3 +36,5 @@ class Followers(object):
         xpath_rule = '//a[@class="zg-link author-link"]/@href'
         follower_urls = self.response.selector.xpath(xpath_rule).extract()
         self.item["followers"] = set(follower_urls)
+
+        # todo 通过加载更多获取的关注未完成
