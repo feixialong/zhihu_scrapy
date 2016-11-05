@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 
+import json
+import requests
+import urllib.parse
 import scrapy
 from scrapy import Request
 from scrapy.http import HtmlResponse
+from scrapy.http import FormRequest
 
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
@@ -52,8 +56,8 @@ class ZhihuSpider(CrawlSpider):
                 allow=[
                     "https://www.zhihu.com/people/.+",
                     "https://zhuanlan.zhihu.com/api/columns/.+",
-                    "https://www.zhihu.com/topic/.+"
-                    "https://zhuanlan.zhihu.com/p/*"
+                    "https://www.zhihu.com/topic/.+",
+                    "https://zhuanlan.zhihu.com/p/*",
                 ],
                 deny=[
                     "https://www.zhihu.com/logout",
@@ -69,25 +73,42 @@ class ZhihuSpider(CrawlSpider):
 
     def start_requests(self):
         for url in self.start_urls:
-            yield self.make_requests_from_url(url)
+            if tools.url_type_select(url) in ["answers"]:
+                params = {
+                    "url_token": 47871877,
+                    "pagesize": 10,
+                    "offset": 10
+                }
+                url = "https://www.zhihu.com/node/QuestionAnswerListV2"
 
-    def make_requests_from_url(self, url):
-        return Request(
-            url=url,
-            headers=tools.set_headers(url),
-            cookies=tools.unfold_cookies(self.session.cookies),
-            meta={'cookiejar': 1}
-        )
+                data = {
+                    "method": "next",
+                    "params": json.dumps(params),  # 这样做能得到正确的返回结果
+                }
+                yield FormRequest(
+                    url=url,
+                    body=urllib.parse.urlencode(data),
+                    headers=settings.MORE_ANSWERS_HEADER,
+                    method="POST"
+                )
+            else:
+                yield Request(
+                    url=url,
+                    headers=tools.set_headers(url),
+                    cookies=tools.unfold_cookies(self.session.cookies),
+                    meta={'cookiejar': 1}
+                )
 
-    def make_requests_from_url_with_callback(self, url, callback):
-        return Request(
-            url=url,
-            headers=tools.set_headers(url),
-            cookies=tools.unfold_cookies(self.session.cookies),
-            meta={'cookiejar': 1},
-            callback=callback,
-
-        )
+    # def make_requests_from_url_with_callback(self, url, callback):
+    #     # 此函数暂时未用到
+    #     return Request(
+    #         url=url,
+    #         headers=tools.set_headers(url),
+    #         cookies=tools.unfold_cookies(self.session.cookies),
+    #         meta={'cookiejar': 1},
+    #         callback=callback,
+    #
+    #     )
 
     def process_links_(self, links):
         """

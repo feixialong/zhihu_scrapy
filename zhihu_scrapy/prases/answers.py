@@ -19,3 +19,5 @@ class Answers(object):
         self.response = response
         # self.body = json.loads(response.body.decode("utf-8"))
         self.item = AnswersItem()
+        print(response)
+        print("")

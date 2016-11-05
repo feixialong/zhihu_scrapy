@@ -21,7 +21,6 @@ class Login():
         # self.session.cookies = http.cookiejar.LWPCookieJar(filename=settings.COOKIES_FILE)
         self.session.cookies = http.cookiejar.MozillaCookieJar(filename=settings.COOKIES_FILE)
         self._xsrf = self.get_xsrf()
-        self.more_answers()
 
     def get_xsrf(self):
         url = "https://www.zhihu.com/"
@@ -96,17 +95,6 @@ class Login():
             session.cookies = cookies
             print("读取cookies成功，已登录")
             return session
-
-    def more_answers(self):
-        url = "https://www.zhihu.com/node/QuestionAnswerListV2"
-        body = {
-            "method": "next",
-            "params": {"url_token": 47871877, "pagesize": 10, "offset": 10},
-            "_xsrf": self._xsrf
-        }
-        response = self.session.post(url, data=body)
-        print(response.text)
-        print("")
 
 
 if __name__ == '__main__':
