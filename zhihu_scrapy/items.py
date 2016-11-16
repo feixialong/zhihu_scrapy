@@ -105,9 +105,10 @@ class ArticlesItem(scrapy.Item):
 class QuestionsItem(scrapy.Item):
     question_url = scrapy.Field()
     question_name = scrapy.Field()
-    # user_url = scrapy.Field()
-    # edit_time = scrapy.Field()
+    question_desc = scrapy.Field()
     topics = scrapy.Field()
+    answers_num = scrapy.Field()
+    question_url_token = scrapy.Field()
     answers = scrapy.Field()
 
 

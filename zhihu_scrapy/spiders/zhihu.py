@@ -39,8 +39,8 @@ class ZhihuSpider(Spider):
             yield Request(
                 url=url,
                 headers=tools.set_headers(url),
-                cookies=tools.unfold_cookies(session.cookies),
-                # meta={}zhuanlan.zhihu.com
+                cookies=tools.unfold_cookies(tools.read_cookie(settings.COOKIES_FILE)),
+                meta={'cookiejar': 1}
             )
 
     def parse(self, response):  # 通过parse()分发解析去向
@@ -66,5 +66,7 @@ class ZhihuSpider(Spider):
 if __name__ == "__main__":
     from scrapy.cmdline import execute
 
-    execute()
+    execute("scrapy crawl zhihu".split())
+
+    # execute()
     print("")

@@ -46,8 +46,8 @@ class ZhihuSpider(CrawlSpider):
         # "https://zhuanlan.zhihu.com/p/22947665",
         # "https://zhuanlan.zhihu.com/p/23250032",
         # "https://zhuanlan.zhihu.com/api/posts/23190728",
-        # "https://www.zhihu.com/question/52220142"
-        "https://www.zhihu.com/node/QuestionAnswerListV2"
+        "https://www.zhihu.com/question/52220142"
+        # "https://www.zhihu.com/node/QuestionAnswerListV2"
     ]
 
     rules = [
@@ -69,11 +69,26 @@ class ZhihuSpider(CrawlSpider):
             callback="parse_start_url",  # 传入response，返回经过parse的item
         ),
 
+        # Rule(
+        #     LinkExtractor(
+        #         allow=[
+        #             "https://www.zhihu.com/node/QuestionAnswerListV2"
+        #         ],
+        #         deny=[
+        #             "https://www.zhihu.com/*"
+        #         ]
+        #     ),
+        #     process_links="process_links_",  # 传入links列表，返回links列表
+        #     process_request="process_request_",  # 传入Request，每次一个，返回Request，每次一个
+        #     callback="get_answers" ,  # 传入response，返回经过parse的item
+        # )
+
     ]
 
     def start_requests(self):
         for url in self.start_urls:
             if tools.url_type_select(url) in ["answers"]:
+                # todo 答案请求的参数设置，每个答案返回给解析处后的处理方式
                 params = {
                     "url_token": 47871877,
                     "pagesize": 10,
@@ -89,26 +104,16 @@ class ZhihuSpider(CrawlSpider):
                     url=url,
                     body=urllib.parse.urlencode(data),
                     headers=settings.MORE_ANSWERS_HEADER,
-                    method="POST"
+                    method="POST",
                 )
             else:
                 yield Request(
                     url=url,
                     headers=tools.set_headers(url),
-                    cookies=tools.unfold_cookies(self.session.cookies),
+                    # cookies=tools.unfold_cookies(self.session.cookies),
+                    cookies=tools.unfold_cookies(tools.read_cookie(settings.COOKIES_FILE)),
                     meta={'cookiejar': 1}
                 )
-
-    # def make_requests_from_url_with_callback(self, url, callback):
-    #     # 此函数暂时未用到
-    #     return Request(
-    #         url=url,
-    #         headers=tools.set_headers(url),
-    #         cookies=tools.unfold_cookies(self.session.cookies),
-    #         meta={'cookiejar': 1},
-    #         callback=callback,
-    #
-    #     )
 
     def process_links_(self, links):
         """

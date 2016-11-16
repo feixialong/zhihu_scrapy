@@ -19,5 +19,11 @@ class Answers(object):
         self.response = response
         # self.body = json.loads(response.body.decode("utf-8"))
         self.item = AnswersItem()
-        print(response)
-        print("")
+        self.question_url()
+
+    def question_url(self):
+        print("进入了Answer解析类：")
+        print(self.response.url)
+
+    def answer_url(self):
+        pass

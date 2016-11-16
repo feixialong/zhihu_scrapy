@@ -1,29 +1,72 @@
 # -*- coding: utf-8 -*-
 
+import re
+import json
+import urllib.parse
 from lxml import etree
 from zhihu_scrapy import settings
 from zhihu_scrapy.items import QuestionsItem
-
+import zhihu_scrapy
+from scrapy import Request
+from scrapy.http import FormRequest
 
 class Questions(object):
     def __init__(self, response):
         self.response = response
         self.item = QuestionsItem()
         self.question_url()
+        self.question_url_token()
         self.question_name()
+        self.question_desc()
         self.topics()
-        # self.answers_1()
+        self.answers_num()
+        self.answers()
 
     def question_url(self):
         self.item["question_url"] = self.response.url
+
+    def question_url_token(self):
+        self.item["question_url_token"] = int(self.item["question_url"].split("/")[-1])
 
     def question_name(self):
         xpath_rule = '//h2[@class="zm-item-title"]/span/text()'
         self.item["question_name"] = self.response.selector.xpath(xpath_rule).extract_first()
 
+    def question_desc(self):
+        xpath_rule = '//div[@id="zh-question-detail"]//div/text()'
+        self.item["question_desc"] = self.response.selector.xpath(xpath_rule).extract_first()
+
     def topics(self):
         xpath_rule = '//div[@class="zm-tag-editor-labels zg-clear"]/a/text()'
         self.item["topics"] = set([topic[1:-1] for topic in self.response.selector.xpath(xpath_rule).extract()])
+
+    def answers_num(self):
+        xpath_rule = '//*[@id="zh-question-answer-num"]/text()'
+        num_string = self.response.selector.xpath(xpath_rule).extract_first()
+        pattern = re.compile(r'\d+')
+        self.item["answers_num"] = int(re.findall(pattern, num_string)[0])
+
+    def answers(self):
+        pagesize = 10
+        times_ = int(self.item["answers_num"] / pagesize + 1)
+        self.item["answers"] = []
+        for i in range(times_):
+            params = {
+                "url_token": self.item["question_url_token"],
+                "pagesize": pagesize,
+                "offset": pagesize * i
+            }
+            data = {
+                "method": "next",
+                "params": json.dumps(params)
+            }
+            self.item["answers"].append({"post_body": data})
+            # yield FormRequest(
+            #     url=settings.MORE_ANSWERS_URL,
+            #     body=urllib.parse.urlencode(data),
+            #     headers=settings.MORE_ANSWERS_HEADER,
+            #     method="POST"
+            # )
 
     def answers_1(self):
         # todo 对答案中的内容做进一步解析，当前有点赞数，用户url，评论的整体内容（此项可在抓取后再处理，也不不改，暂不处理）
@@ -55,6 +98,6 @@ class Questions(object):
             self.item["answers"].update(answer)
             print("")
 
-    def answers_more(self):
-        # todo 通过加载更多获取的数据未完成
-        pass
+        def answers_more(self):
+            # todo 通过加载更多获取的数据未完成
+            pass
