@@ -46,7 +46,8 @@ class ZhihuSpider(CrawlSpider):
         # "https://zhuanlan.zhihu.com/p/22947665",
         # "https://zhuanlan.zhihu.com/p/23250032",
         # "https://zhuanlan.zhihu.com/api/posts/23190728",
-        "https://www.zhihu.com/question/52220142"
+        # "https://www.zhihu.com/question/52220142",
+        "https://www.zhihu.com/question/31809134",
         # "https://www.zhihu.com/node/QuestionAnswerListV2"
     ]
 
@@ -152,13 +153,38 @@ class ZhihuSpider(CrawlSpider):
         elif type_ in ["articles"]:
             return articles.Articles(response).item
         elif type_ in ["questions"]:
-            return questions.Questions(response).item
+            question = questions.Questions(response).item
+            pagesize = 10
+            times_ = int(question["answers_num"] / pagesize + 1)
+            question["answers"] = []
+            for i in range(times_):
+                params = {
+                    "url_token": question["question_url_token"],
+                    "pagesize": pagesize,
+                    "offset": pagesize * i
+                }
+                data = {
+                    "method": "next",
+                    "params": json.dumps(params)
+                }
+                yield FormRequest(
+                    url=settings.MORE_ANSWERS_URL,
+                    body=urllib.parse.urlencode(data),
+                    headers=settings.MORE_ANSWERS_HEADER,
+                    callback=self.parse_answers,
+                    method="POST"
+                )
+            yield question
         elif type_ in ["answers"]:
             return answers.Answers(response).item
         elif type_ in ["for_test"]:  # 用于调试
             pass
         else:
             return "ERROR"
+
+    def parse_answers(self, response):
+        for a in json.loads(response.body.decode("utf-8")).get("msg"):
+            yield answers.Answers(a).item
 
 
 if __name__ == "__main__":
