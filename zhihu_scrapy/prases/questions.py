@@ -16,7 +16,7 @@ class Questions(object):
         self.item = QuestionsItem()
         self.question_url()
         self.question_url_token()
-        self.question_name()
+        self.question_title()
         self.question_desc()
         self.topics()
         self.answers_num()
@@ -27,9 +27,9 @@ class Questions(object):
     def question_url_token(self):
         self.item["question_url_token"] = int(self.item["question_url"].split("/")[-1])
 
-    def question_name(self):
+    def question_title(self):
         xpath_rule = '//h2[@class="zm-item-title"]/span/text()'
-        self.item["question_name"] = self.response.selector.xpath(xpath_rule).extract_first()
+        self.item["question_title"] = self.response.selector.xpath(xpath_rule).extract_first()
 
     def question_desc(self):
         xpath_rule = '//div[@id="zh-question-detail"]//div/text()'

@@ -31,7 +31,7 @@ class ZhihuSpider(CrawlSpider):
     session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
 
     start_urls = [
-        # 'https://www.zhihu.com/people/stevenjohnson',
+        'https://www.zhihu.com/people/stevenjohnson',
         # 'https://www.zhihu.com/people/jixin',
         # 'https://www.zhihu.com/people/chen-li-jie-75',
         # "https://www.zhihu.com/people/hydfox",
@@ -47,7 +47,7 @@ class ZhihuSpider(CrawlSpider):
         # "https://zhuanlan.zhihu.com/p/23250032",
         # "https://zhuanlan.zhihu.com/api/posts/23190728",
         # "https://www.zhihu.com/question/52220142",
-        "https://www.zhihu.com/question/31809134",
+        # "https://www.zhihu.com/question/31809134",
         # "https://www.zhihu.com/node/QuestionAnswerListV2"
     ]
 
@@ -69,52 +69,17 @@ class ZhihuSpider(CrawlSpider):
             process_request="process_request_",  # 传入Request，每次一个，返回Request，每次一个
             callback="parse_start_url",  # 传入response，返回经过parse的item
         ),
-
-        # Rule(
-        #     LinkExtractor(
-        #         allow=[
-        #             "https://www.zhihu.com/node/QuestionAnswerListV2"
-        #         ],
-        #         deny=[
-        #             "https://www.zhihu.com/*"
-        #         ]
-        #     ),
-        #     process_links="process_links_",  # 传入links列表，返回links列表
-        #     process_request="process_request_",  # 传入Request，每次一个，返回Request，每次一个
-        #     callback="get_answers" ,  # 传入response，返回经过parse的item
-        # )
-
     ]
 
     def start_requests(self):
+        cookies = tools.unfold_cookies(tools.read_cookie(settings.COOKIES_FILE))
         for url in self.start_urls:
-            if tools.url_type_select(url) in ["answers"]:
-                # todo 答案请求的参数设置，每个答案返回给解析处后的处理方式
-                params = {
-                    "url_token": 47871877,
-                    "pagesize": 10,
-                    "offset": 10
-                }
-                url = "https://www.zhihu.com/node/QuestionAnswerListV2"
-
-                data = {
-                    "method": "next",
-                    "params": json.dumps(params),  # 这样做能得到正确的返回结果
-                }
-                yield FormRequest(
-                    url=url,
-                    body=urllib.parse.urlencode(data),
-                    headers=settings.MORE_ANSWERS_HEADER,
-                    method="POST",
-                )
-            else:
-                yield Request(
-                    url=url,
-                    headers=tools.set_headers(url),
-                    # cookies=tools.unfold_cookies(self.session.cookies),
-                    cookies=tools.unfold_cookies(tools.read_cookie(settings.COOKIES_FILE)),
-                    meta={'cookiejar': 1}
-                )
+            yield Request(
+                url=url,
+                headers=tools.set_headers(url),
+                cookies=cookies,
+                meta={'cookiejar': 1}
+            )
 
     def process_links_(self, links):
         """
@@ -140,8 +105,30 @@ class ZhihuSpider(CrawlSpider):
         if type_ in ["not_zhihu"]:
             pass
         elif type_ in ["people"]:
-            return people.People(response).item
+            people_info = people.People(response).item
+            per_page = 10
+            followees_times_ = int(people_info["followees_num"] / per_page + 1)
+            url_token = people_info["user_url"].split("/")[-1]
+            cookies = tools.unfold_cookies(tools.read_cookie(settings.COOKIES_FILE))
+            for i in range(followees_times_):
+                params = {
+                    "include": "data[*].employments,cover_url,allow_message,answer_count,articles_count,favorite_count,follower_count,gender,is_followed,message_thread_token,is_following,badge[?(type=best_answerer)].topics",
+                    "per_page": per_page,
+                    "offset": per_page * i
+                }
+                url_ = urllib.parse.urlencode(params)
+                headers = settings.MORE_ANSWERS_HEADER
+                headers.update({"Authorization": ""})
+                yield FormRequest(
+                    url="".join([settings.API_URL, "/", url_token, "/followees", "?", url_]),
+                    callback=self.parse_followees,
+                    headers=headers,
+                    method="GET",
+                    cookies=cookies
+                )
+            yield people_info
         elif type_ in ["followees"]:
+            print("进入followees")
             return followees.Followees(response).item
         elif type_ in ["followers"]:
             return followers.Followers(response).item
@@ -175,8 +162,6 @@ class ZhihuSpider(CrawlSpider):
                     method="POST"
                 )
             yield question
-        elif type_ in ["answers"]:
-            return answers.Answers(response).item
         elif type_ in ["for_test"]:  # 用于调试
             pass
         else:
@@ -185,6 +170,10 @@ class ZhihuSpider(CrawlSpider):
     def parse_answers(self, response):
         for a in json.loads(response.body.decode("utf-8")).get("msg"):
             yield answers.Answers(a).item
+
+    def parse_followees(self, response):
+        print(response.url)
+        print("")
 
 
 if __name__ == "__main__":
