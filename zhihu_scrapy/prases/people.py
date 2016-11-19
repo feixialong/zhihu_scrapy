@@ -26,6 +26,8 @@ class People(object):
         self.lives_num()
         self.columns_topics_num()
         self.visited_num()
+        self.hash_id()
+        self._xsrf()
 
     def user_url(self):
         xpath_rule = '//a[@class="item home first active"]/@href'
@@ -172,6 +174,10 @@ class People(object):
         else:
             self.item["visited_num"] = int(visited_num)
 
+    def hash_id(self):
+        xpath_rule = '//div[@class="zm-profile-header-op-btns clearfix"]/button/@data-id'
+        self.item["hash-id"] = self.response.selector.xpath(xpath_rule).extract_first()
 
-
-
+    def _xsrf(self):
+        xpath_rule = '//input[@name="_xsrf"]/@value'
+        self.item["_xsrf"] = self.response.selector.xpath(xpath_rule).extract_first()

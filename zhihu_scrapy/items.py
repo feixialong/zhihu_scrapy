@@ -39,6 +39,8 @@ class PeopleItem(scrapy.Item):
     topics_num = scrapy.Field()
     columns_num = scrapy.Field()
     visited_num = scrapy.Field()
+    hash_id = scrapy.Field()
+    _xsrf = scrapy.Field()
 
 
 class FolloweesItem(scrapy.Item):
