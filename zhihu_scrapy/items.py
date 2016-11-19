@@ -68,12 +68,27 @@ class ColumnsItem(scrapy.Item):
     api_url = scrapy.Field()
     column_name = scrapy.Field()
     followers_num = scrapy.Field()
-    articles = scrapy.Field()
     followers = scrapy.Field()
     topics = scrapy.Field()
     column_desc = scrapy.Field()
-    # followers = scrapy.Field()
     articles_num = scrapy.Field()
+
+
+class ColumnArticlesItem(scrapy.Item):
+    article_url = scrapy.Field()
+    article_title = scrapy.Field()
+    user_url = scrapy.Field()
+    content = scrapy.Field()
+    agrees_num = scrapy.Field()
+    columns = scrapy.Field()
+    topics = scrapy.Field()
+    comments_url = scrapy.Field()
+    published_time = scrapy.Field()
+    href_url = scrapy.Field()
+
+
+class ColumnFollowersItem(scrapy.Item):
+    user_url = scrapy.Field()
 
 
 class TopicsItem(scrapy.Item):
@@ -90,17 +105,6 @@ class TopicsNextItem(scrapy.Item):
     top_answers = scrapy.Field()
     # followers = scrapy.Field()
     next_page_url = scrapy.Field()
-
-
-class ArticlesItem(scrapy.Item):
-    article_url = scrapy.Field()
-    article_title = scrapy.Field()
-    user_url = scrapy.Field()
-    content = scrapy.Field()
-    agrees_num = scrapy.Field()
-    columns = scrapy.Field()
-    topics = scrapy.Field()
-    comments_url = scrapy.Field()
 
 
 class QuestionsItem(scrapy.Item):

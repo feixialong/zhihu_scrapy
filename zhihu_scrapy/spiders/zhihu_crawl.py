@@ -12,8 +12,10 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
 from zhihu_scrapy.prases import answers
-from zhihu_scrapy.prases import column_articles
+
 from zhihu_scrapy.prases import columns
+from zhihu_scrapy.prases import column_articles
+from zhihu_scrapy.prases import column_followers
 from zhihu_scrapy.prases import followees
 from zhihu_scrapy.prases import followers
 from zhihu_scrapy.prases import people
@@ -137,27 +139,43 @@ class ZhihuSpider(CrawlSpider):
             columns_info = columns.Columns(response).item
             yield columns_info
 
+            # ---- 以下为对专栏中关注者的抓取 ----
+            # todo 仅能抓取，但是没法与对应的专栏关联起来；同时耗费太多请求次数，对后续分析又没多大帮助，故将其注释，爬取时先不请求
+            # limit = 20
+            # offset = 0
+            # times_ = int(columns_info["followers_num"] / limit + 1)
+            # column_followers_api_url = "".join([columns_info["api_url"], "/followers"])
+            # for i in range(times_):
+            #     params = {
+            #         "limit": limit,
+            #         "offset": offset
+            #     }
+            #     offset += limit
+            #     yield FormRequest(
+            #         url="".join([column_followers_api_url, "?", urllib.parse.urlencode(params)]),
+            #         headers=settings.MORE_ANSWERS_HEADER,
+            #         callback=self.parse_column_followers,
+            #         method="GET"
+            #     )
+
             # -----  以下为对专栏中的文章的抓取 ----
             # https://zhuanlan.zhihu.com/api/columns/pythoner/posts?limit=20
-            LIMIT = 20
+            limit = 20
             offset = 0
-            times_ = int(columns_info["articles_num"] / LIMIT + 1)
-            articles_api_url = "".join([columns_info["api_url"], "/posts"])
+            times_ = int(columns_info["articles_num"] / limit + 1)
+            column_articles_api_url = "".join([columns_info["api_url"], "/posts"])
             for i in range(times_):
                 params = {
-                    "limit": LIMIT,
+                    "limit": limit,
                     "offset": offset
                 }
-                offset += LIMIT
+                offset += limit
                 yield FormRequest(
-                    url="".join([articles_api_url, "?", urllib.parse.urlencode(params)]),
+                    url="".join([column_articles_api_url, "?", urllib.parse.urlencode(params)]),
                     headers=settings.MORE_ANSWERS_HEADER,
                     callback=self.parse_column_articles,
                     method="GET"
                 )
-
-                # ---- 以下为对专栏中关注者的抓取 ----
-
 
         elif type_ in ["people"]:
             people_info = people.People(response).item
@@ -186,6 +204,11 @@ class ZhihuSpider(CrawlSpider):
         bodys = json.loads(response.body.decode("utf-8"))
         for body in bodys:
             yield column_articles.ColumnArticles(body).item
+
+    def parse_column_followers(self, response):
+        bodys = json.loads(response.body.decode("utf-8"))
+        for body in bodys:
+            yield column_followers.ColumnFollowers(body).item
 
 if __name__ == "__main__":
     from scrapy.cmdline import execute
