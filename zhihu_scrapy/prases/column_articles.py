@@ -14,22 +14,20 @@ from zhihu_scrapy import tools
 from zhihu_scrapy.items import ArticlesItem
 
 
-class Articles(object):
-    def __init__(self, response):
-        self.response = response
-        self.body = json.loads(self.response.body.decode("utf-8"))
+class ColumnArticles(object):
+    def __init__(self, body):
+        self.body = body
         self.item = ArticlesItem()
         self.article_url()
         self.article_title()
         self.user_url()
         self.content()
         self.agrees_num()
-        self.columns()
         self.topics()
         self.comments_url()
 
     def article_url(self):
-        self.item["article_url"] = self.response.url
+        self.item["article_url"] = "".join([settings.ZHUANLAN_BASE_URL, "/", self.body.get("url")])
 
     def article_title(self):
         self.item["article_title"] = self.body.get("title")
@@ -42,9 +40,6 @@ class Articles(object):
 
     def agrees_num(self):
         self.item["agrees_num"] = self.body.get("likesCount")
-
-    def columns(self):
-        self.item["columns"] = self.body.get("column").get("slug")
 
     def topics(self):
         self.item["topics"] = self.body.get("topics")

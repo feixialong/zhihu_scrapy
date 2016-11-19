@@ -72,7 +72,8 @@ class ColumnsItem(scrapy.Item):
     followers = scrapy.Field()
     topics = scrapy.Field()
     column_desc = scrapy.Field()
-    followers = scrapy.Field()
+    # followers = scrapy.Field()
+    articles_num = scrapy.Field()
 
 
 class TopicsItem(scrapy.Item):

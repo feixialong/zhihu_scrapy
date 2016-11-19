@@ -12,7 +12,7 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
 from zhihu_scrapy.prases import answers
-from zhihu_scrapy.prases import articles
+from zhihu_scrapy.prases import column_articles
 from zhihu_scrapy.prases import columns
 from zhihu_scrapy.prases import followees
 from zhihu_scrapy.prases import followers
@@ -39,14 +39,14 @@ class ZhihuSpider(CrawlSpider):
         # "https://www.zhihu.com/people/mei-ying-0829/followees",
         # "https://www.zhihu.com/people/shuaizhu/followees",
         # "https://www.zhihu.com/people/chen-fan-85/followers",
-        # "https://zhuanlan.zhihu.com/pythoner",  # 此种网址未进行解析
-        # "https://zhuanlan.zhihu.com/api/columns/pythoner",
+        # "https://zhuanlan.zhihu.com/pythoner",  # 此种网址未进行解析，获取到此种网络后，应转成下方的网址形式
+        "https://zhuanlan.zhihu.com/api/columns/pythoner",
         # "https://zhuanlan.zhihu.com/api/columns/LaTeX",
         # "https://www.zhihu.com/topic/19559424/top-answers",
         # "https://zhuanlan.zhihu.com/p/22947665",
         # "https://zhuanlan.zhihu.com/p/23250032",
-        # "https://zhuanlan.zhihu.com/api/posts/23190728",
-        "https://www.zhihu.com/question/52220142",
+        "https://zhuanlan.zhihu.com/api/posts/23190728",
+        # "https://www.zhihu.com/question/52220142",
         # "https://www.zhihu.com/question/31809134",
         # "https://www.zhihu.com/node/QuestionAnswerListV2"
     ]
@@ -105,7 +105,11 @@ class ZhihuSpider(CrawlSpider):
         if type_ in ["not_zhihu"]:
             pass
         elif type_ in ["questions"]:
+            # ---- 以下为对问题信息的抓取 ----
             question = questions.Questions(response).item
+            yield question
+
+            # ---- 以下为对该问题下的答案的抓取 ----
             pagesize = 10
             times_ = int(question["answers_num"] / pagesize + 1)
             question["answers"] = []
@@ -126,43 +130,49 @@ class ZhihuSpider(CrawlSpider):
                     callback=self.parse_answers,
                     method="POST"
                 )
-            yield question
+
+        elif type_ in ["columns"]:
+            # todo columns要抓取的网址与内容均待进一步讨论
+            # ---- 以下为对专栏信息的抓取 ----
+            columns_info = columns.Columns(response).item
+            yield columns_info
+
+            # -----  以下为对专栏中的文章的抓取 ----
+            # https://zhuanlan.zhihu.com/api/columns/pythoner/posts?limit=20
+            LIMIT = 20
+            offset = 0
+            times_ = int(columns_info["articles_num"] / LIMIT + 1)
+            articles_api_url = "".join([columns_info["api_url"], "/posts"])
+            for i in range(times_):
+                params = {
+                    "limit": LIMIT,
+                    "offset": offset
+                }
+                offset += LIMIT
+                yield FormRequest(
+                    url="".join([articles_api_url, "?", urllib.parse.urlencode(params)]),
+                    headers=settings.MORE_ANSWERS_HEADER,
+                    callback=self.parse_column_articles,
+                    method="GET"
+                )
+
+                # ---- 以下为对专栏中关注者的抓取 ----
+
+
         elif type_ in ["people"]:
             people_info = people.People(response).item
-            per_page = 10
-            followees_times_ = int(people_info["followees_num"] / per_page + 1)
-            url_token = people_info["user_url"].split("/")[-1]
-            cookies = tools.unfold_cookies(tools.read_cookie(settings.COOKIES_FILE))
-            for i in range(followees_times_):
-                params = {
-                    "include": "data[*].employments,cover_url,allow_message,answer_count,articles_count,favorite_count,follower_count,gender,is_followed,message_thread_token,is_following,badge[?(type=best_answerer)].topics",
-                    "per_page": per_page,
-                    "offset": per_page * i
-                }
-                url_ = urllib.parse.urlencode(params)
-                headers = settings.MORE_ANSWERS_HEADER
-                headers.update({"Authorization": ""})
-                yield FormRequest(
-                    url="".join([settings.API_URL, "/", url_token, "/followees", "?", url_]),
-                    callback=self.parse_followees,
-                    headers=headers,
-                    method="GET",
-                    cookies=cookies
-                )
             yield people_info
+
         elif type_ in ["followees"]:
             print("进入followees")
             return followees.Followees(response).item
         elif type_ in ["followers"]:
             return followers.Followers(response).item
-        elif type_ in ["columns"]:
-            # todo columns要抓取的网址与内容均待进一步讨论
-            return columns.Columns(response).item
+
         elif type_ in ["topic"]:
             return topics.Topics(response).item
         elif type_ in ["articles"]:
-            return articles.Articles(response).item
-
+            return
         elif type_ in ["for_test"]:  # 用于调试
             pass
         else:
@@ -172,10 +182,10 @@ class ZhihuSpider(CrawlSpider):
         for a in json.loads(response.body.decode("utf-8")).get("msg"):
             yield answers.Answers(a).item
 
-    def parse_followees(self, response):
-        print(response.url)
-        print("")
-
+    def parse_column_articles(self, response):
+        bodys = json.loads(response.body.decode("utf-8"))
+        for body in bodys:
+            yield column_articles.ColumnArticles(body).item
 
 if __name__ == "__main__":
     from scrapy.cmdline import execute

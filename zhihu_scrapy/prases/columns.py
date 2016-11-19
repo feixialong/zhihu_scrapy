@@ -24,9 +24,10 @@ class Columns(object):
         self.column_name()
         self.column_desc()
         self.user_url()
+        self.articles_num()
         self.followers_num()
         self.topics()
-        self.articles()
+        # self.articles()
         # self.followers()
 
     def column_url(self):
@@ -43,6 +44,9 @@ class Columns(object):
 
     def user_url(self):
         self.item["user_url"] = self.body.get("creator").get("profileUrl")
+
+    def articles_num(self):
+        self.item["articles_num"] = self.body.get("postsCount")
 
     def followers_num(self):
         self.item["followers_num"] = int(self.body.get("followersCount"))
