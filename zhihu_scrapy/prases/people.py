@@ -176,7 +176,7 @@ class People(object):
 
     def hash_id(self):
         xpath_rule = '//div[@class="zm-profile-header-op-btns clearfix"]/button/@data-id'
-        self.item["hash-id"] = self.response.selector.xpath(xpath_rule).extract_first()
+        self.item["hash_id"] = self.response.selector.xpath(xpath_rule).extract_first()
 
     def _xsrf(self):
         xpath_rule = '//input[@name="_xsrf"]/@value'

@@ -96,6 +96,7 @@ FOLLOWEE_URL_SUF = "/followees"
 BASE_URL = "https://www.zhihu.com"
 ZHUANLAN_BASE_URL = "https://zhuanlan.zhihu.com"
 MORE_ANSWERS_URL = "https://www.zhihu.com/node/QuestionAnswerListV2"
+MORE_FOLLOWERS_URL = "https://www.zhihu.com/node/ProfileFolloweesListV2"
 API_URL = "https://www.zhihu.com/api/v4/members"
 MORE_ANSWERS_HEADER = {
     "Content-type": "application/x-www-form-urlencoded",

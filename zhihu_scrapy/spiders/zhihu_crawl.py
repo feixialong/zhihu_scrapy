@@ -34,7 +34,7 @@ class ZhihuSpider(CrawlSpider):
 
     start_urls = [
         # 'https://www.zhihu.com/people/stevenjohnson',
-        # 'https://www.zhihu.com/people/jixin',
+        'https://www.zhihu.com/people/jixin',
         # 'https://www.zhihu.com/people/chen-li-jie-75',
         # "https://www.zhihu.com/people/hydfox",
         # "https://www.zhihu.com/people/jixin/followees",
@@ -42,12 +42,12 @@ class ZhihuSpider(CrawlSpider):
         # "https://www.zhihu.com/people/shuaizhu/followees",
         # "https://www.zhihu.com/people/chen-fan-85/followers",
         # "https://zhuanlan.zhihu.com/pythoner",  # 此种网址未进行解析，获取到此种网络后，应转成下方的网址形式
-        "https://zhuanlan.zhihu.com/api/columns/pythoner",
+        # "https://zhuanlan.zhihu.com/api/columns/pythoner",
         # "https://zhuanlan.zhihu.com/api/columns/LaTeX",
         # "https://www.zhihu.com/topic/19559424/top-answers",
         # "https://zhuanlan.zhihu.com/p/22947665",
         # "https://zhuanlan.zhihu.com/p/23250032",
-        "https://zhuanlan.zhihu.com/api/posts/23190728",
+        # "https://zhuanlan.zhihu.com/api/posts/23190728",
         # "https://www.zhihu.com/question/52220142",
         # "https://www.zhihu.com/question/31809134",
         # "https://www.zhihu.com/node/QuestionAnswerListV2"
@@ -114,7 +114,6 @@ class ZhihuSpider(CrawlSpider):
             # ---- 以下为对该问题下的答案的抓取 ----
             pagesize = 10
             times_ = int(question["answers_num"] / pagesize + 1)
-            question["answers"] = []
             for i in range(times_):
                 params = {
                     "url_token": question["question_url_token"],
@@ -178,19 +177,34 @@ class ZhihuSpider(CrawlSpider):
                 )
 
         elif type_ in ["people"]:
+            # ---- 以下为对个人信息的抓取 ----
             people_info = people.People(response).item
             yield people_info
 
-        elif type_ in ["followees"]:
-            print("进入followees")
-            return followees.Followees(response).item
-        elif type_ in ["followers"]:
-            return followers.Followers(response).item
-
-        elif type_ in ["topic"]:
-            return topics.Topics(response).item
-        elif type_ in ["articles"]:
-            return
+            # ---- 以下对该人关注的用户的抓取， 未完成----
+            # todo 对该人关注的用户的抓取为完成
+            offset = 20
+            times_ = int(people_info["followees_num"] / offset + 1)
+            for i in range(times_):
+                params = {
+                    "hash_id": people_info["hash_id"],
+                    "order_by": "created",
+                    "offset": offset * i
+                }
+                data = {
+                    "method": "next",
+                    "params": json.dumps(params),
+                    # "_xsrf": people_info["_xsrf"]
+                }
+                body = urllib.parse.urlencode(data)
+                yield FormRequest(
+                    url=settings.MORE_FOLLOWERS_URL,
+                    body=urllib.parse.urlencode(data),
+                    headers=settings.MORE_ANSWERS_HEADER,
+                    callback=self.parse_people_followers,
+                    method="POST",
+                    cookies=tools.unfold_cookies(tools.read_cookie(settings.COOKIES_FILE))
+                )
         elif type_ in ["for_test"]:  # 用于调试
             pass
         else:
@@ -209,6 +223,10 @@ class ZhihuSpider(CrawlSpider):
         bodys = json.loads(response.body.decode("utf-8"))
         for body in bodys:
             yield column_followers.ColumnFollowers(body).item
+
+    def parse_people_followers(self, response):
+        print(response.url)
+        print("")
 
 if __name__ == "__main__":
     from scrapy.cmdline import execute
