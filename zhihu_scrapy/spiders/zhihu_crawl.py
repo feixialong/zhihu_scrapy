@@ -31,7 +31,7 @@ class ZhihuSpider(CrawlSpider):
     session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
 
     start_urls = [
-        'https://www.zhihu.com/people/stevenjohnson',
+        # 'https://www.zhihu.com/people/stevenjohnson',
         # 'https://www.zhihu.com/people/jixin',
         # 'https://www.zhihu.com/people/chen-li-jie-75',
         # "https://www.zhihu.com/people/hydfox",
@@ -46,7 +46,7 @@ class ZhihuSpider(CrawlSpider):
         # "https://zhuanlan.zhihu.com/p/22947665",
         # "https://zhuanlan.zhihu.com/p/23250032",
         # "https://zhuanlan.zhihu.com/api/posts/23190728",
-        # "https://www.zhihu.com/question/52220142",
+        "https://www.zhihu.com/question/52220142",
         # "https://www.zhihu.com/question/31809134",
         # "https://www.zhihu.com/node/QuestionAnswerListV2"
     ]
@@ -104,6 +104,29 @@ class ZhihuSpider(CrawlSpider):
         type_ = tools.url_type_select(response.url)
         if type_ in ["not_zhihu"]:
             pass
+        elif type_ in ["questions"]:
+            question = questions.Questions(response).item
+            pagesize = 10
+            times_ = int(question["answers_num"] / pagesize + 1)
+            question["answers"] = []
+            for i in range(times_):
+                params = {
+                    "url_token": question["question_url_token"],
+                    "pagesize": pagesize,
+                    "offset": pagesize * i
+                }
+                data = {
+                    "method": "next",
+                    "params": json.dumps(params)
+                }
+                yield FormRequest(
+                    url=settings.MORE_ANSWERS_URL,
+                    body=urllib.parse.urlencode(data),
+                    headers=settings.MORE_ANSWERS_HEADER,
+                    callback=self.parse_answers,
+                    method="POST"
+                )
+            yield question
         elif type_ in ["people"]:
             people_info = people.People(response).item
             per_page = 10
@@ -139,29 +162,7 @@ class ZhihuSpider(CrawlSpider):
             return topics.Topics(response).item
         elif type_ in ["articles"]:
             return articles.Articles(response).item
-        elif type_ in ["questions"]:
-            question = questions.Questions(response).item
-            pagesize = 10
-            times_ = int(question["answers_num"] / pagesize + 1)
-            question["answers"] = []
-            for i in range(times_):
-                params = {
-                    "url_token": question["question_url_token"],
-                    "pagesize": pagesize,
-                    "offset": pagesize * i
-                }
-                data = {
-                    "method": "next",
-                    "params": json.dumps(params)
-                }
-                yield FormRequest(
-                    url=settings.MORE_ANSWERS_URL,
-                    body=urllib.parse.urlencode(data),
-                    headers=settings.MORE_ANSWERS_HEADER,
-                    callback=self.parse_answers,
-                    method="POST"
-                )
-            yield question
+
         elif type_ in ["for_test"]:  # 用于调试
             pass
         else:
