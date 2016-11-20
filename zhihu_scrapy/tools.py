@@ -19,17 +19,35 @@ def url_type_select(url):
             pass
     url_splited = url.split("/")
     length_of_url_splited = len(url_splited)
-    if (length_of_url_splited == 5) and (url_splited[-2] == "people"):
+    if url in ["https://www.zhihu.com"]:
+        return "home"
+    elif (length_of_url_splited == 5) and (url_splited[3] == "people"):
         # "https://www.zhihu.com/people/hydfox"
-        return "people"
-    elif (length_of_url_splited == 6) and (url_splited[-1] == "followees") and (url_splited[-3] == "people"):
-        # "https://www.zhihu.com/people/jixin/followees"
-        return "followees"
-    elif (length_of_url_splited == 6) and (url_splited[-1] == "followers") and (url_splited[-3] == "people"):
-        # "https://www.zhihu.com/people/chen-fan-85/followers"
-        return "followers"
+        return "people_home"
+    elif (length_of_url_splited == 6) and (url_splited[3] == "people"):
+        if url_splited[-1] == "followees":
+            # "https://www.zhihu.com/people/jixin/followees"
+            return "people_followees"
+        elif url_splited[-1] == "followers":
+            # "https://www.zhihu.com/people/chen-fan-85/followers"
+            return "people_followers"
+        elif url_splited[-1] == "asks":
+            # https://www.zhihu.com/people/stevenjohnson/asks
+            return "people_questions"
+        elif url_splited[-1] == "answers":
+            # https://www.zhihu.com/people/stevenjohnson/answers
+            return "people_answers"
+        elif url_splited[-1] == "posts":
+            # https://www.zhihu.com/people/stevenjohnson/posts
+            return "people_articles"
+        elif url_splited[-1] == "collections":
+            # https://www.zhihu.com/people/stevenjohnson/collections
+            return "people_collections"
     elif (length_of_url_splited == 6) and (url_splited[-1] == "top-answers") and (url_splited[-3] == "topic"):
         # "https://www.zhihu.com/topic/19559424/top-answers"
+        return "topic"
+    elif (length_of_url_splited == 5) and (url_splited[-2] == "topic"):
+        # "https://www.zhihu.com/topic/19570679"
         return "topic"
     elif (length_of_url_splited == 6) and (url_splited[-2] == "columns") and (url_splited[-3] == "api"):
         # "https://zhuanlan.zhihu.com/api/columns/LaTeX"
@@ -53,7 +71,8 @@ def url_type_select(url):
         # https://www.zhihu.com/node/QuestionAnswerListV2
         return "answers"
     else:
-        raise TypeError("未定义网址类型，请将添加对 {url} 的识别".format(url=url))
+        return "no_trace"
+        # raise TypeError("未定义网址类型，请将添加对 {url} 的识别".format(url=url))
 
 
 def set_headers(url=None):

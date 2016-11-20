@@ -7,7 +7,7 @@ def process_links_(links):
     :param links: Rule()获取到的links列表
     :return: 经过中间处理后的links列表
     """
-    # todo 对links还未处理，会出现错误，待将每个信息的parse完成后再对此部分进行更新
+    # todo 对links还未处理，会出现错误，待将每个信息的parse完成后再对此部分进行更新people
     new_links = set()
     for link in links:
         print(link)
@@ -22,6 +22,11 @@ def process_links_(links):
 
 
 if __name__ == "__main__":
-    url = ["https://zhuanlan.zhihu.com/p/23250032",
-           "https://zhuanlan.zhihu.com/p/2325032"]
-    print(process_links_(url))
+    # url = "https://www.zhihu.com/people/stevenjohnson/answers"
+    # url_splited = url.split("/")
+    # length_of_url_splited = len(url_splited)
+    # print(url_splited)
+    # print(length_of_url_splited)
+    a = "test"
+    print(a.find("e"))
+    print(a.find("g"))

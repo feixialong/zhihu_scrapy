@@ -15,19 +15,17 @@ class TestLogin(unittest.TestCase):
 
     def test_url_type_select(self):
         urls = {
-            "https://www.zhihu.com/topic/19559424/top-answers": "topic",
-            "https://www.zhihu.com/people/jixin": "people",
-            "https://www.zhihu.com/people/jixin/followees": "followees",
-            "https://www.zhihu.com/people/chen-fan-85/followers": "followers",
-            # "https://zhuanlan.zhihu.com/pythoner": "columns",
-            "https://zhuanlan.zhihu.com/api/columns/pythoner": "columns",
-            "https://zhuanlan.zhihu.com/p/22947665": "articles",
-            "https://zhuanlan.zhihu.com/api/posts/23190728/comments": "article_comments",
-            "https://www.zhihu.com/question/52220142": "questions"
+            "https://www.zhihu.com/people/hydfox": "people_home",
+            "https://www.zhihu.com/people/jixin/followees": "people_followees",
+            "https://www.zhihu.com/people/chen-fan-85/followers": "people_followers",
+            "https://www.zhihu.com/people/stevenjohnson/asks": "people_questions",
+            "https://www.zhihu.com/people/stevenjohnson/answers": "people_answers",
+            "https://www.zhihu.com/people/stevenjohnson/posts": "people_articles",
+            "https://www.zhihu.com/people/stevenjohnson/collections": "people_collections"
 
         }
         for url in urls:
-            self.assertEqual(tools.url_type_select(url), urls[url], "{url}判断错误".format(url=url))
+            self.assertEqual(urls[url], tools.url_type_select(url), "{url}判断错误".format(url=url))
 
 
 if __name__ == "__main__":

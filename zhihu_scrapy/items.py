@@ -41,6 +41,7 @@ class PeopleItem(scrapy.Item):
     visited_num = scrapy.Field()
     hash_id = scrapy.Field()
     _xsrf = scrapy.Field()
+    is_best_answerer = scrapy.Field()
 
 
 class FolloweesItem(scrapy.Item):

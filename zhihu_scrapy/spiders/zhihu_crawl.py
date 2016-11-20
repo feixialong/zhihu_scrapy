@@ -33,7 +33,10 @@ class ZhihuSpider(CrawlSpider):
     session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
 
     start_urls = [
+        # "https://www.zhihu.com",
         # 'https://www.zhihu.com/people/stevenjohnson',
+        # "https://www.zhihu.com/people/wang-you-28",  # 新主页
+        "https://www.zhihu.com/people/patrickluo/",
         # 'https://www.zhihu.com/people/jixin',
         # 'https://www.zhihu.com/people/chen-li-jie-75',
         # "https://www.zhihu.com/people/hydfox",
@@ -47,9 +50,9 @@ class ZhihuSpider(CrawlSpider):
         # "https://www.zhihu.com/topic/19559424/top-answers",
         # "https://zhuanlan.zhihu.com/p/22947665",
         # "https://zhuanlan.zhihu.com/p/23250032",
-        "https://zhuanlan.zhihu.com/api/posts/23190728",
+        # "https://zhuanlan.zhihu.com/api/posts/23190728",
         # "https://www.zhihu.com/question/52220142",
-        # "https://www.zhihu.com/question/31809134",
+        # "https://www.zhihu.com/question/31809134",questions
         # "https://www.zhihu.com/node/QuestionAnswerListV2"
     ]
 
@@ -92,13 +95,19 @@ class ZhihuSpider(CrawlSpider):
         # todo 对links还未处理，会出现错误，待将每个信息的parse完成后再对此部分进行更新
         new_links = set()
         for link in links:
-            type_ = tools.url_type_select(link)
+            type_ = tools.url_type_select(link.url)
             if type_ in ["articles_"]:
                 article_url_token = link.split("/")[-1]
-                link = "".join(["https://zhuanlan.zhihu.com/api/posts/", article_url_token])
-            else:
-                pass
-            new_links.update([link])
+                link_url = "".join(["https://zhuanlan.zhihu.com/api/posts/", article_url_token])
+                link.url = link_url
+                new_links.update([link])
+            elif type_ in ["people_home",
+                           # "people_followees", "people_followers",
+                           # "people_questions",
+                           # "people_answers", "people_articles", "people_collections",
+                           # "columns", "articles", "questions"
+                           ]:
+                new_links.update([link])
         return new_links
 
     def process_request_(self, request):
@@ -112,8 +121,11 @@ class ZhihuSpider(CrawlSpider):
         return request
 
     def parse_start_url(self, response):
+        print("开始解析: {url}".format(url=response.url))
         type_ = tools.url_type_select(response.url)
         if type_ in ["not_zhihu"]:
+            pass
+        elif type_ in ["home"]:
             pass
         elif type_ in ["questions"]:
             # ---- 以下为对问题信息的抓取 ----
@@ -189,7 +201,7 @@ class ZhihuSpider(CrawlSpider):
             body = json.loads(response.body.decode("utf-8"))
             yield column_articles.ColumnArticles(body).item
 
-        elif type_ in ["people"]:
+        elif type_ in ["people_home"]:
             # ---- 以下为对个人信息的抓取 ----
             people_info = people.People(response).item
             yield people_info
