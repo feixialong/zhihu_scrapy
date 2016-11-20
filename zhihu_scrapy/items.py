@@ -11,7 +11,7 @@ import scrapy
 class ZhihuScrapyItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    _id = scrapy.Field()
 
 
 class PeopleItem(scrapy.Item):
@@ -120,6 +120,7 @@ class TopicsItem(scrapy.Item):
 
 
 class TopicsNextItem(scrapy.Item):
+    _id = scrapy.Field()
     data_type = scrapy.Field()
     topic_url = scrapy.Field()
     followers_num = scrapy.Field()
@@ -129,6 +130,7 @@ class TopicsNextItem(scrapy.Item):
 
 
 class QuestionsItem(scrapy.Item):
+    _id = scrapy.Field()
     data_type = scrapy.Field()
     question_url = scrapy.Field()
     question_title = scrapy.Field()
@@ -140,6 +142,7 @@ class QuestionsItem(scrapy.Item):
 
 
 class AnswersItem(scrapy.Item):
+    _id = scrapy.Field()
     data_type = scrapy.Field()
     user_url = scrapy.Field()
     content = scrapy.Field()

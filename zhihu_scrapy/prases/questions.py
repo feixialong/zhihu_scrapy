@@ -38,10 +38,13 @@ class Questions(object):
 
     def topics(self):
         xpath_rule = '//div[@class="zm-tag-editor-labels zg-clear"]/a/text()'
-        self.item["topics"] = set([topic[1:-1] for topic in self.response.selector.xpath(xpath_rule).extract()])
+        self.item["topics"] = [topic[1:-1] for topic in self.response.selector.xpath(xpath_rule).extract()]
 
     def answers_num(self):
         xpath_rule = '//*[@id="zh-question-answer-num"]/text()'
         num_string = self.response.selector.xpath(xpath_rule).extract_first()
-        pattern = re.compile(r'\d+')
-        self.item["answers_num"] = int(re.findall(pattern, num_string)[0])
+        if num_string is None:
+            self.item["answers_num"] = 0
+        else:
+            pattern = re.compile(r'\d+')
+            self.item["answers_num"] = int(re.findall(pattern, num_string)[0])

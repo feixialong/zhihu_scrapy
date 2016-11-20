@@ -33,7 +33,7 @@ class ZhihuSpider(CrawlSpider):
     session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
 
     start_urls = [
-        "https://www.zhihu.com",
+        # "https://www.zhihu.com",
         # 'https://www.zhihu.com/people/stevenjohnson',
         # "https://www.zhihu.com/people/wang-you-28",  # 新主页
         # "https://www.zhihu.com/people/patrickluo/",
@@ -52,7 +52,9 @@ class ZhihuSpider(CrawlSpider):
         # "https://zhuanlan.zhihu.com/p/23250032",
         # "https://zhuanlan.zhihu.com/api/posts/23190728",
         # "https://www.zhihu.com/question/52220142",
-        # "https://www.zhihu.com/question/31809134",questions
+        "https://www.zhihu.com/question/31809134",
+        "https://www.zhihu.com/question/19581624",
+        "https://www.zhihu.com/question/24565276",
         # "https://www.zhihu.com/node/QuestionAnswerListV2"
     ]
 
@@ -62,13 +64,16 @@ class ZhihuSpider(CrawlSpider):
                 allow=[
                     "https://www.zhihu.com/people/.+",
                     "https://zhuanlan.zhihu.com/api/columns/.+",
-                    "https://www.zhihu.com/topic/.+",
+                    "https://www.zhihu.com/topic/\d+",
                     "https://zhuanlan.zhihu.com/p/.+",
                     "https://zhuanlan.zhihu.com/.+",
-                    "https://www.zhihu.com/question/.+"
+                    "https://www.zhihu.com/question/\d+"
                 ],
                 deny=[
                     "https://www.zhihu.com/logout",
+                    "https://zhuanlan.zhihu.com/write",
+                    "https://www.zhihu.com/question/invited",
+                    "https://www.zhihu.com/question/following",
                     # "https://www.zhihu.com/*",  # 不允许追踪任何链接，用于调试
                 ]
             ),
