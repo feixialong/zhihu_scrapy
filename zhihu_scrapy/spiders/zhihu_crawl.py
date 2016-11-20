@@ -176,6 +176,10 @@ class ZhihuSpider(CrawlSpider):
                     method="GET"
                 )
 
+        elif type_ in ["articles"]:
+            body = json.loads(response.body.decode("utf-8"))
+            yield column_articles.ColumnArticles(body).item
+
         elif type_ in ["people"]:
             # ---- 以下为对个人信息的抓取 ----
             people_info = people.People(response).item
