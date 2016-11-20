@@ -26,10 +26,10 @@ NEWSPIDER_MODULE = 'zhihu_scrapy.spiders'
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 5
+DOWNLOAD_DELAY = 10
 # The download delay setting will honor only one of:
-# CONCURRENT_REQUESTS_PER_DOMAIN=16
-# CONCURRENT_REQUESTS_PER_IP=16
+CONCURRENT_REQUESTS_PER_DOMAIN = 16
+CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = True
@@ -56,7 +56,9 @@ COOKIE_DEBUG = True
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 # DOWNLOADER_MIDDLEWARES = {
-#    'zhihu_scrapy.middlewares.MyCustomDownloaderMiddleware': 543,
+#     # 'zhihu_scrapy.middlewares.MyCustomDownloaderMiddleware': 543,
+#     'zhihu_scrapy.middlewares.ProxyMiddleware': 543,
+#
 # }
 
 # Enable or disable extensions
@@ -105,7 +107,6 @@ MORE_ANSWERS_HEADER = {
     'Accept-Encoding': 'gzip',
 }
 
-
 # 登录相关
 DIR = os.path.split(os.path.abspath(__file__))[0]
 USER_INFO_FILE = os.path.join(DIR, "spiders/", "user.info")
@@ -115,3 +116,23 @@ CAPTCHA_FILE = os.path.join(DIR, "spiders/", "captcha.bmp")
 IS_VERIFY = True
 
 DEDAULT_HEADERS = tools.set_headers()
+
+PROXIES = [
+    {'ip_port': '120.25.105.45:81', 'user_pass': ''},
+    {'ip_port': '1122.72.32.73:80', 'user_pass': ''},
+    {'ip_port': '124.88.67.63:80', 'user_pass': ''},
+    {'ip_port': '202.171.253.72:80', 'user_pass': ''},
+    {'ip_port': '139.196.108.68:80', 'user_pass': ''},
+    {'ip_port': '60.194.100.51:8088', 'user_pass': ''},
+]
+
+USER_AGENTS = [
+    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)",
+    "Mozilla/5.0 (X11; U; Linux; en-US) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.6",
+    "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.2pre) Gecko/20070215 K-Ninja/2.1.1",
+    "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9) Gecko/20080705 Firefox/3.0 Kapiko/3.0",
+    "Mozilla/5.0 (X11; Linux i686; U;) Gecko/20070322 Kazehakase/0.4.5",
+    "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.8) Gecko Fedora/1.9.0.8-1.fc10 Kazehakase/0.5.6",
+    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11",
+    "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52",
+]
