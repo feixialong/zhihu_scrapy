@@ -63,7 +63,9 @@ class ZhihuSpider(CrawlSpider):
                     "https://www.zhihu.com/people/.+",
                     "https://zhuanlan.zhihu.com/api/columns/.+",
                     "https://www.zhihu.com/topic/.+",
-                    "https://zhuanlan.zhihu.com/p/*",
+                    "https://zhuanlan.zhihu.com/p/.+",
+                    "https://zhuanlan.zhihu.com/.+",
+                    "https://www.zhihu.com/question/.+"
                 ],
                 deny=[
                     "https://www.zhihu.com/logout",
@@ -93,22 +95,17 @@ class ZhihuSpider(CrawlSpider):
         :return: 经过中间处理后的links列表
         """
         # todo 对links还未处理，会出现错误，待将每个信息的parse完成后再对此部分进行更新
-        new_links = set()
         for link in links:
             type_ = tools.url_type_select(link.url)
             if type_ in ["articles_"]:
                 article_url_token = link.split("/")[-1]
                 link_url = "".join(["https://zhuanlan.zhihu.com/api/posts/", article_url_token])
                 link.url = link_url
-                new_links.update([link])
-            elif type_ in ["people_home",
-                           "people_followees", "people_followers",
-                           "people_questions",
-                           "people_answers", "people_articles", "people_collections",
-                           "columns", "articles", "questions", "topic"
-                           ]:
-                new_links.update([link])
-        return new_links
+            elif type_ in ["single_answer"]:
+                link.url = link.url.split("answer")[0]
+            if link.url[-1] == "/":
+                link.url = link.url[:-1]
+        return links
 
     def process_request_(self, request):
         """

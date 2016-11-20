@@ -70,6 +70,9 @@ def url_type_select(url):
     elif (length_of_url_splited == 5) and (url_splited[3] == "node") and (url_splited[-1] == "QuestionAnswerListV2"):
         # https://www.zhihu.com/node/QuestionAnswerListV2
         return "answers"
+    elif len(url.split("answer")) == 2:
+        # https://www.zhihu.com/question/52750322#answer-48316476
+        return "single_answer"
     else:
         return "no_trace"
         # raise TypeError("未定义网址类型，请将添加对 {url} 的识别".format(url=url))

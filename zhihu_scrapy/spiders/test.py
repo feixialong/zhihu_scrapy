@@ -27,6 +27,7 @@ if __name__ == "__main__":
     # length_of_url_splited = len(url_splited)
     # print(url_splited)
     # print(length_of_url_splited)
-    a = "test"
-    print(a.find("e"))
-    print(a.find("g"))
+    url = "https://www.zhihu.com/question/52750322#answer-48316476"
+    # url = "https://www.zhihu.com/question/52750322"
+    url = 'https://www.zhihu.com/question/35931586/answer/131875262'
+    print(url.split("answer"))
