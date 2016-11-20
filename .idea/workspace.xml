@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f09e920-7968-45c1-8e7d-255cb13be913" name="Default" comment="对一些没有显示答案个数的问题进行兼容">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhihu_scrapy/middlewares.py" />
+    <list default="true" id="4f09e920-7968-45c1-8e7d-255cb13be913" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/start_spider.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/settings.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <list id="a9488cb4-e3dd-4b84-9aab-a3350c54147a" name="个人信息，不同步" comment="" />
     <ignored path="zhihu_scrapy.iws" />
@@ -24,30 +24,7 @@
     <favorites_list name="zhihu_scrapy" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="zhihu_crawl.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="73" column="55" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="55" />
-              <folding>
-                <element signature="e#25#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="73" column="1" selection-start-line="73" selection-start-column="1" selection-end-line="73" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -62,7 +39,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/tests/test_people.py" />
         <option value="$PROJECT_DIR$/tests/test_zhihu.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/for_unittest.py" />
@@ -101,6 +77,8 @@
         <option value="$PROJECT_DIR$/middlewares.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/middlewares.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/start_spider.sh" />
       </list>
     </option>
   </component>
@@ -508,13 +486,6 @@
       <option name="presentableId" value="Default" />
       <updated>1476523552119</updated>
     </task>
-    <task id="LOCAL-00002" summary="不追踪*.bmp">
-      <created>1477022442467</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1477022442467</updated>
-    </task>
     <task id="LOCAL-00003" summary="完成个人主页信息的抓取">
       <created>1477055533093</created>
       <option name="number" value="00003" />
@@ -851,7 +822,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479643673368</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="设置下载器中间件（代理IP），未完成">
+      <created>1479644826756</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1479644826757</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -890,10 +868,10 @@
     <frame x="366" y="23" width="858" height="777" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24492234" sideWeight="0.6702356" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24492234" sideWeight="0.6702356" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24379562" sideWeight="0.51428574" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17518248" sideWeight="0.4890511" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17518248" sideWeight="0.4890511" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23941606" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49343064" sideWeight="0.4917617" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -959,7 +937,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="更新" />
     <MESSAGE value="删除无用部分" />
     <MESSAGE value="完成对articles有抓取" />
     <MESSAGE value="完成部分问题的数据获取（通过加载更多的内容未获取）" />
@@ -984,7 +961,8 @@
     <MESSAGE value="添加启动mongod服务脚本" />
     <MESSAGE value="更改Rule，让其追踪更多链接" />
     <MESSAGE value="对一些没有显示答案个数的问题进行兼容" />
-    <option name="LAST_COMMIT_MESSAGE" value="对一些没有显示答案个数的问题进行兼容" />
+    <MESSAGE value="设置下载器中间件（代理IP），未完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="设置下载器中间件（代理IP），未完成" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1025,20 +1003,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/pip/cmdoptions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="319" column="0" selection-start-line="319" selection-start-column="0" selection-end-line="319" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/spidermiddlewares/depth.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/utils/defer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1274">
@@ -1308,14 +1272,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/start_mongod.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -1358,16 +1314,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="73" column="55" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="55" />
-          <folding>
-            <element signature="e#25#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/middlewares.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -1378,10 +1324,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
           <caret line="73" column="1" selection-start-line="73" selection-start-column="1" selection-end-line="73" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="23" />
+          <folding>
+            <element signature="e#25#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/start_spider.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start_mongod.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="28" />
           <folding />
         </state>
       </provider>

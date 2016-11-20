@@ -1,3 +1,4 @@
 lxml
 requests
 scrapy
+pymongo
