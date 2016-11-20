@@ -34,7 +34,7 @@ class ZhihuSpider(CrawlSpider):
 
     start_urls = [
         # 'https://www.zhihu.com/people/stevenjohnson',
-        'https://www.zhihu.com/people/jixin',
+        # 'https://www.zhihu.com/people/jixin',
         # 'https://www.zhihu.com/people/chen-li-jie-75',
         # "https://www.zhihu.com/people/hydfox",
         # "https://www.zhihu.com/people/jixin/followees",
@@ -47,7 +47,7 @@ class ZhihuSpider(CrawlSpider):
         # "https://www.zhihu.com/topic/19559424/top-answers",
         # "https://zhuanlan.zhihu.com/p/22947665",
         # "https://zhuanlan.zhihu.com/p/23250032",
-        # "https://zhuanlan.zhihu.com/api/posts/23190728",
+        "https://zhuanlan.zhihu.com/api/posts/23190728",
         # "https://www.zhihu.com/question/52220142",
         # "https://www.zhihu.com/question/31809134",
         # "https://www.zhihu.com/node/QuestionAnswerListV2"
@@ -182,29 +182,30 @@ class ZhihuSpider(CrawlSpider):
             yield people_info
 
             # ---- 以下对该人关注的用户的抓取， 未完成----
-            # todo 对该人关注的用户的抓取为完成
-            offset = 20
-            times_ = int(people_info["followees_num"] / offset + 1)
-            for i in range(times_):
-                params = {
-                    "hash_id": people_info["hash_id"],
-                    "order_by": "created",
-                    "offset": offset * i
-                }
-                data = {
-                    "method": "next",
-                    "params": json.dumps(params),
-                    # "_xsrf": people_info["_xsrf"]
-                }
-                body = urllib.parse.urlencode(data)
-                yield FormRequest(
-                    url=settings.MORE_FOLLOWERS_URL,
-                    body=urllib.parse.urlencode(data),
-                    headers=settings.MORE_ANSWERS_HEADER,
-                    callback=self.parse_people_followers,
-                    method="POST",
-                    cookies=tools.unfold_cookies(tools.read_cookie(settings.COOKIES_FILE))
-                )
+            # todo 对该人关注的用户的抓取未完成
+            # offset = 20
+            # times_ = int(people_info["followees_num"] / offset + 1)
+            # for i in range(times_):
+            #     params = {
+            #         "hash_id": people_info["hash_id"],
+            #         "order_by": "created",
+            #         "offset": offset * i
+            #     }
+            #     data = {
+            #         "method": "next",
+            #         "params": json.dumps(params),
+            #         # "_xsrf": people_info["_xsrf"]
+            #     }
+            #     body = urllib.parse.urlencode(data)
+            #     yield FormRequest(
+            #         url=settings.MORE_FOLLOWERS_URL,
+            #         body=urllib.parse.urlencode(data),
+            #         headers=settings.MORE_ANSWERS_HEADER,
+            #         callback=self.parse_people_followers,
+            #         method="POST",
+            #         cookies=tools.unfold_cookies(tools.read_cookie(settings.COOKIES_FILE))
+            #     )
+
         elif type_ in ["for_test"]:  # 用于调试
             pass
         else:
