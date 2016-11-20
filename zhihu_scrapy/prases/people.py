@@ -8,26 +8,38 @@ class People(object):
     def __init__(self, response):
         self.response = response
         self.item = PeopleItem()
-        self.user_url()
-        self.avatar_url()
-        self.user_name()
-        self.gender()
-        self.company()
-        self.job()
-        self.location()
-        self.school()
-        self.major()
-        self.business()
-        self.desc()
-        self.agrees_num()
-        self.thanks_num()
-        self.ext()
-        self.follow_info()
-        self.lives_num()
-        self.columns_topics_num()
-        self.visited_num()
-        self.hash_id()
-        self._xsrf()
+        self.new = self.is_new_home_page()
+        print(self.new)
+        # self.user_url()
+        # self.avatar_url()
+        # self.user_name()
+        # self.gender()
+        # self.company()
+        # self.job()
+        # self.location()
+        # self.school()
+        # self.major()
+        # self.business()
+        # self.desc()
+        # self.agrees_num()
+        # self.thanks_num()
+        # self.ext()
+        # self.follow_info()
+        # self.lives_num()
+        # self.columns_topics_num()
+        # self.visited_num()
+        # self.hash_id()
+        # self._xsrf()
+
+    def is_new_home_page(self):
+        xpath_rule = '//div[@id="ProfileHeader"]'
+        result = self.response.selector.xpath(xpath_rule).extract_first()
+        # 不为None则为新的主页，为None则为旧主页
+        if result:
+            return True
+        else:
+            return False
+
 
     def user_url(self):
         xpath_rule = '//a[@class="item home first active"]/@href'
