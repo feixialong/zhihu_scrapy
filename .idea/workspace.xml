@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f09e920-7968-45c1-8e7d-255cb13be913" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhihu_scrapy/db.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/start_mongod.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/items.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/items.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/pipelines.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/pipelines.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/answers.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/answers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/column_articles.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/column_articles.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/column_followers.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/column_followers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/columns.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/columns.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/followees.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/followees.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/followers.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/followers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/people.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/people.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/questions.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/questions.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/topics.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/topics.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/settings.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/tools.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/tools.py" />
     </list>
     <list id="a9488cb4-e3dd-4b84-9aab-a3350c54147a" name="个人信息，不同步" comment="" />
     <ignored path="zhihu_scrapy.iws" />
@@ -62,11 +48,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="items.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/zhihu_scrapy/items.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
+            <state relative-caret-position="130">
+              <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="start_mongod.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/start_mongod.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -123,6 +119,7 @@
         <option value="$PROJECT_DIR$/zhihu_scrapy/pipelines.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/items.py" />
+        <option value="$PROJECT_DIR$/start_mongod.sh" />
       </list>
     </option>
   </component>
@@ -191,56 +188,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="zhihu_scrapy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhihu_scrapy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhihu_scrapy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhihu_scrapy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhihu_scrapy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhihu_scrapy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhihu_scrapy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhihu_scrapy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhihu_scrapy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhihu_scrapy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prases" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -852,7 +799,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479628681372</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="完成数据的基本的抓取与存储">
+      <created>1479636347868</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1479636347868</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -960,7 +914,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="追踪单元测试" />
     <MESSAGE value="添加ArticlesItem与TopicsNextItem()" />
     <MESSAGE value="添加从url获取Request，添加parse路径走向" />
     <MESSAGE value="添加articles的解析" />
@@ -985,7 +938,8 @@
     <MESSAGE value="添加对新旧主页的判断" />
     <MESSAGE value="完成对新个人主页的解析" />
     <MESSAGE value="修正business与job不同人的主页xpath_rule不同的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修正business与job不同人的主页xpath_rule不同的问题" />
+    <MESSAGE value="完成数据的基本的抓取与存储" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成数据的基本的抓取与存储" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1031,13 +985,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/linkextractors/regex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/linkextractor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="91">
@@ -1382,8 +1329,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/items.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
+        <state relative-caret-position="130">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start_mongod.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
           <folding />
         </state>
       </provider>
