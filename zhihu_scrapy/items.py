@@ -32,7 +32,7 @@ class PeopleItem(scrapy.Item):
     answers_num = scrapy.Field()
     articles_num = scrapy.Field()
     collections_num = scrapy.Field()
-    edit_num = scrapy.Field()
+    public_edit_num = scrapy.Field()
     followees_num = scrapy.Field()
     followers_num = scrapy.Field()
     lives_num = scrapy.Field()
@@ -42,6 +42,7 @@ class PeopleItem(scrapy.Item):
     hash_id = scrapy.Field()
     _xsrf = scrapy.Field()
     is_best_answerer = scrapy.Field()
+    is_identity = scrapy.Field()
 
 
 class FolloweesItem(scrapy.Item):

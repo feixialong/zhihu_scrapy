@@ -20,7 +20,6 @@ class Login():
         self.session.verify = settings.IS_VERIFY
         # self.session.cookies = http.cookiejar.LWPCookieJar(filename=settings.COOKIES_FILE)
         self.session.cookies = http.cookiejar.MozillaCookieJar(filename=settings.COOKIES_FILE)
-        self._xsrf = self.get_xsrf()
 
     def get_xsrf(self):
         url = "https://www.zhihu.com/"
@@ -34,7 +33,7 @@ class Login():
             "password": password,
             "remember_me": True,
             # "captcha_type": "cn",
-            "_xsrf": self._xsrf
+            "_xsrf": self.get_xsrf()
         }
         return url, data
 

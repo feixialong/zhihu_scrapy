@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f09e920-7968-45c1-8e7d-255cb13be913" name="Default" comment="">
+    <list default="true" id="4f09e920-7968-45c1-8e7d-255cb13be913" name="Default" comment="完成">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/items.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/items.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/prases/people.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/prases/people.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/spiders/test.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/spiders/login.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/login.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/tools.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/tools.py" />
     </list>
     <list id="a9488cb4-e3dd-4b84-9aab-a3350c54147a" name="个人信息，不同步" comment="" />
     <ignored path="zhihu_scrapy.iws" />
@@ -32,8 +30,8 @@
       <file leaf-file-name="zhihu_crawl.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+            <state relative-caret-position="494">
+              <caret line="38" column="53" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
               <folding>
                 <element signature="e#25#36#0" expanded="true" />
               </folding>
@@ -41,41 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
+      <file leaf-file-name="login.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/login.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tools.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/tools.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="25" column="27" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_tools.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="259">
+              <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -84,8 +52,8 @@
       <file leaf-file-name="people.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/people.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="292" column="87" selection-start-line="292" selection-start-column="87" selection-end-line="292" selection-end-column="87" />
+            <state relative-caret-position="246">
+              <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
               <folding>
                 <element signature="e#25#58#0" expanded="true" />
               </folding>
@@ -93,21 +61,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/items.py">
+      <file leaf-file-name="tools.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
+            <state relative-caret-position="325">
+              <caret line="59" column="25" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="followers.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/followers.py">
+      <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/items.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+            <state relative-caret-position="287">
+              <caret line="34" column="19" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -147,7 +115,6 @@
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/rules_.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/download_answers.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/more_answers.py" />
-        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/login.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/prases/followees.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/prases/answers.py" />
@@ -158,17 +125,18 @@
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/tools.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
-        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/test.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/login.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/items.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/prases/people.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="529" />
+    <option name="x" value="448" />
     <option name="y" value="23" />
-    <option name="width" value="747" />
+    <option name="width" value="1006" />
     <option name="height" value="777" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -815,7 +783,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479617210515</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="完成对新个人主页的解析">
+      <created>1479626272309</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1479626272309</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -851,15 +826,15 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="529" y="23" width="747" height="777" extended-state="0" />
+    <frame x="448" y="23" width="1006" height="777" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28169015" sideWeight="0.6702356" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28099173" sideWeight="0.6702356" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24379562" sideWeight="0.51428574" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25255474" sideWeight="0.4890511" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25255474" sideWeight="0.4890511" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.055474453" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3562044" sideWeight="0.4917617" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39124086" sideWeight="0.4917617" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13430656" sideWeight="0.4857143" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30708662" sideWeight="0.32976446" order="2" side_tool="true" content_ui="tabs" />
@@ -923,7 +898,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="明白rules中每个Rule()的配置方式，并将冗余程序删除" />
     <MESSAGE value="更改网址类型判断方式" />
     <MESSAGE value="追踪单元测试" />
     <MESSAGE value="添加ArticlesItem与TopicsNextItem()" />
@@ -948,7 +922,8 @@
     <MESSAGE value="对普通的文章链接进行转换" />
     <MESSAGE value="设置下载延时，避免429错误提示" />
     <MESSAGE value="添加对新旧主页的判断" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加对新旧主页的判断" />
+    <MESSAGE value="完成对新个人主页的解析" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成对新个人主页的解析" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -966,13 +941,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py</url>
-          <line>254</line>
+          <line>255</line>
           <option name="timeStamp" value="196" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/zhihu_scrapy/prases/people.py</url>
-          <line>169</line>
-          <option name="timeStamp" value="208" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1276,40 +1246,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
+        <state relative-caret-position="274">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="25" column="27" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/followers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -1322,10 +1260,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/followers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="59" column="25" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+        <state relative-caret-position="494">
+          <caret line="38" column="53" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
           <folding>
             <element signature="e#25#36#0" expanded="true" />
           </folding>
@@ -1334,16 +1304,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/items.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
+        <state relative-caret-position="287">
+          <caret line="34" column="19" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/prases/people.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="292" column="87" selection-start-line="292" selection-start-column="87" selection-end-line="292" selection-end-column="87" />
+        <state relative-caret-position="246">
+          <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
           <folding>
             <element signature="e#25#58#0" expanded="true" />
           </folding>

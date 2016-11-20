@@ -29,6 +29,7 @@ class People(object):
         self.columns_topics_num()
         self.visited_num()
         self.is_best_answerer()
+        self.is_identity()
         self.hash_id()
         self._xsrf()
 
@@ -95,13 +96,22 @@ class People(object):
     def job(self):
         if self.new is True:
             xpath_rule = '//div[@class="ProfileHeader-info"]/div[@class="ProfileHeader-infoItem"][2]/text()[2]'
+            a = self.response.selector.xpath(xpath_rule).extract_first()
+            if a is None:
+                self.item["job"] = ""
+            else:
+                self.item["job"] = a
         else:
             xpath_rule = '//span[@class="position item"]/a/text()'
-        a = self.response.selector.xpath(xpath_rule).extract_first()
-        if a is None:
-            self.item["job"] = ""
-        else:
-            self.item["job"] = a
+            a = self.response.selector.xpath(xpath_rule).extract_first()
+            if a is None:
+                # 同样是旧版的个人主页，不同人的xpath_rule不同，真尼玛坑
+                xpath_rule = '//span[@class="position item"]/text()'
+                a = self.response.selector.xpath(xpath_rule).extract_first()
+            if a is None:
+                self.item["job"] = ""
+            else:
+                self.item["job"] = a
 
     def location(self):
         if self.new is True:
@@ -139,13 +149,22 @@ class People(object):
     def business(self):
         if self.new is True:
             xpath_rule = '//div[@class="ProfileHeader-info"]/div[@class="ProfileHeader-infoItem"][1]/text()[2]'
+            a = self.response.selector.xpath(xpath_rule).extract_first()
+            if a is None:
+                self.item["business"] = ""
+            else:
+                self.item["business"] = a
         else:
             xpath_rule = '//span[@class="business item"]/a/text()'
-        a = self.response.selector.xpath(xpath_rule).extract_first()
-        if a is None:
-            self.item["business"] = ""
-        else:
-            self.item["business"] = a
+            a = self.response.selector.xpath(xpath_rule).extract_first()
+            if a is None:
+                # 同样是旧版的个人主页，不同人的xpath_rule不同，真尼玛坑
+                xpath_rule = '//span[@class="business item"]/text()'
+                a = self.response.selector.xpath(xpath_rule).extract_first()
+            if a is None:
+                self.item["business"] = ""
+            else:
+                self.item["business"] = a
 
     def desc(self):
         if self.new is True:
@@ -160,7 +179,6 @@ class People(object):
 
     def agrees_num(self):
         if self.new is True:
-            # todo 结果错误
             xpath_rule = '//div[@class="IconGraf"]/text()'
             results = self.response.selector.xpath(xpath_rule).extract()
             self.item["agrees_num"] = 0
@@ -196,11 +214,11 @@ class People(object):
 
             xpath_rule = '//div[@class="IconGraf"]/text()'
             results = self.response.selector.xpath(xpath_rule).extract()
-            self.item["edit_num"] = 0
+            self.item["public_edit_num"] = 0
             for result in results:
                 if not (result.find("编辑") == -1):
                     pattern = re.compile(r'\d+')
-                    self.item["edit_num"] = int(re.findall(pattern, result)[0])
+                    self.item["public_edit_num"] = int(re.findall(pattern, result)[0])
         else:
             xpath_rule = '//div[@class="profile-navbar clearfix"]/a/span[@class="num"]/text()'
             a = self.response.selector.xpath(xpath_rule).extract()
@@ -208,7 +226,7 @@ class People(object):
             self.item["answers_num"] = int(a[1])
             self.item["articles_num"] = int(a[2])
             self.item["collections_num"] = int(a[3])
-            self.item["edit_num"] = int(a[4])
+            self.item["public_edit_num"] = int(a[4])
 
     def follow_info(self):
         if self.new is True:
@@ -283,10 +301,24 @@ class People(object):
                 if not (result.find("优秀") == -1):
                     self.item["is_best_answerer"] = True
         else:
-            xpath_rule = 'class="icon icon-badge-best_answerer"'
+            xpath_rule = '//*[@class="icon icon-badge-best_answerer"]'
             results = self.response.selector.xpath(xpath_rule).extract()
             if results:
                 self.item["is_best_answerer"] = True
+
+    def is_identity(self):
+        if self.new is True:
+            xpath_rule = '//div[@class="IconGraf"]/text()'
+            results = self.response.selector.xpath(xpath_rule).extract()
+            self.item["is_identity"] = False
+            for result in results:
+                if not (result.find("认证") == -1):
+                    self.item["is_identity"] = True
+        else:
+            xpath_rule = '//*[@class="icon icon-badge-identity"]'
+            results = self.response.selector.xpath(xpath_rule).extract()
+            if results:
+                self.item["is_identity"] = True
 
     def hash_id(self):
         xpath_rule = '//div[@class="zm-profile-header-op-btns clearfix"]/button/@data-id'

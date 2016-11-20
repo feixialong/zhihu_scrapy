@@ -33,10 +33,10 @@ class ZhihuSpider(CrawlSpider):
     session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
 
     start_urls = [
-        # "https://www.zhihu.com",
+        "https://www.zhihu.com",
         # 'https://www.zhihu.com/people/stevenjohnson',
         # "https://www.zhihu.com/people/wang-you-28",  # 新主页
-        "https://www.zhihu.com/people/patrickluo/",
+        # "https://www.zhihu.com/people/patrickluo/",
         # 'https://www.zhihu.com/people/jixin',
         # 'https://www.zhihu.com/people/chen-li-jie-75',
         # "https://www.zhihu.com/people/hydfox",
@@ -67,7 +67,7 @@ class ZhihuSpider(CrawlSpider):
                 ],
                 deny=[
                     "https://www.zhihu.com/logout",
-                    "https://www.zhihu.com/*",  # 不允许追踪任何链接，用于调试
+                    # "https://www.zhihu.com/*",  # 不允许追踪任何链接，用于调试
                 ]
             ),
             process_links="process_links_",  # 传入links列表，返回links列表
@@ -102,10 +102,10 @@ class ZhihuSpider(CrawlSpider):
                 link.url = link_url
                 new_links.update([link])
             elif type_ in ["people_home",
-                           # "people_followees", "people_followers",
-                           # "people_questions",
-                           # "people_answers", "people_articles", "people_collections",
-                           # "columns", "articles", "questions"
+                           "people_followees", "people_followers",
+                           "people_questions",
+                           "people_answers", "people_articles", "people_collections",
+                           "columns", "articles", "questions"
                            ]:
                 new_links.update([link])
         return new_links
@@ -198,6 +198,7 @@ class ZhihuSpider(CrawlSpider):
                 )
 
         elif type_ in ["articles"]:
+            # ---- 以下为对普通文章的抓取 ----
             body = json.loads(response.body.decode("utf-8"))
             yield column_articles.ColumnArticles(body).item
 
