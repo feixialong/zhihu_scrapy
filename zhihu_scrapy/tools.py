@@ -39,7 +39,7 @@ def url_type_select(url):
         return "columns"
     elif (length_of_url_splited == 5) and (url_splited[-2] == "p") and (url_splited[-3] == "zhuanlan.zhihu.com"):
         # "https://zhuanlan.zhihu.com/p/23250032"  # 此类型网页未解析
-        return "articles"
+        return "articles_"
     elif (length_of_url_splited == 6) and (url_splited[2] == "zhuanlan.zhihu.com") and (url_splited[-3] == "api") and (url_splited[-2] == "posts"):
         # "https://zhuanlan.zhihu.com/api/posts/23190728"
         return "articles"
