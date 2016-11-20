@@ -105,7 +105,7 @@ class ZhihuSpider(CrawlSpider):
                            "people_followees", "people_followers",
                            "people_questions",
                            "people_answers", "people_articles", "people_collections",
-                           "columns", "articles", "questions"
+                           "columns", "articles", "questions", "topic"
                            ]:
                 new_links.update([link])
         return new_links

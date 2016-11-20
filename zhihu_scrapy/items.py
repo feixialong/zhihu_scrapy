@@ -15,6 +15,8 @@ class ZhihuScrapyItem(scrapy.Item):
 
 
 class PeopleItem(scrapy.Item):
+    _id = scrapy.Field()  # 存入mongodb时，需要_id字段，不加此句会报错
+    data_type = scrapy.Field()
     user_url = scrapy.Field()
     avatar_url = scrapy.Field()
     user_name = scrapy.Field()
@@ -46,6 +48,8 @@ class PeopleItem(scrapy.Item):
 
 
 class FolloweesItem(scrapy.Item):
+    _id = scrapy.Field()
+    data_type = scrapy.Field()
     user_url = scrapy.Field()
     total_num = scrapy.Field()
     followees = scrapy.Field()
@@ -53,6 +57,8 @@ class FolloweesItem(scrapy.Item):
 
 
 class FollowersItem(scrapy.Item):
+    _id = scrapy.Field()
+    data_type = scrapy.Field()
     user_url = scrapy.Field()
     total_num = scrapy.Field()
     followers = scrapy.Field()
@@ -60,6 +66,8 @@ class FollowersItem(scrapy.Item):
 
 
 class AsksItem(scrapy.Item):
+    _id = scrapy.Field()
+    data_type = scrapy.Field()
     user_url = scrapy.Field()
     total_num = scrapy.Field()
     followers = scrapy.Field()
@@ -67,6 +75,8 @@ class AsksItem(scrapy.Item):
 
 
 class ColumnsItem(scrapy.Item):
+    _id = scrapy.Field()
+    data_type = scrapy.Field()
     user_url = scrapy.Field()
     column_url = scrapy.Field()
     api_url = scrapy.Field()
@@ -79,6 +89,8 @@ class ColumnsItem(scrapy.Item):
 
 
 class ColumnArticlesItem(scrapy.Item):
+    _id = scrapy.Field()
+    data_type = scrapy.Field()
     article_url = scrapy.Field()
     article_title = scrapy.Field()
     user_url = scrapy.Field()
@@ -92,10 +104,14 @@ class ColumnArticlesItem(scrapy.Item):
 
 
 class ColumnFollowersItem(scrapy.Item):
+    _id = scrapy.Field()
+    data_type = scrapy.Field()
     user_url = scrapy.Field()
 
 
 class TopicsItem(scrapy.Item):
+    _id = scrapy.Field()
+    data_type = scrapy.Field()
     topic_url = scrapy.Field()
     followers_num = scrapy.Field()
     top_answers = scrapy.Field()
@@ -104,6 +120,7 @@ class TopicsItem(scrapy.Item):
 
 
 class TopicsNextItem(scrapy.Item):
+    data_type = scrapy.Field()
     topic_url = scrapy.Field()
     followers_num = scrapy.Field()
     top_answers = scrapy.Field()
@@ -112,6 +129,7 @@ class TopicsNextItem(scrapy.Item):
 
 
 class QuestionsItem(scrapy.Item):
+    data_type = scrapy.Field()
     question_url = scrapy.Field()
     question_title = scrapy.Field()
     question_desc = scrapy.Field()
@@ -122,6 +140,7 @@ class QuestionsItem(scrapy.Item):
 
 
 class AnswersItem(scrapy.Item):
+    data_type = scrapy.Field()
     user_url = scrapy.Field()
     content = scrapy.Field()
     agrees_num = scrapy.Field()

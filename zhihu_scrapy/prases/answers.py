@@ -19,6 +19,7 @@ class Answers(object):
     def __init__(self, answer):
         self.answer = etree.HTML(answer)
         self.item = AnswersItem()
+        self.item["data_type"] = "answer"
         self.user_url()
         self.content()
         self.agrees_num()

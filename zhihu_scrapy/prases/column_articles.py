@@ -18,6 +18,7 @@ class ColumnArticles(object):
     def __init__(self, body):
         self.body = body
         self.item = ColumnArticlesItem()
+        self.item["data_type"] = "article"
         self.article_url()
         self.article_title()
         self.user_url()

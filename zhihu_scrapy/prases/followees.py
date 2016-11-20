@@ -11,11 +11,13 @@ from zhihu_scrapy import settings
 from zhihu_scrapy.items import FolloweesItem
 
 
+# todo 此解析器未完成，未使用
 class Followees(object):
     def __init__(self, response):
         self.offset = 0
         self.response = response
         self.item = FolloweesItem()
+        self.item["data_type"] = "followees_info"
         self.cur_user_url()
         self.total_num()
         self.followees_1()

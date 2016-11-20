@@ -14,6 +14,7 @@ class Questions(object):
     def __init__(self, response):
         self.response = response
         self.item = QuestionsItem()
+        self.item["data_type"] = "question"
         self.question_url()
         self.question_url_token()
         self.question_title()

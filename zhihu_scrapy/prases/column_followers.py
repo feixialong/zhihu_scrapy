@@ -14,10 +14,12 @@ from zhihu_scrapy import tools
 from zhihu_scrapy.items import ColumnFollowersItem
 
 
+# todo 此解析器未完成，未使用
 class ColumnFollowers(object):
     def __init__(self, body):
         self.body = body
         self.item = ColumnFollowersItem()
+        self.item["data_type"] = "followers_info"
         self.user_url()
 
     def user_url(self):

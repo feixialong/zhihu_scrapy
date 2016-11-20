@@ -75,6 +75,10 @@ def url_type_select(url):
         # raise TypeError("未定义网址类型，请将添加对 {url} 的识别".format(url=url))
 
 
+def data_type_select(data):
+    return data["data_type"]
+
+
 def set_headers(url=None):
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:46.0) Gecko/20100101 Firefox/46.0",

@@ -19,6 +19,7 @@ class Columns(object):
         self.response = response
         self.body = json.loads(response.body.decode("utf-8"))
         self.item = ColumnsItem()
+        self.item["data_type"] = "column"
         self.column_url()
         self.api_url()
         self.column_name()

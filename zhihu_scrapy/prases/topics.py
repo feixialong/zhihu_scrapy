@@ -7,11 +7,13 @@ from zhihu_scrapy import tools
 from zhihu_scrapy.items import TopicsItem, TopicsNextItem
 
 
+# todo 此解析器未完成，未使用
 class Topics(object):
     def __init__(self, response):
         self.response = response
         self.item = TopicsItem()
         self.item["top_answers"] = set()
+        self.item["data_type"] = "topic"
         self.topic_url()
         self.followers_num()
         self.update_top_answers()

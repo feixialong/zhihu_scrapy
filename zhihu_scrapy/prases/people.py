@@ -9,6 +9,7 @@ class People(object):
     def __init__(self, response):
         self.response = response
         self.item = PeopleItem()
+        self.item["data_type"] = "people"
         self.new = self.is_new()
         self.user_url()
         self.avatar_url()
