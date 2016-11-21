@@ -160,25 +160,25 @@ class ZhihuSpider(CrawlSpider):
             yield question_info
 
             # ---- 以下为对该问题下的答案的抓取 ----
-            pagesize = 10
-            times_ = int(question_info["answers_num"] / pagesize + 1)
-            for i in range(times_):
-                params = {
-                    "url_token": question_info["question_url_token"],
-                    "pagesize": pagesize,
-                    "offset": pagesize * i
-                }
-                data = {
-                    "method": "next",
-                    "params": json.dumps(params)
-                }
-                yield FormRequest(
-                    url=settings.MORE_ANSWERS_URL,
-                    body=urllib.parse.urlencode(data),
-                    headers=tools.set_headers(question_info["question_url"]),
-                    callback=self.parse_answers,
-                    method="POST"
-                )
+            # pagesize = 10
+            # times_ = int(question_info["answers_num"] / pagesize + 1)
+            # for i in range(times_):
+            #     params = {
+            #         "url_token": question_info["question_url_token"],
+            #         "pagesize": pagesize,
+            #         "offset": pagesize * i
+            #     }
+            #     data = {
+            #         "method": "next",
+            #         "params": json.dumps(params)
+            #     }
+            #     yield FormRequest(
+            #         url=settings.MORE_ANSWERS_URL,
+            #         body=urllib.parse.urlencode(data),
+            #         headers=tools.set_headers(question_info["question_url"]),
+            #         callback=self.parse_answers,
+            #         method="POST"
+            #     )
 
         elif type_ in ["columns_api"]:
             # todo columns要抓取的网址与内容均待进一步讨论

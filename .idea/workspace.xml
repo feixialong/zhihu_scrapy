@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4f09e920-7968-45c1-8e7d-255cb13be913" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/db.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/db.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/pipelines.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/pipelines.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" />
     </list>
     <list id="a9488cb4-e3dd-4b84-9aab-a3350c54147a" name="个人信息，不同步" comment="" />
     <ignored path="zhihu_scrapy.iws" />
@@ -28,8 +27,8 @@
       <file leaf-file-name="zhihu_crawl.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="66" column="53" selection-start-line="66" selection-start-column="53" selection-end-line="66" selection-end-column="53" />
+            <state relative-caret-position="200">
+              <caret line="168" column="40" selection-start-line="168" selection-start-column="40" selection-end-line="168" selection-end-column="40" />
               <folding>
                 <element signature="e#25#36#0" expanded="true" />
               </folding>
@@ -109,9 +108,9 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/start_spider.sh" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/tools.py" />
-        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/db.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/pipelines.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" />
       </list>
     </option>
   </component>
@@ -530,13 +529,6 @@
       <option name="presentableId" value="Default" />
       <updated>1476523552119</updated>
     </task>
-    <task id="LOCAL-00007" summary="动态加载的未完成">
-      <created>1477156142483</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1477156142483</updated>
-    </task>
     <task id="LOCAL-00008" summary="将设置全部移到settings.py中">
       <created>1477203426613</created>
       <option name="number" value="00008" />
@@ -873,7 +865,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479739985257</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="存入数据库时去重">
+      <created>1479741478874</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1479741478876</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -981,7 +980,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="对第一次获取的内容，解析出了其用户url，点赞数，并保存了整个评论tab内容" />
     <MESSAGE value="知道了如何处理加载更多的问题" />
     <MESSAGE value="完成答案使用Spider下载器的方法" />
     <MESSAGE value="更改对答案的抓取方式，未完成" />
@@ -1006,7 +1004,8 @@
     <MESSAGE value="将专栏的链接更改为api的形式" />
     <MESSAGE value="更改从网页获取的链接" />
     <MESSAGE value="将插入数据更改为更新数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="将插入数据更改为更新数据" />
+    <MESSAGE value="存入数据库时去重" />
+    <option name="LAST_COMMIT_MESSAGE" value="存入数据库时去重" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1387,8 +1386,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="66" column="53" selection-start-line="66" selection-start-column="53" selection-end-line="66" selection-end-column="53" />
+        <state relative-caret-position="200">
+          <caret line="168" column="40" selection-start-line="168" selection-start-column="40" selection-end-line="168" selection-end-column="40" />
           <folding>
             <element signature="e#25#36#0" expanded="true" />
           </folding>
