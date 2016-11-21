@@ -21,17 +21,17 @@ class ZhihuScrapyPipeline(object):
     def process_item(self, item, spider):
         data_type = tools.data_type_select(item)
         if data_type in ["question"]:
-            self.questions.update({"question_url": item["question_url"]}, {"$set": item})
-            # self.questions.insert(item)
+            if not self.questions.find_one({"question_url": item["question_url"]}):
+                self.questions.insert(item)
         elif data_type in ["answer"]:
-            self.questions.update({"answer_url": item["answer_url"]}, {"$set": item})
-            # self.answers.insert(item)
+            if not self.answers.find_one({"answer_url": item["answer_url"]}):
+                self.answers.insert(item)
         elif data_type in ["people"]:
-            self.questions.update({"user_url": item["user_url"]}, {"$set": item})
-            # self.people.insert(item)
+            if not self.people.find_one({"user_url": item["user_url"]}):
+                self.people.insert(item)
         elif data_type in ["article"]:
-            self.questions.update({"article_url": item["article_url"]}, {"$set": item})
-            # self.articles.insert(item)
+            if not self.articles.find_one({"article_url": item["article_url"]}):
+                self.articles.insert(item)
         return item
 
 

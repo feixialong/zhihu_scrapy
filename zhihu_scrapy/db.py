@@ -23,7 +23,7 @@ if __name__ == "__main__":
     host = "localhost"
     port = 27017
     zhihudb = MyMongoDB(host, port)
-    questions = zhihudb.use_collection("test", "zhihu")
-    # questions.insert({"test": "test_url"})
-    for q in questions.find():
-        print(q)
+    people = zhihudb.use_collection("zhihu", "people")
+    r = people.find_one({"user_name": "不是归人"})
+    if not r:
+        print("进来")
