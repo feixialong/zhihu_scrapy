@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f09e920-7968-45c1-8e7d-255cb13be913" name="Default" comment="">
+    <list default="true" id="4f09e920-7968-45c1-8e7d-255cb13be913" name="Default" comment="设置代理IP">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhihu_scrapy/HttpProxyMiddleware.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhihu_scrapy/fetch_free_proxyes.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhihu_scrapy/middlewares.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/settings.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" afterPath="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" />
     </list>
     <list id="a9488cb4-e3dd-4b84-9aab-a3350c54147a" name="个人信息，不同步" comment="" />
@@ -27,10 +31,44 @@
       <file leaf-file-name="zhihu_crawl.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="168" column="40" selection-start-line="168" selection-start-column="40" selection-end-line="168" selection-end-column="40" />
+            <state relative-caret-position="135">
+              <caret line="166" column="27" selection-start-line="166" selection-start-column="27" selection-end-line="166" selection-end-column="27" />
               <folding>
                 <element signature="e#25#36#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpProxyMiddleware.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/HttpProxyMiddleware.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="365">
+              <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
+              <folding>
+                <element signature="e#42#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fetch_free_proxyes.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu_scrapy/fetch_free_proxyes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2057">
+              <caret line="159" column="33" selection-start-line="159" selection-start-column="33" selection-end-line="159" selection-end-column="33" />
+              <folding>
+                <element signature="e#42#71#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,21 +141,23 @@
         <option value="$PROJECT_DIR$/zhihu_scrapy/items.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/prases/questions.py" />
         <option value="$PROJECT_DIR$/middlewares.py" />
-        <option value="$PROJECT_DIR$/zhihu_scrapy/middlewares.py" />
-        <option value="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/start_spider.sh" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/tools.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/db.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/pipelines.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/middlewares.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/fetch_free_proxyes.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/settings.py" />
+        <option value="$PROJECT_DIR$/zhihu_scrapy/HttpProxyMiddleware.py" />
         <option value="$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="166" />
+    <option name="x" value="49" />
     <option name="y" value="23" />
-    <option name="width" value="1261" />
+    <option name="width" value="1005" />
     <option name="height" value="777" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -172,6 +212,80 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="zhihu_scrapy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 3.5.2 (/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhihu_scrapy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 3.5.2 (/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site-packages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhihu_scrapy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 3.5.2 (/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site-packages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrapy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhihu_scrapy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 3.5.2 (/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site-packages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scrapy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="downloadermiddlewares" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -241,7 +355,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HttpProxyMiddleware" />
     <property name="SearchEverywhereHistoryKey" value="make_requests_from_url&#9;null&#9;null&#10;process_links&#9;null&#9;null&#10;LinkExtractor&#9;null&#9;null&#10;unfold_cookies&#9;null&#9;null&#10;set_cookie&#9;null&#9;null&#10;Request&#9;null&#9;null&#10;handles_request&#9;null&#9;null&#10;TextResponse&#9;null&#9;null&#10;HtmlResponse&#9;null&#9;null" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -253,6 +367,9 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/zhihu_scrapy" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/zhihu_scrapy" />
       <recent name="$PROJECT_DIR$/zhihu_scrapy/spiders" />
@@ -296,28 +413,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest TestLogin.test_url_type_select" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="zhihu_scrapy" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu_scrapy/spiders/tests/test_tools.py" />
-      <option name="CLASS_NAME" value="TestLogin" />
-      <option name="METHOD_NAME" value="test_url_type_select" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="db" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -348,6 +443,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="zhihu_scrapy" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu_scrapy/pipelines.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="fetch_free_proxyes" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/zhihu_scrapy" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="zhihu_scrapy" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu_scrapy/fetch_free_proxyes.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -500,17 +612,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.zhihu_crawl" />
       <item index="1" class="java.lang.String" itemvalue="Python.test" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest TestLogin.test_url_type_select" />
-      <item index="3" class="java.lang.String" itemvalue="Python.db" />
-      <item index="4" class="java.lang.String" itemvalue="Python.pipelines" />
+      <item index="2" class="java.lang.String" itemvalue="Python.db" />
+      <item index="3" class="java.lang.String" itemvalue="Python.pipelines" />
+      <item index="4" class="java.lang.String" itemvalue="Python.fetch_free_proxyes" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.zhihu_crawl" />
-        <item index="1" class="java.lang.String" itemvalue="Python.db" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test" />
-        <item index="3" class="java.lang.String" itemvalue="Python.pipelines" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestLogin.test_url_type_select" />
+        <item index="1" class="java.lang.String" itemvalue="Python.fetch_free_proxyes" />
+        <item index="2" class="java.lang.String" itemvalue="Python.db" />
+        <item index="3" class="java.lang.String" itemvalue="Python.test" />
+        <item index="4" class="java.lang.String" itemvalue="Python.pipelines" />
       </list>
     </recent_temporary>
   </component>
@@ -528,13 +640,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1476523552119</updated>
-    </task>
-    <task id="LOCAL-00008" summary="将设置全部移到settings.py中">
-      <created>1477203426613</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1477203426613</updated>
     </task>
     <task id="LOCAL-00009" summary="更新">
       <created>1477203528108</created>
@@ -872,7 +977,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479741478876</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="暂时取消对答案的抓取">
+      <created>1479741678112</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1479741678112</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -908,10 +1020,10 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="166" y="23" width="1261" height="777" extended-state="0" />
+    <frame x="49" y="23" width="1005" height="777" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21774194" sideWeight="0.6702356" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27439025" sideWeight="0.6702356" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24379562" sideWeight="0.51428574" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17518248" sideWeight="0.4890511" order="7" side_tool="false" content_ui="tabs" />
@@ -980,7 +1092,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="知道了如何处理加载更多的问题" />
     <MESSAGE value="完成答案使用Spider下载器的方法" />
     <MESSAGE value="更改对答案的抓取方式，未完成" />
     <MESSAGE value="完成答案的动态加载" />
@@ -1005,7 +1116,8 @@
     <MESSAGE value="更改从网页获取的链接" />
     <MESSAGE value="将插入数据更改为更新数据" />
     <MESSAGE value="存入数据库时去重" />
-    <option name="LAST_COMMIT_MESSAGE" value="存入数据库时去重" />
+    <MESSAGE value="暂时取消对答案的抓取" />
+    <option name="LAST_COMMIT_MESSAGE" value="暂时取消对答案的抓取" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1042,7 +1154,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="217" />
+      <option name="time" value="218" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -1051,34 +1163,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/http/response/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/twisted/internet/defer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-128">
-          <caret line="1184" column="0" selection-start-line="1184" selection-start-column="0" selection-end-line="1184" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/core/downloader/middleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/downloadermiddlewares/cookies.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="30" column="52" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/twisted/internet/selectreactor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="723">
@@ -1271,25 +1355,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/middlewares.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="73" column="1" selection-start-line="73" selection-start-column="1" selection-end-line="73" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1371,7 +1441,7 @@
         <state relative-caret-position="146">
           <caret line="18" column="52" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
           <folding>
-            <element signature="e#193#220#0" expanded="true" />
+            <element signature="e#193#220#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1384,10 +1454,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/downloadermiddlewares/httpproxy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/scrapy/contrib/downloadermiddleware/httpproxy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/fetch_free_proxyes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2057">
+          <caret line="159" column="33" selection-start-line="159" selection-start-column="33" selection-end-line="159" selection-end-column="33" />
+          <folding>
+            <element signature="e#42#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/middlewares.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu_scrapy/HttpProxyMiddleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
+          <folding>
+            <element signature="e#42#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/zhihu_scrapy/spiders/zhihu_crawl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="168" column="40" selection-start-line="168" selection-start-column="40" selection-end-line="168" selection-end-column="40" />
+        <state relative-caret-position="135">
+          <caret line="166" column="27" selection-start-line="166" selection-start-column="27" selection-end-line="166" selection-end-column="27" />
           <folding>
             <element signature="e#25#36#0" expanded="true" />
           </folding>

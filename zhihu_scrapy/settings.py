@@ -55,11 +55,11 @@ COOKIE_DEBUG = True
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#     # 'zhihu_scrapy.middlewares.MyCustomDownloaderMiddleware': 543,
-#     'zhihu_scrapy.middlewares.ProxyMiddleware': 543,
-#
-# }
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware': 350,
+    'zhihu_scrapy.HttpProxyMiddleware.HttpProxyMiddleware': 543,
+}
+
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
