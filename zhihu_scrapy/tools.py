@@ -51,7 +51,7 @@ def url_type_select(url):
         return "topic"
     elif (length_of_url_splited == 6) and (url_splited[-2] == "columns") and (url_splited[-3] == "api"):
         # "https://zhuanlan.zhihu.com/api/columns/LaTeX"
-        return "columns"
+        return "columns_api"
     elif (length_of_url_splited == 4) and (url_splited[2] == "zhuanlan.zhihu.com"):
         # "https://zhuanlan.zhihu.com/pythoner"  # 此类型网页未解析
         return "columns"
