@@ -119,15 +119,6 @@ IS_VERIFY = True
 
 DEDAULT_HEADERS = tools.set_headers()
 
-PROXIES = [
-    {'ip_port': '120.25.105.45:81', 'user_pass': ''},
-    {'ip_port': '1122.72.32.73:80', 'user_pass': ''},
-    {'ip_port': '124.88.67.63:80', 'user_pass': ''},
-    {'ip_port': '202.171.253.72:80', 'user_pass': ''},
-    {'ip_port': '139.196.108.68:80', 'user_pass': ''},
-    {'ip_port': '60.194.100.51:8088', 'user_pass': ''},
-]
-
 USER_AGENTS = [
     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)",
     "Mozilla/5.0 (X11; U; Linux; en-US) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.6",

@@ -30,16 +30,18 @@ from zhihu_scrapy import settings
 class ZhihuSpider(CrawlSpider):
     name = "zhihu_crawl"
     allowed_domains = ["zhihu.com"]
+    website_possible_httpstatus_list = [403]
+    handle_httpstatus_list = [403]
     session = login.Login().login(settings.USER_INFO_FILE, settings.PASSWORD)
 
     start_urls = [
         "https://www.zhihu.com",
-        # 'https://www.zhihu.com/people/stevenjohnson',
-        # "https://www.zhihu.com/people/wang-you-28",  # 新主页
-        # "https://www.zhihu.com/people/patrickluo/",
-        # 'https://www.zhihu.com/people/jixin',
-        # 'https://www.zhihu.com/people/chen-li-jie-75',
-        # "https://www.zhihu.com/people/hydfox",
+        'https://www.zhihu.com/people/stevenjohnson',
+        "https://www.zhihu.com/people/wang-you-28",  # 新主页
+        "https://www.zhihu.com/people/patrickluo/",
+        'https://www.zhihu.com/people/jixin',
+        'https://www.zhihu.com/people/chen-li-jie-75',
+        "https://www.zhihu.com/people/hydfox",
         # "https://www.zhihu.com/people/jixin/followees",
         # "https://www.zhihu.com/people/mei-ying-0829/followees",
         # "https://www.zhihu.com/people/shuaizhu/followees",
@@ -51,10 +53,10 @@ class ZhihuSpider(CrawlSpider):
         # "https://zhuanlan.zhihu.com/p/22947665",
         # "https://zhuanlan.zhihu.com/p/23250032",
         # "https://zhuanlan.zhihu.com/api/posts/23190728",
-        # "https://www.zhihu.com/question/52220142",
-        # "https://www.zhihu.com/question/31809134",
-        # "https://www.zhihu.com/question/19581624",
-        # "https://www.zhihu.com/question/24565276",
+        "https://www.zhihu.com/question/52220142",
+        "https://www.zhihu.com/question/31809134",
+        "https://www.zhihu.com/question/19581624",
+        "https://www.zhihu.com/question/24565276",
         # "https://www.zhihu.com/node/QuestionAnswerListV2"
     ]
 
@@ -63,12 +65,14 @@ class ZhihuSpider(CrawlSpider):
             LinkExtractor(
                 allow=[
                     "https://www.zhihu.com/people/.+",
+                    "https://www.zhihu.com/.+",
                     "https://zhuanlan.zhihu.com/api/columns/.+",
                     "https://www.zhihu.com/topic/.+",
                     "https://zhuanlan.zhihu.com/p/.+",
                     "https://zhuanlan.zhihu.com/.+",
                     "https://www.zhihu.com/question/\d+",
                     "http://www.zhihu.com/people/.+",
+                    "http://www.zhihu.com/.+",
                     "http://zhuanlan.zhihu.com/api/columns/.+",
                     "http://www.zhihu.com/topic/.+",
                     "http://zhuanlan.zhihu.com/p/.+",
@@ -81,7 +85,7 @@ class ZhihuSpider(CrawlSpider):
                     "https://www.zhihu.com/question/invited",
                     "https://www.zhihu.com/question/following",
                     # "https://www.zhihu.com/*",  # 不允许追踪任何链接，用于调试
-                ]
+                ],
             ),
             process_links="process_links_",  # 传入links列表，返回links列表
             process_request="process_request_",  # 传入Request，每次一个，返回Request，每次一个
@@ -149,6 +153,12 @@ class ZhihuSpider(CrawlSpider):
 
     def parse_start_url(self, response):
         print("开始解析: {url}".format(url=response.url))
+        if response.body == "banned":
+            req = response.request
+            req.meta["change_proxy"] = True
+            yield req
+        else:
+            yield response.request
         type_ = tools.url_type_select(response.url)
         if type_ in ["not_zhihu"]:
             pass
@@ -160,25 +170,25 @@ class ZhihuSpider(CrawlSpider):
             yield question_info
 
             # ---- 以下为对该问题下的答案的抓取 ----
-            pagesize = 10
-            times_ = int(question_info["answers_num"] / pagesize + 1)
-            for i in range(times_):
-                params = {
-                    "url_token": question_info["question_url_token"],
-                    "pagesize": pagesize,
-                    "offset": pagesize * i
-                }
-                data = {
-                    "method": "next",
-                    "params": json.dumps(params)
-                }
-                yield FormRequest(
-                    url=settings.MORE_ANSWERS_URL,
-                    body=urllib.parse.urlencode(data),
-                    headers=tools.set_headers(question_info["question_url"]),
-                    callback=self.parse_answers,
-                    method="POST"
-                )
+            # pagesize = 10
+            # times_ = int(question_info["answers_num"] / pagesize + 1)
+            # for i in range(times_):
+            #     params = {
+            #         "url_token": question_info["question_url_token"],
+            #         "pagesize": pagesize,
+            #         "offset": pagesize * i
+            #     }
+            #     data = {
+            #         "method": "next",
+            #         "params": json.dumps(params)
+            #     }
+            #     yield FormRequest(
+            #         url=settings.MORE_ANSWERS_URL,
+            #         body=urllib.parse.urlencode(data),
+            #         headers=tools.set_headers(question_info["question_url"]),
+            #         callback=self.parse_answers,
+            #         method="POST"
+            #     )
 
         elif type_ in ["columns_api"]:
             # todo columns要抓取的网址与内容均待进一步讨论
