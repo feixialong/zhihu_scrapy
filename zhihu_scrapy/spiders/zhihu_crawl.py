@@ -34,27 +34,27 @@ class ZhihuSpider(CrawlSpider):
 
     start_urls = [
         "https://www.zhihu.com",
-        'https://www.zhihu.com/people/stevenjohnson',
-        "https://www.zhihu.com/people/wang-you-28",  # 新主页
-        "https://www.zhihu.com/people/patrickluo/",
-        'https://www.zhihu.com/people/jixin',
-        'https://www.zhihu.com/people/chen-li-jie-75',
-        "https://www.zhihu.com/people/hydfox",
-        "https://www.zhihu.com/people/jixin/followees",
-        "https://www.zhihu.com/people/mei-ying-0829/followees",
-        "https://www.zhihu.com/people/shuaizhu/followees",
-        "https://www.zhihu.com/people/chen-fan-85/followers",
-        "https://zhuanlan.zhihu.com/pythoner",  # 此种网址未进行解析，获取到此种网络后，应转成下方的网址形式
-        "https://zhuanlan.zhihu.com/api/columns/pythoner",
-        "https://zhuanlan.zhihu.com/api/columns/LaTeX",
-        "https://www.zhihu.com/topic/19559424/top-answers",
-        "https://zhuanlan.zhihu.com/p/22947665",
-        "https://zhuanlan.zhihu.com/p/23250032",
-        "https://zhuanlan.zhihu.com/api/posts/23190728",
-        "https://www.zhihu.com/question/52220142",
-        "https://www.zhihu.com/question/31809134",
-        "https://www.zhihu.com/question/19581624",
-        "https://www.zhihu.com/question/24565276",
+        # 'https://www.zhihu.com/people/stevenjohnson',
+        # "https://www.zhihu.com/people/wang-you-28",  # 新主页
+        # "https://www.zhihu.com/people/patrickluo/",
+        # 'https://www.zhihu.com/people/jixin',
+        # 'https://www.zhihu.com/people/chen-li-jie-75',
+        # "https://www.zhihu.com/people/hydfox",
+        # "https://www.zhihu.com/people/jixin/followees",
+        # "https://www.zhihu.com/people/mei-ying-0829/followees",
+        # "https://www.zhihu.com/people/shuaizhu/followees",
+        # "https://www.zhihu.com/people/chen-fan-85/followers",
+        # "https://zhuanlan.zhihu.com/pythoner",  # 此种网址未进行解析，获取到此种网络后，应转成下方的网址形式
+        # "https://zhuanlan.zhihu.com/api/columns/pythoner",
+        # "https://zhuanlan.zhihu.com/api/columns/LaTeX",
+        # "https://www.zhihu.com/topic/19559424/top-answers",
+        # "https://zhuanlan.zhihu.com/p/22947665",
+        # "https://zhuanlan.zhihu.com/p/23250032",
+        # "https://zhuanlan.zhihu.com/api/posts/23190728",
+        # "https://www.zhihu.com/question/52220142",
+        # "https://www.zhihu.com/question/31809134",
+        # "https://www.zhihu.com/question/19581624",
+        # "https://www.zhihu.com/question/24565276",
         # "https://www.zhihu.com/node/QuestionAnswerListV2"
     ]
 
@@ -64,10 +64,16 @@ class ZhihuSpider(CrawlSpider):
                 allow=[
                     "https://www.zhihu.com/people/.+",
                     "https://zhuanlan.zhihu.com/api/columns/.+",
-                    "https://www.zhihu.com/topic/\d+",
+                    "https://www.zhihu.com/topic/.+",
                     "https://zhuanlan.zhihu.com/p/.+",
                     "https://zhuanlan.zhihu.com/.+",
-                    "https://www.zhihu.com/question/\d+"
+                    "https://www.zhihu.com/question/\d+",
+                    "http://www.zhihu.com/people/.+",
+                    "http://zhuanlan.zhihu.com/api/columns/.+",
+                    "http://www.zhihu.com/topic/.+",
+                    "http://zhuanlan.zhihu.com/p/.+",
+                    "http://zhuanlan.zhihu.com/.+",
+                    "http://www.zhihu.com/question/\d+"
                 ],
                 deny=[
                     "https://www.zhihu.com/logout",
@@ -100,17 +106,36 @@ class ZhihuSpider(CrawlSpider):
         :return: 经过中间处理后的links列表
         """
         # todo 对links还未处理，会出现错误，待将每个信息的parse完成后再对此部分进行更新
+        new_links = []
         for link in links:
             type_ = tools.url_type_select(link.url)
             if type_ in ["articles_"]:
-                article_url_token = link.split("/")[-1]
+                # 对 "https://zhuanlan.zhihu.com/p/23250032" 此类网址的处理
+                article_url_token = link.url.split("/")[-1]
                 link_url = "".join(["https://zhuanlan.zhihu.com/api/posts/", article_url_token])
                 link.url = link_url
+                new_links.append(link)
+            elif type_ in ["columns"]:
+                # 对 "https://zhuanlan.zhihu.com/pythoner" 此类网址的处理
+                article_url_token = link.url.split("/")[-1]
+                link_url = "".join(["https://zhuanlan.zhihu.com/api/columns/", article_url_token])
+                link.url = link_url
+                new_links.append(link)
             elif type_ in ["single_answer"]:
                 link.url = link.url.split("answer")[0]
+                new_links.append(link)
+            elif type_ in ["people_home", "people_questions", "people_answers", "people_articles", "people_collections",
+                           "topic", "columns_api", "articles", "questions"]:
+                new_links.append(link)
+            else:
+                pass
+        for link in new_links:
+            # 去除网址末尾的"/"
             if link.url[-1] == "/":
                 link.url = link.url[:-1]
-        return links
+            else:
+                pass
+        return new_links
 
     def process_request_(self, request):
         """
@@ -131,31 +156,31 @@ class ZhihuSpider(CrawlSpider):
             pass
         elif type_ in ["questions"]:
             # ---- 以下为对问题信息的抓取 ----
-            question = questions.Questions(response).item
-            yield question
+            question_info = questions.Questions(response).item
+            yield question_info
 
             # ---- 以下为对该问题下的答案的抓取 ----
-            # pagesize = 10
-            # times_ = int(question["answers_num"] / pagesize + 1)
-            # for i in range(times_):
-            #     params = {
-            #         "url_token": question["question_url_token"],
-            #         "pagesize": pagesize,
-            #         "offset": pagesize * i
-            #     }
-            #     data = {
-            #         "method": "next",
-            #         "params": json.dumps(params)
-            #     }
-            #     yield FormRequest(
-            #         url=settings.MORE_ANSWERS_URL,
-            #         body=urllib.parse.urlencode(data),
-            #         headers=settings.MORE_ANSWERS_HEADER,
-            #         callback=self.parse_answers,
-            #         method="POST"
-            #     )
+            pagesize = 10
+            times_ = int(question_info["answers_num"] / pagesize + 1)
+            for i in range(times_):
+                params = {
+                    "url_token": question_info["question_url_token"],
+                    "pagesize": pagesize,
+                    "offset": pagesize * i
+                }
+                data = {
+                    "method": "next",
+                    "params": json.dumps(params)
+                }
+                yield FormRequest(
+                    url=settings.MORE_ANSWERS_URL,
+                    body=urllib.parse.urlencode(data),
+                    headers=tools.set_headers(question_info["question_url"]),
+                    callback=self.parse_answers,
+                    method="POST"
+                )
 
-        elif type_ in ["columns"]:
+        elif type_ in ["columns_api"]:
             # todo columns要抓取的网址与内容均待进一步讨论
             # ---- 以下为对专栏信息的抓取 ----
             columns_info = columns.Columns(response).item
@@ -256,6 +281,7 @@ class ZhihuSpider(CrawlSpider):
     def parse_people_followers(self, response):
         print(response.url)
         print("")
+
 
 if __name__ == "__main__":
     from scrapy.cmdline import execute
