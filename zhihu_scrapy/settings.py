@@ -59,7 +59,7 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware': 350,
     'scrapy.contrib.downloadermiddleware.retry.RetryMiddleware': 351,
     # put this middleware after RetryMiddleware
-    'zhihu_scrapy.HttpProxyMiddleware.HttpProxyMiddleware': 543,
+    # 'zhihu_scrapy.HttpProxyMiddleware.HttpProxyMiddleware': 543,
 }
 
 
